@@ -9,7 +9,7 @@ const navVarient = {
     backgroundColor: "rgba(0,0,0,0.8)",
   },
   scroll: {
-    backgroundColor: "rgba(46, 71, 107, 0.9)",
+    backgroundColor: "rgba(0,0,0,0.7)",
   },
 };
 
@@ -51,6 +51,7 @@ export default function NavigationBar() {
   const mobileMenu = () => {
     set_toggleMenu((prev) => !prev);
   };
+  console.log(router);
 
   return (
     <>
@@ -66,7 +67,7 @@ export default function NavigationBar() {
             <Link href="/">
               <motion.img
                 whileHover={{ scale: 1.1 }}
-                src="http://g-clef.kr/img/m_logo.png"
+                src="/mainlogo.png"
                 className="lg:w-40 w-28"
               />
             </Link>
@@ -76,41 +77,63 @@ export default function NavigationBar() {
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>REGULATION</span>
+                <span>MAIN</span>
               </Link>
               <Link
                 href="/jury"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/jury"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>JURY</span>
+                <span>WELCOME</span>
               </Link>
               <Link
                 href="/contact"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/contact"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>CONTACT</span>
+                <span>INFORMATION</span>
               </Link>
               <Link
                 href="/notice"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/notice"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
+                )}
+              >
+                <span>JURY</span>
+              </Link>
+              <Link
+                href="/past"
+                className={cls(
+                  "flex flex-col items-center space-y-2 ",
+                  router.pathname === "/past"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
+                )}
+              >
+                <span>CONTACT</span>
+              </Link>
+              <Link
+                href="/past"
+                className={cls(
+                  "flex flex-col items-center space-y-2 ",
+                  router.pathname === "/past"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>NOTICE</span>
@@ -120,8 +143,8 @@ export default function NavigationBar() {
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/past"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>PAST WINNERS</span>
@@ -131,8 +154,8 @@ export default function NavigationBar() {
               <button
                 onClick={() => set_lanToggle("KR")}
                 className={cls(
-                  "border-r border-white px-4 transition",
-                  lanToggle === "KR" ? "text-[#4f78b2]" : "hover:text-[#4f78b2]"
+                  "border-r border-white px-4 transition text-sm",
+                  lanToggle === "KR" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 한국어
@@ -140,8 +163,8 @@ export default function NavigationBar() {
               <button
                 onClick={() => set_lanToggle("EN")}
                 className={cls(
-                  "border-l border-white px-4 transition",
-                  lanToggle === "EN" ? "text-[#4f78b2]" : "hover:text-[#4f78b2]"
+                  "border-l border-white px-4 transition text-sm",
+                  lanToggle === "EN" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 ENGLISH
@@ -182,47 +205,69 @@ export default function NavigationBar() {
             </button>
           </div>
           {toggleMenu ? (
-            <motion.div className={`text-white lg:hidden flex flex-col`}>
+            <motion.div className={`text-white lg:hidden flex flex-col text-xs`}>
               <Link
                 href="/regulation"
                 className={cls(
-                  "text-right px-5 py-8",
+                  "text-right px-5 py-5",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>REGULATION</span>
+                <span>MAIN</span>
               </Link>
               <Link
                 href="/jury"
                 className={cls(
-                  "text-right px-5 py-8",
+                  "text-right px-5 py-5",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
+                )}
+              >
+                <span>WELCOME</span>
+              </Link>
+              <Link
+                href="/contact"
+                className={cls(
+                  "text-right px-5 py-5",
+                  router.pathname === "/regulation"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
+                )}
+              >
+                <span>INFORMATION</span>
+              </Link>
+              <Link
+                href="/notice"
+                className={cls(
+                  "text-right px-5 py-5",
+                  router.pathname === "/regulation"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>JURY</span>
               </Link>
               <Link
-                href="/contact"
+                href="/past"
                 className={cls(
-                  "text-right px-5 py-8",
+                  "text-right px-5 py-5",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>CONTACT</span>
               </Link>
               <Link
-                href="/notice"
+                href="/past"
                 className={cls(
-                  "text-right px-5 py-8",
+                  "text-right px-5 py-5",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>NOTICE</span>
@@ -230,10 +275,10 @@ export default function NavigationBar() {
               <Link
                 href="/past"
                 className={cls(
-                  "text-right px-5 py-8",
+                  "text-right px-5 py-5",
                   router.pathname === "/regulation"
-                    ? "text-[#4f78b2]"
-                    : "hover:text-[#4f78b2] transition-colors"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
                 )}
               >
                 <span>PAST WINNERS</span>
@@ -243,7 +288,7 @@ export default function NavigationBar() {
                 onClick={() => set_lanToggle("KR")}
                 className={cls(
                   "border-r border-white px-4 transition",
-                  lanToggle === "KR" ? "text-[#4f78b2]" : "hover:text-[#4f78b2]"
+                  lanToggle === "KR" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 한국어
@@ -252,7 +297,7 @@ export default function NavigationBar() {
                 onClick={() => set_lanToggle("EN")}
                 className={cls(
                   "border-l border-white px-4 transition",
-                  lanToggle === "EN" ? "text-[#4f78b2]" : "hover:text-[#4f78b2]"
+                  lanToggle === "EN" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 ENGLISH
