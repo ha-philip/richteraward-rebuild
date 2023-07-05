@@ -34,7 +34,7 @@ export default function Footer() {
     <div className="flex lg:px-24 lg:py-36 lg:justify-between lg:flex-row lg:space-y-0 space-y-5 flex-col py-20 px-16 bg-black items-center">
       <div className="flex items-center lg:space-x-16 lg:flex-row flex-col lg:space-y-0 space-y-5">
         <motion.img
-          src="https://surroundio.org/wp-content/uploads/2023/05/surround_logo.png"
+          src="/mainlogo.png"
           className="lg:w-64 w-52"
         />
         <div className="flex flex-col space-y-5">
