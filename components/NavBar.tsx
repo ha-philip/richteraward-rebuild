@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const navVarient = {
   top: {
-    backgroundColor: "rgba(0,0,0,0.8)",
+    backgroundColor: "rgb(0,0,0)",
   },
   scroll: {
     backgroundColor: "rgba(0,0,0,0.7)",
