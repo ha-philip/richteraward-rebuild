@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function Intro() {
   return (
     <>
-      <div className="lg:px-36 bg-black pb-24">
+      <div className="lg:px-36 bg-black lg:py-52 py-36">
         <div className="flex lg:flex-row flex-col lg:justify-start justify-center items-center lg:space-y-0 space-y-10">
           <div className="flex-col justify-center items-center space-y-3">
             <h1 className="text-white lg:text-4xl text-2xl tracking-tighter lg:text-left text-center">"Sviatoslav Richter"</h1>

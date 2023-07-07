@@ -15,7 +15,7 @@ export default function Home() {
       <Head>
         <title>Richter Award</title>
       </Head>
-      <div className="pt-32 pb-32 lg:px-24 px-8 bg-black flex lg:justify-between lg:items-center lg:flex-row flex-col justify-center">
+      <div className="py-44 lg:px-24 px-8 bg-black flex lg:justify-between lg:items-center lg:flex-row flex-col justify-center">
           <div className="absolute lg:top-80 lg:left-56 top-60 lg:space-y-10 space-y-5">
             <h1 className="text-white lg:text-5xl text-3xl">
               The 3rd online

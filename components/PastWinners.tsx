@@ -9,7 +9,7 @@ export default function PastWinners() {
           <div className="grid lg:grid-cols-5 grid-cols-3 gap-6">
             {[...Array(15)].map((data, number) => (
               <motion.div 
-              whileHover={{scale: 1.1}}
+              whileHover={{scale: 1.05}}
               key={number} 
               className="bg-black shadow-xl text-white flex justify-center items-end lg:w-48 w-20 lg:h-72 h-32 p-3 text-xs">Winner {number + 1}
               </motion.div>
