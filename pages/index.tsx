@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Intro from "@/components/Intro";
-import Director from "@/components/Director";
+import Jury from "@/components/Jury";
 import PastWinners from "@/components/PastWinners";
 import Regulation from "@/components/Regulation";
 const banner: string = "http://g-clef.kr/img/main_img.png";
@@ -36,7 +36,7 @@ export default function Home() {
           ></div>
       </div>
       <Intro/>
-      <Director/>
+      <Jury/>
       <PastWinners/>
       <Regulation/>
     </>
