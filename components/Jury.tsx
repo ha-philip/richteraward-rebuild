@@ -21,7 +21,7 @@ export default function Jury() {
                 key={number}
                 layoutId={data.id}
                 whileHover={{ scale: 1.05, zIndex: 2 }}
-                className="lg:w-64 lg:h-96 w-32 h-52 mx-auto bg-cover bg-no-repeat relative cursor-pointer shadow-xl z-10"
+                className="lg:w-64 lg:h-96 w-32 h-52 mx-auto bg-cover bg-no-repeat relative cursor-pointer shadow-xl"
                 style={{ backgroundImage: `url(${data.photo})` }}
                 onClick={() => getOverlay(data.id)}
               >
