@@ -65,12 +65,12 @@ export default function PastWinners() {
             </AnimatePresence>
             <div className="absolute flex justify-between w-full lg:top-[8rem] top-[3rem] z-10">
               <button onClick={prevCard}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(153, 27, 27)" className="lg:w-12 lg:h-12 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke={visible === 1 ? `none` : `rgb(153, 27, 27)`}  className="lg:w-12 lg:h-12 w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
               </button>
               <button onClick={nextCard}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(153, 27, 27)" className="lg:w-12 lg:h-12 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke={visible === 3 ? `none` : `rgb(153, 27, 27)`} className="lg:w-12 lg:h-12 w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </button>
