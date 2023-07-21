@@ -44,7 +44,7 @@ export default function Regulation() {
     <>
       <div className="lg:px-24 px-5 bg-[whitesmoke] lg:pt-32 py-14">
         <div className="flex flex-col justify-center items-center space-y-10">
-          <span className="lg:text-4xl text-sm font-thin tracking-widest border-b border-red-800 p-3">Regulation of competition</span>
+          <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">Regulation of competition</span>
           <div className="flex flex-col justify-center items-center">
             <p className="lg:text-xl text-xs font-thin tracking-tighter">
               All participants must submit their performance with video. <br />

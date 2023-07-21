@@ -38,7 +38,7 @@ export default function PastWinners() {
     <>
       <div className="lg:px-3 px-1 bg-[whitesmoke] lg:pt-32 py-14">
         <div className="flex flex-col justify-center items-center space-y-10">
-          <span className="lg:text-4xl text-sm font-thin tracking-widest border-b border-red-800 p-3">Past Winners</span>
+          <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">Past Winners</span>
           <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter">{2019 + visible}</h2>
           <div
             className="flex flex-col w-full justify-center items-center relative lg:h-72 h-28 overflow-hidden"
