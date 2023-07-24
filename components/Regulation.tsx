@@ -99,22 +99,22 @@ export default function Regulation() {
             {apply ?
               <>
                 <motion.div
-                  className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-10 transtion"
+                  className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 />
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="fixed lg:top-36 top-28 z-20 lg:w-[65%] w-[90%]">
-                  <h1 onClick={closeOverlay} className="flex justify-end mb-3" >
+                  className="fixed lg:top-8 top-5 z-30 lg:w-[65%] w-[90%]">
+                  <h1 onClick={closeOverlay} className="flex justify-end lg:mb-3 mb-1" >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" className="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </h1>
                   <h2 className="bg-black text-white p-3 text-center tracking-[0.5rem] lg:text-2xl text-base">APPLICATION</h2>
                   <form onSubmit={handleSubmit(onVaild, onInValid)}>
-                    <div className="bg-[whitesmoke] h-[28rem] flex flex-col justify-start lg:p-10 p-3 overflow-y-scroll">
+                    <div className="bg-[whitesmoke] lg:h-[38rem] h-[36rem] flex flex-col justify-start lg:p-10 p-3 overflow-y-scroll">
                       <h2 className="text-red-800 font-bold text-sm">* Required Field</h2>
 
                       <span className="lg:text-sm text-xs mt-10 mb-2 font-bold text-red-800 tracking-tight">Name</span>

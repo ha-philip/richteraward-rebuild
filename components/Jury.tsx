@@ -38,7 +38,7 @@ export default function Jury() {
       {juryCard ?
         <>
           <motion.div
-            className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-20 flex justify-center items-center transtion"
+            className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 flex justify-center items-center transtion"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

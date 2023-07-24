@@ -60,7 +60,7 @@ export default function NavigationBar() {
           animate={navAnimation}
           transition={{ duration: 0.1 }}
           initial={"top"}
-          className="fixed top-0 w-full z-50 flex flex-col"
+          className="fixed top-0 w-full z-20 flex flex-col"
         >
           <div className="flex justify-between items-center xl:px-24 lg:px-24 px-5 py-8 ">
             <Link href="/">
