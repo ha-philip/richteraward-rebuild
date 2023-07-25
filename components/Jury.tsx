@@ -12,7 +12,7 @@ export default function Jury() {
   }
   return (
     <>
-      <div className="lg:px-16 px-5 bg-[whitesmoke] lg:pt-32 py-14">
+      <div className="lg:px-16 px-5 bg-[whitesmoke] lg:pt-32 py-14" id="jury">
         <div className="flex flex-col justify-center items-center space-y-10">
           <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">Jury Members</span>
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-6">

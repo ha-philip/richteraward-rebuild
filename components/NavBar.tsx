@@ -36,6 +36,8 @@ export default function NavigationBar() {
       behavior: "smooth",
     });
   };
+
+
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
@@ -72,40 +74,7 @@ export default function NavigationBar() {
             </Link>
             <div className="lg:flex hidden justify-between text-sm items-center text-white space-x-10 ">
               <Link
-                href="/regulation"
-                className={cls(
-                  "flex flex-col items-center space-y-2 ",
-                  router.pathname === "/regulation"
-                    ? "text-red-400"
-                    : "hover:text-red-400 transition-colors"
-                )}
-              >
-                <span>MAIN</span>
-              </Link>
-              <Link
-                href="/jury"
-                className={cls(
-                  "flex flex-col items-center space-y-2 ",
-                  router.pathname === "/jury"
-                    ? "text-red-400"
-                    : "hover:text-red-400 transition-colors"
-                )}
-              >
-                <span>WELCOME</span>
-              </Link>
-              <Link
-                href="/contact"
-                className={cls(
-                  "flex flex-col items-center space-y-2 ",
-                  router.pathname === "/contact"
-                    ? "text-red-400"
-                    : "hover:text-red-400 transition-colors"
-                )}
-              >
-                <span>INFORMATION</span>
-              </Link>
-              <Link
-                href="/notice"
+                href="#jury"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/notice"
@@ -116,7 +85,7 @@ export default function NavigationBar() {
                 <span>JURY</span>
               </Link>
               <Link
-                href="/past"
+                href="#past"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/past"
@@ -124,10 +93,21 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>CONTACT</span>
+                <span>PAST WINNERS</span>
               </Link>
               <Link
-                href="/past"
+                href="#regulation"
+                className={cls(
+                  "flex flex-col items-center space-y-2 ",
+                  router.pathname === "/past"
+                    ? "text-red-400"
+                    : "hover:text-red-400 transition-colors"
+                )}
+              >
+                <span>REGULATION</span>
+              </Link>
+              <Link
+                href="#notice"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/past"
@@ -138,7 +118,7 @@ export default function NavigationBar() {
                 <span>NOTICE</span>
               </Link>
               <Link
-                href="/past"
+                href="#contact"
                 className={cls(
                   "flex flex-col items-center space-y-2 ",
                   router.pathname === "/past"
@@ -146,8 +126,9 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>PAST WINNERS</span>
+                <span>CONTACT</span>
               </Link>
+              
             </div>
             <div className="lg:flex hidden justify-between items-center text-white text-xl">
               <button
