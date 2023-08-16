@@ -23,12 +23,19 @@ const ScrollUp = {
 };
 
 export default function NavigationBar() {
+  const { locale, locales, push } = useRouter();
+  
   const router = useRouter();
   const { scrollY } = useScroll();
   const navAnimation = useAnimation();
   const buttonAnimation = useAnimation();
-  const [lanToggle, set_lanToggle] = useState<"KR" | "EN">("EN");
+  const [lanToggle, set_lanToggle] = useState<"kr" | "en">("en");
   const [toggleMenu, set_toggleMenu] = useState<boolean>(false);
+
+  const handleClick = (lan: any) => {
+    set_lanToggle(lan);
+    push('/', undefined, {locale: lan})
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -53,6 +60,7 @@ export default function NavigationBar() {
   const mobileMenu = () => {
     set_toggleMenu((prev) => !prev);
   };
+
 
   return (
     <>
@@ -132,19 +140,19 @@ export default function NavigationBar() {
             </div>
             <div className="lg:flex hidden justify-between items-center text-white text-xl">
               <button
-                onClick={() => set_lanToggle("KR")}
+                onClick={() => handleClick("kr")}
                 className={cls(
                   "border-r border-white px-4 transition text-sm",
-                  lanToggle === "KR" ? "text-red-400" : "hover:text-red-400"
+                  lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 한국어
               </button>
               <button
-                onClick={() => set_lanToggle("EN")}
+                onClick={() => handleClick("en")}
                 className={cls(
                   "border-l border-white px-4 transition text-sm",
-                  lanToggle === "EN" ? "text-red-400" : "hover:text-red-400"
+                  lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 ENGLISH
@@ -265,19 +273,19 @@ export default function NavigationBar() {
               </Link>
               <div className="flex justify-end items-center text-white text-sm py-3">
               <button
-                onClick={() => set_lanToggle("KR")}
+                onClick={() => handleClick("kr")}
                 className={cls(
                   "border-r border-white px-4 transition",
-                  lanToggle === "KR" ? "text-red-400" : "hover:text-red-400"
+                  lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 한국어
               </button>
               <button
-                onClick={() => set_lanToggle("EN")}
+                onClick={() => handleClick("en")}
                 className={cls(
                   "border-l border-white px-4 transition",
-                  lanToggle === "EN" ? "text-red-400" : "hover:text-red-400"
+                  lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
                 )}
               >
                 ENGLISH
