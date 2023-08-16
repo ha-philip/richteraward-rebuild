@@ -90,7 +90,7 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>JURY</span>
+                <span>{locale === "en" ? "JURY" : "심사위원"}</span>
               </Link>
               <Link
                 href="#past"
@@ -101,7 +101,7 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>PAST WINNERS</span>
+                <span>{locale === "en" ? "PAST WINNERS" : "역대 수상자"}</span>
               </Link>
               <Link
                 href="#regulation"
@@ -112,7 +112,7 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>REGULATION</span>
+                <span>{locale === "en" ? "REGULATION" : "콩쿠르 요강"}</span>
               </Link>
               <Link
                 href="#notice"
@@ -123,7 +123,7 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>NOTICE</span>
+                <span>{locale === "en" ? "NOTICE" : "공지사항"}</span>
               </Link>
               <Link
                 href="#contact"
@@ -134,7 +134,7 @@ export default function NavigationBar() {
                     : "hover:text-red-400 transition-colors"
                 )}
               >
-                <span>CONTACT</span>
+                <span>{locale === "en" ? "CONTACT" : "오시는길"}</span>
               </Link>
               
             </div>
