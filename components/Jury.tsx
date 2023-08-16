@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { jury } from "./Descriptions";
+import { useRouter } from "next/router";
 
 export default function Jury() {
+  const { locale } = useRouter();
   const [juryCard, set_juryCard] = useState<string | null>(null);
   const getOverlay = (id: string) => {
     set_juryCard(id);
@@ -14,7 +16,9 @@ export default function Jury() {
     <>
       <div className="lg:px-16 px-5 bg-[whitesmoke] lg:pt-32 py-14" id="jury">
         <div className="flex flex-col justify-center items-center space-y-10">
-          <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">Jury Members</span>
+          <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
+            {locale === "en" ? "Jury Members" : "심사위원"}
+          </span>
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-6">
             {jury.map((data, number) => (
               <motion.div

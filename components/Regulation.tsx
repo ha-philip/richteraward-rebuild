@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface FormValues {
@@ -19,7 +20,34 @@ interface FormValues {
   teacher_email: string;
   performing_piece: string;
 }
+
+interface IregText {
+  reg_title: string;
+  reg_titleText_1: string;
+  reg_titleText_2: string;
+  prizes: string;
+  section: string;
+  repert: string;
+  age: string;
+  announce: string;
+  awards: string;
+  application: string;
+  teacher: string;
+  detail: string;
+}
+
 export default function Regulation() {
+  const { locale } = useRouter();
+  const [regText, set_regText] = useState<IregText>();
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/locales/${locale}/regulation.json`);
+      const json = await response.json();
+      set_regText(json);
+    })();
+  }, [locale]);
+
   const [apply, set_apply] = useState(false);
   const getOverlay = () => set_apply(true);
   const closeOverlay = () => set_apply(false);
@@ -48,19 +76,18 @@ export default function Regulation() {
       >
         <div className="flex flex-col justify-center items-center space-y-10">
           <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
-            Regulation of competition
+            {regText?.reg_title}
           </span>
           <div className="flex flex-col justify-center items-center">
-            <p className="lg:text-xl text-xs font-thin">
-              All participants must submit their performance with video. <br />
-              The judges consist of the Artistic Director of the competition and
-              world-famous professors or pianists <br />
-              who already has great reputation and international career.
+            <p className="lg:text-xl text-xs font-thin text-center">
+              {regText?.reg_titleText_1}
+              <br />
+              {regText?.reg_titleText_2}
             </p>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-12 mt-10">
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Prizes
+                  {regText?.prizes}
                 </h1>
                 <p className="lg:text-3xl text-xl font-bold tracking-tighter text-yellow-600">
                   Grand Prize : 3000 € (Euros)
@@ -72,37 +99,55 @@ export default function Regulation() {
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Section
+                {regText?.section}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                  Piano Solo ( Piano Solo ) <br/>
-                  Piano Duo ( Four hands & Two piano ) <br/>
-                  Piano Concerto ( With second piano or Orchestra ) <br/>
-                  Piano Chamber <br/>
-                  Music ( Duet, Trio, Quartet, Quintet ) <br/>
-                  <span className="ml-5 lg:text-sm text-xs">*In the case of Piano Chamber music Section, no transcriptions or arrangements are allowed. </span><br/>
-                  <span className="ml-5 lg:text-sm text-xs">*Only original piano chamber music works will be accepted. ( The form of accompaniment is excluded. )</span>
+                  Piano Solo ( Piano Solo ) <br />
+                  Piano Duo ( Four hands & Two piano ) <br />
+                  Piano Concerto ( With second piano or Orchestra ) <br />
+                  Piano Chamber <br />
+                  Music ( Duet, Trio, Quartet, Quintet ) <br />
+                  <span className="ml-5 lg:text-sm text-xs">
+                    *In the case of Piano Chamber music Section, no
+                    transcriptions or arrangements are allowed.{" "}
+                  </span>
+                  <br />
+                  <span className="ml-5 lg:text-sm text-xs">
+                    *Only original piano chamber music works will be accepted. (
+                    The form of accompaniment is excluded. )
+                  </span>
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Required Repertoire
+                {regText?.repert}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                Free choice of 1 piece or several pieces <br/><br/>
-                Junior Division: Max. 10 min. <br/>
-                ntermediate Division: Max. 15 min. <br/>
-                Senior Division: Max. 20 min. <br/><br/>
-                <span className="lg:text-sm text-xs">• Music composed by the performer is not allowed, only officially published works can be performed. </span><br/>
-                <span className="lg:text-sm text-xs">• The recording must have been recorded after the 1st of June 2021.</span>
+                  Free choice of 1 piece or several pieces <br />
+                  <br />
+                  Junior Division: Max. 10 min. <br />
+                  ntermediate Division: Max. 15 min. <br />
+                  Senior Division: Max. 20 min. <br />
+                  <br />
+                  <span className="lg:text-sm text-xs">
+                    • Music composed by the performer is not allowed, only
+                    officially published works can be performed.{" "}
+                  </span>
+                  <br />
+                  <span className="lg:text-sm text-xs">
+                    • The recording must have been recorded after the 1st of
+                    June 2021.
+                  </span>
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Age Category
+                {regText?.age}
                 </h1>
                 <p className="lg:text-sm text-xs tracking-tighter font-thin">
-                There are different age categories in our competition, the age of participant must be calculated with this day ( 30th of April, 2022 ).
+                  There are different age categories in our competition, the age
+                  of participant must be calculated with this day ( 30th of
+                  April, 2022 ).
                 </p>
                 <div className="flex lg:flex-row flex-col justify-between items-center gap-3 font-thin lg:text-lg text-xs text-center">
                   <div>
@@ -119,101 +164,165 @@ export default function Regulation() {
                   </div>
                 </div>
                 <p className="lg:text-sm text-xs tracking-tighter font-thin">
-                *In the case of Duo Section and Chamber Music Section, the average age of all particpants must be written in the application form.<br/>
-                ( It is mandatory to attach the proof of age from each participant in theapplication form. )  
+                  *In the case of Duo Section and Chamber Music Section, the
+                  average age of all particpants must be written in the
+                  application form.
+                  <br />( It is mandatory to attach the proof of age from each
+                  participant in theapplication form. )
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Announcement of the Result
+                {regText?.announce}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                  <span>Notification on the homepage</span><br/><br/>
-                  June 1, 2022 <br/>
-                  All Prizewinners will receive individual notification by an e-mail.
-                  </p>
-              </div>
-              <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Awards for each category
-                </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                First Prize / Second Prize / Third Prize <br/><br/>
-                ( Grand Prix and these main prizes will be selected only by the judges )
+                  <span>Notification on the homepage</span>
+                  <br />
+                  <br />
+                  June 1, 2022 <br />
+                  All Prizewinners will receive individual notification by an
+                  e-mail.
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Application
+                {regText?.awards}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                Dead Line: 30th of April 2022
+                  First Prize / Second Prize / Third Prize <br />
+                  <br />( Grand Prix and these main prizes will be selected only
+                  by the judges )
+                </p>
+              </div>
+              <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
+                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                {regText?.application}
+                </h1>
+                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                  Dead Line: 30th of April 2022
                 </p>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                  1 ) Submit a completed online application <br/>
-                  <span className="lg:text-base text-xs">-fill out the application form on our homepage and click the “Submit” button.</span><br/><br/>
-                  2 ) Transfer the application fee to the following account <br/>
+                  1 ) Submit a completed online application <br />
                   <span className="lg:text-base text-xs">
-                  Piano Solo Section : 130 Euros<br/>
-                  Piano Concerto Section: 130 Euros<br/>
-                  Piano Duo Section : 160 Euros<br/>
-                  Piano Chamber Music Section :<br/>
+                    -fill out the application form on our homepage and click the
+                    “Submit” button.
+                  </span>
+                  <br />
+                  <br />
+                  2 ) Transfer the application fee to the following account{" "}
+                  <br />
+                  <span className="lg:text-base text-xs">
+                    Piano Solo Section : 130 Euros
+                    <br />
+                    Piano Concerto Section: 130 Euros
+                    <br />
+                    Piano Duo Section : 160 Euros
+                    <br />
+                    Piano Chamber Music Section :<br />
                     <span className="lg:text-sm text-xs">
-                      - Duet : 160 Euros<br/>
-                      - Trio : 170 Euros<br/>
-                      - Quartet : 200 Euros<br/>
-                      - Quintet : 210 Euros<br/>
-                      </span>
-                  *Paypal : kmat0@nationalux.org<br/>
-                  - It must be transferred with the name of the participant.( Mandatory )<br/>
-                  - If participant wants to apply for multiple Sections, the application fees are different as follows.<br/>
-                  Two Sections - 190 Euros<br/>
-                  Three Sections - 270 Euros<br/>
-                  (When applying for multiple Sections, each application form must be submitted separately.)
+                      - Duet : 160 Euros
+                      <br />
+                      - Trio : 170 Euros
+                      <br />
+                      - Quartet : 200 Euros
+                      <br />
+                      - Quintet : 210 Euros
+                      <br />
+                    </span>
+                    *Paypal : kmat0@nationalux.org
+                    <br />
+                    - It must be transferred with the name of the participant.(
+                    Mandatory )<br />
+                    - If participant wants to apply for multiple Sections, the
+                    application fees are different as follows.
+                    <br />
+                    Two Sections - 190 Euros
+                    <br />
+                    Three Sections - 270 Euros
+                    <br />
+                    (When applying for multiple Sections, each application form
+                    must be submitted separately.)
                   </span>
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Teacher's Award
+                {regText?.teacher}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                The teacher of the Grand Prix Winner and the teacher who produce more than three Prize Winners will be awarded
+                  The teacher of the Grand Prix Winner and the teacher who
+                  produce more than three Prize Winners will be awarded
                 </p>
                 <p className="lg:text-base text-xs tracking-tighter font-thin">
-                Netizen Special Prize<br/><br/>
-                For the “Netizen Special Prize”, the competition will collect and post all participant’s videos on the following Link on the 16th of May 2022.<br/>
-                From the 16th of May 2022 to the 31st of May 2022, all votes from Netizen will be valid during this period, but only on this following Link.<br/>
-                https://nationalux.com/@Richteraward
+                  Netizen Special Prize
+                  <br />
+                  <br />
+                  For the “Netizen Special Prize”, the competition will collect
+                  and post all participant’s videos on the following Link on the
+                  16th of May 2022.
+                  <br />
+                  From the 16th of May 2022 to the 31st of May 2022, all votes
+                  from Netizen will be valid during this period, but only on
+                  this following Link.
+                  <br />
+                  https://nationalux.com/@Richteraward
                 </p>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                How To Vote
+                  How To Vote
                 </p>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                1. Vote your favorite artist by clicking "Like" on their videos. <br/>
-                (There are no limits how many artists you can vote, but you can not give multiple votes to an artist.) <br/>
-                2. Prize for the most beloved artist (The most number of “Like”) <br/>
-                3. Prize for the most popular artist (The most number of “Views”) <br/>
-                4. We will release the music of the -Netizen Prize Winner- to the Amazon, Apple Music and spotify. <br/>
-                5. Videos of these prize winners will be produced with -surround sound system- of the Nationalux.
+                  1. Vote your favorite artist by clicking "Like" on their
+                  videos. <br />
+                  (There are no limits how many artists you can vote, but you
+                  can not give multiple votes to an artist.) <br />
+                  2. Prize for the most beloved artist (The most number of
+                  “Like”) <br />
+                  3. Prize for the most popular artist (The most number of
+                  “Views”) <br />
+                  4. We will release the music of the -Netizen Prize Winner- to
+                  the Amazon, Apple Music and spotify. <br />
+                  5. Videos of these prize winners will be produced with
+                  -surround sound system- of the Nationalux.
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
                 <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
-                  Detail
+                {regText?.detail}
                 </h1>
                 <p className="lg:text-lg text-sm tracking-tighter font-thin">
-                  - The video must be taken with a fixed camera in which the participant’s hands are visible.<br/>
-                  - The recording must have been recorded after the 1st of June 2021.<br/>
-                  - It is possible to apply for multiple Sections. However, it is not possible to apply for multiple age categories in the same Section.<br/>
-                  - Incomplete application including failure to pay application fee will result in disqualification.<br/>
-                  - All documents will not be returned and the application fee is not refundable.<br/>
-                  - The judges' decision is final and unappealable. The scores of the jury will not be provided and published.<br/>
-                  - Jury may not vote to their own pupils.<br/>
-                  - Certificate of the prize will be sent by an e-mail, no later than the 8th of June 2022.<br/>
-                  - Participant who wish to receive their certificate by post, they must notify to the secretary of the competition by an e-mail.<br/>
-                  - "Nationalux“ has the right to post and use the videos of participants. Contestants may not claim competition and Nationalux for their profits and remuneration.<br/>
-                  - Result of the competition will be announced on the 1st of June 2022.
+                  - The video must be taken with a fixed camera in which the
+                  participant’s hands are visible.
+                  <br />
+                  - The recording must have been recorded after the 1st of June
+                  2021.
+                  <br />
+                  - It is possible to apply for multiple Sections. However, it
+                  is not possible to apply for multiple age categories in the
+                  same Section.
+                  <br />
+                  - Incomplete application including failure to pay application
+                  fee will result in disqualification.
+                  <br />
+                  - All documents will not be returned and the application fee
+                  is not refundable.
+                  <br />
+                  - The judges' decision is final and unappealable. The scores
+                  of the jury will not be provided and published.
+                  <br />
+                  - Jury may not vote to their own pupils.
+                  <br />
+                  - Certificate of the prize will be sent by an e-mail, no later
+                  than the 8th of June 2022.
+                  <br />
+                  - Participant who wish to receive their certificate by post,
+                  they must notify to the secretary of the competition by an
+                  e-mail.
+                  <br />
+                  - "Nationalux“ has the right to post and use the videos of
+                  participants. Contestants may not claim competition and
+                  Nationalux for their profits and remuneration.
+                  <br />- Result of the competition will be announced on the 1st
+                  of June 2022.
                 </p>
               </div>
               <div className="lg:col-span-2 flex justify-center items-center">
@@ -221,7 +330,7 @@ export default function Regulation() {
                   onClick={getOverlay}
                   className="bg-red-800 text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-72 w-52 py-5 hover:bg-black transition rounded-xl"
                 >
-                  APPLY
+                  {locale === "en" ? "APPLY" : "신청하기"}
                 </button>
               </div>
             </div>
@@ -257,7 +366,7 @@ export default function Regulation() {
                     </svg>
                   </h1>
                   <h2 className="bg-black text-white p-3 text-center tracking-[0.5rem] lg:text-2xl text-base">
-                    APPLICATION
+                  {locale === "en" ? "APPLICATION" : "참가 신청서"}
                   </h2>
                   <form onSubmit={handleSubmit(onVaild, onInValid)}>
                     <div className="bg-[whitesmoke] lg:h-[38rem] h-[36rem] flex flex-col justify-start lg:p-10 p-3 overflow-y-scroll">
