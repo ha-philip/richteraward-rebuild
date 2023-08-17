@@ -23,15 +23,9 @@ export default function Intro() {
   }, [locale]);
   return (
     <>
-      <div className="lg:px-36 bg-black lg:py-52 py-36">
-        <div className="flex lg:flex-row flex-col lg:justify-start justify-center items-center lg:space-y-0 space-y-10">
-          <div className="flex-col justify-center items-center space-y-3">
-            <h1 className="text-white lg:text-4xl text-2xl tracking-tighter lg:text-left text-center">"{introText?.intro_title}"</h1>
-            <motion.img
-              src="https://crosseyedpianist.files.wordpress.com/2015/03/998237_356756677791046_1918624410_n.jpg"
-              className="lg:w-[40rem] w-52"
-            />
-          </div>
+      <div className="lg:px-36 bg-[#080808] lg:py-52 py-36">
+        <div className="flex flex-col lg:justify-start justify-center lg:items-start items-center space-y-10 lg:w-2/3">
+            <h1 className="text-white lg:text-4xl text-2xl tracking-tighter lg:text-left text-center border-b-2 border-b-red-400 pb-3">" {introText?.intro_title} "</h1>
           <p className="text-white lg:text-xl tracking-tight text-xs lg:mx-0 mx-16 font-thin">
             {introText?.intro_1}<br/>
             {introText?.intro_2}<br/>

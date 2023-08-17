@@ -24,7 +24,7 @@ export default function Contact() {
   return (
     <>
       <div
-        className="lg:px-16 px-5 bg-black lg:pt-14 py-14 flex flex-col justify-center items-center space-y-10"
+        className="lg:px-16 px-5 bg-[#080808] lg:pt-14 py-14 flex flex-col justify-center items-center space-y-10"
         id="contact"
       >
         <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3 text-white">

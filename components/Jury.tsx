@@ -49,7 +49,7 @@ export default function Jury() {
             onClick={() => overlayClose()}
           >
             <div
-              className="fixed flex bg-black">
+              className="fixed flex bg-[#080808]">
 
               {juryCard === jury[0].id &&
                 <>
