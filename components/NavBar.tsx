@@ -6,7 +6,7 @@ import { motion, useAnimation, useScroll } from "framer-motion";
 
 const navVarient = {
   top: {
-    backgroundColor: "rgb(8,8,8,0.8)",
+    backgroundColor: "rgb(12,12,12,0.8)",
   },
   scroll: {
     backgroundColor: "rgba(8,8,8,0.8)",
@@ -301,7 +301,7 @@ export default function NavigationBar() {
         initial={{ opacity: 0 }}
         animate={buttonAnimation}
         transition={{ duration: 0.1 }}
-        className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 transition shadow-xl z-50"
+        className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 shadow-xl z-50 transition"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

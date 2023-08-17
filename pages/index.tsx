@@ -32,7 +32,7 @@ export default function Home() {
       <Head>
         <title>Richter Award</title>
       </Head>
-      <div className="py-44 lg:px-80 px-8 bg-[rgb(8,8,8)] flex lg:justify-end lg:items-center lg:flex-row flex-col justify-center">
+      <div className="pt-44 pb-24 lg:px-80 px-8 bg-[rgb(12,12,12)] flex lg:justify-end lg:items-center lg:flex-row flex-col justify-center">
           <div className="absolute lg:top-80 lg:left-56 top-60 lg:space-y-10 space-y-5">
             <h1 className="text-white lg:text-5xl text-3xl font-thin">
               {indexText?.index_1}
@@ -48,7 +48,7 @@ export default function Home() {
           <div
             className="lg:w-[34rem] lg:h-[34rem] bg-cover w-[20rem] h-[20rem] rounded-full"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${banner})`,
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${banner})`,
             }}
           />
       </div>

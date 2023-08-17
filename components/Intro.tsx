@@ -23,7 +23,7 @@ export default function Intro() {
   }, [locale]);
   return (
     <>
-      <div className="lg:px-36 bg-[#080808] lg:py-52 py-36">
+      <div className="lg:px-36 bg-[#0c0c0c] py-36">
         <div className="flex flex-col lg:justify-start justify-center lg:items-start items-center space-y-10 lg:w-2/3">
             <h1 className="text-white lg:text-4xl text-2xl tracking-tighter lg:text-left text-center border-b-2 border-b-red-400 pb-3">" {introText?.intro_title} "</h1>
           <p className="text-white lg:text-xl tracking-tight text-xs lg:mx-0 mx-16 font-thin">
