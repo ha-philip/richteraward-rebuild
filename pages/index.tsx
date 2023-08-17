@@ -8,7 +8,7 @@ import Contact from "@/components/Contact";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const banner: string = "http://g-clef.kr/img/main_img.png";
+const banner: string = "/bg_richter.jpg";
 
 interface IindexText {
   index_1: string;
