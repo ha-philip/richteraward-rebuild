@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { stringify } from "querystring";
+import { useEffect, useState } from "react";
 import { pastWinners } from "./Descriptions";
 
 const boxVar = {
@@ -37,29 +38,80 @@ export default function PastWinners() {
     set_visible((prev) => (prev === 0 ? 0 : prev - 1));
     set_back(true);
   }
+  const [winnerList, set_winnerList] = useState(pastWinners[0].grandPrize);
   const getMyAwards = (year: number, award: string) => {
-    if(year === 0){
-      //2020
-      //클릭한 카드의 연도 + 순서를 찾아 API안에 있는 데이터를 변수에 삽입 및 출력
-    }else if(year === 1){
-      //2021
-    }else if(year === 2){
-      //2022
+    if (year === 0) {
+      switch (award) {
+        case "GRAND PRIZE":
+          set_winnerList(pastWinners[0].grandPrize);
+          break;
+        case "1ST PRIZE":
+          set_winnerList(pastWinners[0].firstPrize);
+          break;
+        case "2ND PRIZE":
+          set_winnerList(pastWinners[0].secondPrize);
+          break;
+        case "3RD PRIZE":
+          set_winnerList(pastWinners[0].thridPrize);
+          break;
+        case "SPECIAL PRIZE":
+          set_winnerList(pastWinners[0].specialPrize);
+          break;
+      }
+    } else if (year === 1) {
+      switch (award) {
+        case "GRAND PRIZE":
+          set_winnerList(pastWinners[1].grandPrize);
+          break;
+        case "1ST PRIZE":
+          set_winnerList(pastWinners[1].firstPrize);
+          break;
+        case "2ND PRIZE":
+          set_winnerList(pastWinners[1].secondPrize);
+          break;
+        case "3RD PRIZE":
+          set_winnerList(pastWinners[1].thridPrize);
+          break;
+        case "SPECIAL PRIZE":
+          set_winnerList(pastWinners[1].specialPrize);
+          break;
+      }
+    } else if (year === 2) {
+      switch (award) {
+        case "GRAND PRIZE":
+          set_winnerList(pastWinners[2].grandPrize);
+          break;
+        case "1ST PRIZE":
+          set_winnerList(pastWinners[2].firstPrize);
+          break;
+        case "2ND PRIZE":
+          set_winnerList(pastWinners[2].secondPrize);
+          break;
+        case "3RD PRIZE":
+          set_winnerList(pastWinners[2].thridPrize);
+          break;
+        case "SPECIAL PRIZE":
+          set_winnerList(pastWinners[2].specialPrize);
+          break;
+      }
     }
+    set_winnerCard(true);
   }
+  const [winnerCard, set_winnerCard] = useState<boolean>(false);
+
   return (
     <>
       <div className="lg:px-3 px-1 bg-[whitesmoke] lg:pt-32 py-14" id="past">
         <div className="flex flex-col justify-center items-center space-y-10">
           <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
-            {locale == "en" ?  "Past Winners" : "역대 수상자" }
-            </span>
+            {locale == "en" ? "Past Winners" : "역대 수상자"}
+          </span>
           <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter">{2020 + visible}</h2>
           <div
             className="flex flex-col w-full justify-center items-center relative lg:h-72 h-28 overflow-hidden"
           >
             <AnimatePresence mode="wait" custom={back}>
-              {pastWinners.map((year, i) => i === visible ? (
+              {[0, 1, 2].map((i) => i === visible ? (
                 <motion.div
                   custom={back}
                   variants={boxVar}
@@ -82,7 +134,7 @@ export default function PastWinners() {
             </AnimatePresence>
             <div className="absolute flex justify-between w-full lg:top-[8rem] top-[3rem]">
               <button onClick={prevCard}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke={visible === 0 ? `none` : `rgb(153, 27, 27)`}  className="lg:w-12 lg:h-12 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke={visible === 0 ? `none` : `rgb(153, 27, 27)`} className="lg:w-12 lg:h-12 w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
               </button>
@@ -95,6 +147,19 @@ export default function PastWinners() {
           </div>
         </div>
       </div>
+      {winnerCard ?
+          <motion.div
+            className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 flex justify-center items-center transtion"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => set_winnerCard(false)}
+          >
+            {Object.values(winnerList).map((value, number) => 
+              <p className="text-white" key={number}>{JSON.stringify(value)}</p>
+            )}
+          </motion.div>
+          : null}
     </>
   );
 }
