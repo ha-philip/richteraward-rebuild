@@ -45,29 +45,10 @@ export const jury: IJury[] = [
 
 interface IPastWinners {
   grandPrize: object[];
-  firstPrize: [
-    { junior: object[] },
-    { intermediate: object[] },
-    { senior: object[] }
-  ];
-  secondPrize: [
-    { junior: object[] },
-    { intermediate: object[] },
-    { senior: object[] }
-  ];
-  thridPrize: [
-    { junior: object[] },
-    { intermediate: object[] },
-    { senior: object[] }
-  ];
-  specialPrize: [
-    {
-      beloved: object;
-    },
-    {
-      popular: object;
-    }
-  ];
+  firstPrize: object[];
+  secondPrize: object[];
+  thridPrize: object[];
+  specialPrize: object[];
 }
 
 export const pastWinners: IPastWinners[] = [
@@ -87,186 +68,146 @@ export const pastWinners: IPastWinners[] = [
     ],
     firstPrize: [
       {
-        junior: [
-          {
-            name: "Khoi Ho",
-            url: ["https://nationalux.com/v/7VDhnn"],
-          },
+        name: "Khoi Ho (Junior)",
+        url: ["https://nationalux.com/v/7VDhnn"],
+      },
+      {
+        name: "Arthur Grigoryan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/RwNc4y",
+          "https://nationalux.com/v/NLyTHG",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Arthur Grigoryan",
-            url: [
-              "https://nationalux.com/v/RwNc4y",
-              "https://nationalux.com/v/NLyTHG",
-            ],
-          },
-        ],
-      },
-      {
-        senior: [
-          {
-            name: "Zihao Ye",
-            url: ["https://nationalux.com/v/DZYdW1"],
-          },
-        ],
+        name: "Zihao Ye (Senior)",
+        url: ["https://nationalux.com/v/DZYdW1"],
       },
     ],
     secondPrize: [
       {
-        junior: [
-          {
-            name: "Ryoon Ha",
-            url: ["https://nationalux.com/v/Nh6Kzw"],
-          },
-          {
-            name: "Tomoko Nakanishi",
-            url: ["https://nationalux.com/v/fkkNED"],
-          },
-          {
-            name: "Haruto Nakayama",
-            url: [
-              "https://nationalux.com/v/o943sm",
-              "https://nationalux.com/v/aWPDTX",
-            ],
-          },
+        name: "Ryoon Ha (Junior)",
+        url: ["https://nationalux.com/v/Nh6Kzw"],
+      },
+      {
+        name: "Tomoko Nakanishi (Junior)",
+        url: ["https://nationalux.com/v/fkkNED"],
+      },
+      {
+        name: "Haruto Nakayama (Junior)",
+        url: [
+          "https://nationalux.com/v/o943sm",
+          "https://nationalux.com/v/aWPDTX",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Khoa Ho",
-            url: ["https://nationalux.com/v/v1Bznl"],
-          },
-          {
-            name: "Hinako Iso",
-            url: ["https://nationalux.com/v/xXnDg3"],
-          },
-          {
-            name: "An-chi Mai",
-            url: ["https://nationalux.com/v/D7uBNo"],
-          },
+        name: "Khoa Ho (Intermediate)",
+        url: ["https://nationalux.com/v/v1Bznl"],
+      },
+      {
+        name: "Hinako Iso (Intermediate)",
+        url: ["https://nationalux.com/v/xXnDg3"],
+      },
+      {
+        name: "An-chi Mai (Intermediate)",
+        url: ["https://nationalux.com/v/D7uBNo"],
+      },
+      {
+        name: "Hana Igawa (Senior)",
+        url: [
+          "https://nationalux.com/v/HQ1P1i",
+          "https://nationalux.com/v/3bp8ft",
+          "https://nationalux.com/v/86HcjG",
         ],
       },
       {
-        senior: [
-          {
-            name: "Hana Igawa",
-            url: [
-              "https://nationalux.com/v/HQ1P1i",
-              "https://nationalux.com/v/3bp8ft",
-              "https://nationalux.com/v/86HcjG",
-            ],
-          },
-          {
-            name: "Daeyoung Kim",
-            url: [
-              "https://nationalux.com/v/NBYRKn",
-              "https://nationalux.com/v/JfmvAM",
-            ],
-          },
-          {
-            name: "Marcin Wieczorek",
-            url: ["https://nationalux.com/v/TqrTD9"],
-          },
+        name: "Daeyoung Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/NBYRKn",
+          "https://nationalux.com/v/JfmvAM",
         ],
+      },
+      {
+        name: "Marcin Wieczorek (Senior)",
+        url: ["https://nationalux.com/v/TqrTD9"],
       },
     ],
     thridPrize: [
       {
-        junior: [
-          {
-            name: "Chanwook Kim",
-            url: ["https://nationalux.com/v/pa9CZA"],
-          },
-          {
-            name: "Yoon Seo Shim",
-            url: [
-              "https://nationalux.com/v/PztSNA",
-              "https://nationalux.com/v/2IFI2F",
-            ],
-          },
+        name: "Chanwook Kim (Junior)",
+        url: ["https://nationalux.com/v/pa9CZA"],
+      },
+      {
+        name: "Yoon Seo Shim (Junior)",
+        url: [
+          "https://nationalux.com/v/PztSNA",
+          "https://nationalux.com/v/2IFI2F",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Mateusz Dubiel",
-            url: [
-              "https://nationalux.com/v/xYiLcF",
-              "https://nationalux.com/v/YtGt1d",
-            ],
-          },
-          {
-            name: "Yinuo Lu",
-            url: ["https://nationalux.com/v/GvhL8J"],
-          },
-          {
-            name: "Ningxin Zhan",
-            url: [
-              "https://nationalux.com/v/NnVaqN",
-              "https://nationalux.com/v/RJHRT4",
-            ],
-          },
+        name: "Mateusz Dubiel (Intermediate)",
+        url: [
+          "https://nationalux.com/v/xYiLcF",
+          "https://nationalux.com/v/YtGt1d",
         ],
       },
       {
-        senior: [
-          {
-            name: "Dongkyu Leo Kim",
-            url: [
-              "https://nationalux.com/v/j1YLyb",
-              "https://nationalux.com/v/lvffSY",
-              "https://nationalux.com/v/Rvtgtc",
-              "https://nationalux.com/v/IWbagx",
-            ],
-          },
-          {
-            name: "Maria Narodytska",
-            url: [
-              "https://nationalux.com/v/mBzSbG",
-              "https://nationalux.com/v/kCZdtR",
-              "https://nationalux.com/v/QQQwTy",
-            ],
-          },
-          {
-            name: "Polina Sasko",
-            url: [
-              "https://nationalux.com/v/iXpoww",
-              "https://nationalux.com/v/nsbN5s",
-              "https://nationalux.com/v/XNJg99",
-            ],
-          },
-          {
-            name: "Xinran Wang",
-            url: ["https://nationalux.com/v/jXi5HC"],
-          },
+        name: "Yinuo Lu (Intermediate)",
+        url: ["https://nationalux.com/v/GvhL8J"],
+      },
+      {
+        name: "Ningxin Zhan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/NnVaqN",
+          "https://nationalux.com/v/RJHRT4",
         ],
+      },
+      {
+        name: "Dongkyu Leo Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
+      },
+      {
+        name: "Maria Narodytska (Senior)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
+      },
+      {
+        name: "Polina Sasko (Senior)",
+        url: [
+          "https://nationalux.com/v/iXpoww",
+          "https://nationalux.com/v/nsbN5s",
+          "https://nationalux.com/v/XNJg99",
+        ],
+      },
+      {
+        name: "Xinran Wang (Senior)",
+        url: ["https://nationalux.com/v/jXi5HC"],
       },
     ],
     specialPrize: [
       {
-        beloved: {
-          name: "Maria Narodytska",
-          url: [
-            "https://nationalux.com/v/mBzSbG",
-            "https://nationalux.com/v/kCZdtR",
-            "https://nationalux.com/v/QQQwTy",
-          ],
-        },
+        name: "Maria Narodytska (Belove)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
       },
       {
-        popular: {
-          name: "Kang Tae Kim",
-          url: [
-            "https://nationalux.com/v/j1YLyb",
-            "https://nationalux.com/v/lvffSY",
-            "https://nationalux.com/v/Rvtgtc",
-            "https://nationalux.com/v/IWbagx",
-          ],
-        },
+        name: "Kang Tae Kim (Popular)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
       },
     ],
   },
@@ -286,186 +227,146 @@ export const pastWinners: IPastWinners[] = [
     ],
     firstPrize: [
       {
-        junior: [
-          {
-            name: "Khoi Ho",
-            url: ["https://nationalux.com/v/7VDhnn"],
-          },
+        name: "Khoi Ho (Junior)",
+        url: ["https://nationalux.com/v/7VDhnn"],
+      },
+      {
+        name: "Arthur Grigoryan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/RwNc4y",
+          "https://nationalux.com/v/NLyTHG",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Arthur Grigoryan",
-            url: [
-              "https://nationalux.com/v/RwNc4y",
-              "https://nationalux.com/v/NLyTHG",
-            ],
-          },
-        ],
-      },
-      {
-        senior: [
-          {
-            name: "Zihao Ye",
-            url: ["https://nationalux.com/v/DZYdW1"],
-          },
-        ],
+        name: "Zihao Ye (Senior)",
+        url: ["https://nationalux.com/v/DZYdW1"],
       },
     ],
     secondPrize: [
       {
-        junior: [
-          {
-            name: "Ryoon Ha",
-            url: ["https://nationalux.com/v/Nh6Kzw"],
-          },
-          {
-            name: "Tomoko Nakanishi",
-            url: ["https://nationalux.com/v/fkkNED"],
-          },
-          {
-            name: "Haruto Nakayama",
-            url: [
-              "https://nationalux.com/v/o943sm",
-              "https://nationalux.com/v/aWPDTX",
-            ],
-          },
+        name: "Ryoon Ha (Junior)",
+        url: ["https://nationalux.com/v/Nh6Kzw"],
+      },
+      {
+        name: "Tomoko Nakanishi (Junior)",
+        url: ["https://nationalux.com/v/fkkNED"],
+      },
+      {
+        name: "Haruto Nakayama (Junior)",
+        url: [
+          "https://nationalux.com/v/o943sm",
+          "https://nationalux.com/v/aWPDTX",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Khoa Ho",
-            url: ["https://nationalux.com/v/v1Bznl"],
-          },
-          {
-            name: "Hinako Iso",
-            url: ["https://nationalux.com/v/xXnDg3"],
-          },
-          {
-            name: "An-chi Mai",
-            url: ["https://nationalux.com/v/D7uBNo"],
-          },
+        name: "Khoa Ho (Intermediate)",
+        url: ["https://nationalux.com/v/v1Bznl"],
+      },
+      {
+        name: "Hinako Iso (Intermediate)",
+        url: ["https://nationalux.com/v/xXnDg3"],
+      },
+      {
+        name: "An-chi Mai (Intermediate)",
+        url: ["https://nationalux.com/v/D7uBNo"],
+      },
+      {
+        name: "Hana Igawa (Senior)",
+        url: [
+          "https://nationalux.com/v/HQ1P1i",
+          "https://nationalux.com/v/3bp8ft",
+          "https://nationalux.com/v/86HcjG",
         ],
       },
       {
-        senior: [
-          {
-            name: "Hana Igawa",
-            url: [
-              "https://nationalux.com/v/HQ1P1i",
-              "https://nationalux.com/v/3bp8ft",
-              "https://nationalux.com/v/86HcjG",
-            ],
-          },
-          {
-            name: "Daeyoung Kim",
-            url: [
-              "https://nationalux.com/v/NBYRKn",
-              "https://nationalux.com/v/JfmvAM",
-            ],
-          },
-          {
-            name: "Marcin Wieczorek",
-            url: ["https://nationalux.com/v/TqrTD9"],
-          },
+        name: "Daeyoung Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/NBYRKn",
+          "https://nationalux.com/v/JfmvAM",
         ],
+      },
+      {
+        name: "Marcin Wieczorek (Senior)",
+        url: ["https://nationalux.com/v/TqrTD9"],
       },
     ],
     thridPrize: [
       {
-        junior: [
-          {
-            name: "Chanwook Kim",
-            url: ["https://nationalux.com/v/pa9CZA"],
-          },
-          {
-            name: "Yoon Seo Shim",
-            url: [
-              "https://nationalux.com/v/PztSNA",
-              "https://nationalux.com/v/2IFI2F",
-            ],
-          },
+        name: "Chanwook Kim (Junior)",
+        url: ["https://nationalux.com/v/pa9CZA"],
+      },
+      {
+        name: "Yoon Seo Shim (Junior)",
+        url: [
+          "https://nationalux.com/v/PztSNA",
+          "https://nationalux.com/v/2IFI2F",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Mateusz Dubiel",
-            url: [
-              "https://nationalux.com/v/xYiLcF",
-              "https://nationalux.com/v/YtGt1d",
-            ],
-          },
-          {
-            name: "Yinuo Lu",
-            url: ["https://nationalux.com/v/GvhL8J"],
-          },
-          {
-            name: "Ningxin Zhan",
-            url: [
-              "https://nationalux.com/v/NnVaqN",
-              "https://nationalux.com/v/RJHRT4",
-            ],
-          },
+        name: "Mateusz Dubiel (Intermediate)",
+        url: [
+          "https://nationalux.com/v/xYiLcF",
+          "https://nationalux.com/v/YtGt1d",
         ],
       },
       {
-        senior: [
-          {
-            name: "Dongkyu Leo Kim",
-            url: [
-              "https://nationalux.com/v/j1YLyb",
-              "https://nationalux.com/v/lvffSY",
-              "https://nationalux.com/v/Rvtgtc",
-              "https://nationalux.com/v/IWbagx",
-            ],
-          },
-          {
-            name: "Maria Narodytska",
-            url: [
-              "https://nationalux.com/v/mBzSbG",
-              "https://nationalux.com/v/kCZdtR",
-              "https://nationalux.com/v/QQQwTy",
-            ],
-          },
-          {
-            name: "Polina Sasko",
-            url: [
-              "https://nationalux.com/v/iXpoww",
-              "https://nationalux.com/v/nsbN5s",
-              "https://nationalux.com/v/XNJg99",
-            ],
-          },
-          {
-            name: "Xinran Wang",
-            url: ["https://nationalux.com/v/jXi5HC"],
-          },
+        name: "Yinuo Lu (Intermediate)",
+        url: ["https://nationalux.com/v/GvhL8J"],
+      },
+      {
+        name: "Ningxin Zhan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/NnVaqN",
+          "https://nationalux.com/v/RJHRT4",
         ],
+      },
+      {
+        name: "Dongkyu Leo Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
+      },
+      {
+        name: "Maria Narodytska (Senior)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
+      },
+      {
+        name: "Polina Sasko (Senior)",
+        url: [
+          "https://nationalux.com/v/iXpoww",
+          "https://nationalux.com/v/nsbN5s",
+          "https://nationalux.com/v/XNJg99",
+        ],
+      },
+      {
+        name: "Xinran Wang (Senior)",
+        url: ["https://nationalux.com/v/jXi5HC"],
       },
     ],
     specialPrize: [
       {
-        beloved: {
-          name: "Maria Narodytska",
-          url: [
-            "https://nationalux.com/v/mBzSbG",
-            "https://nationalux.com/v/kCZdtR",
-            "https://nationalux.com/v/QQQwTy",
-          ],
-        },
+        name: "Maria Narodytska (Belove)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
       },
       {
-        popular: {
-          name: "Kang Tae Kim",
-          url: [
-            "https://nationalux.com/v/j1YLyb",
-            "https://nationalux.com/v/lvffSY",
-            "https://nationalux.com/v/Rvtgtc",
-            "https://nationalux.com/v/IWbagx",
-          ],
-        },
+        name: "Kang Tae Kim (Popular)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
       },
     ],
   },
@@ -485,186 +386,146 @@ export const pastWinners: IPastWinners[] = [
     ],
     firstPrize: [
       {
-        junior: [
-          {
-            name: "Khoi Ho",
-            url: ["https://nationalux.com/v/7VDhnn"],
-          },
+        name: "Khoi Ho (Junior)",
+        url: ["https://nationalux.com/v/7VDhnn"],
+      },
+      {
+        name: "Arthur Grigoryan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/RwNc4y",
+          "https://nationalux.com/v/NLyTHG",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Arthur Grigoryan",
-            url: [
-              "https://nationalux.com/v/RwNc4y",
-              "https://nationalux.com/v/NLyTHG",
-            ],
-          },
-        ],
-      },
-      {
-        senior: [
-          {
-            name: "Zihao Ye",
-            url: ["https://nationalux.com/v/DZYdW1"],
-          },
-        ],
+        name: "Zihao Ye (Senior)",
+        url: ["https://nationalux.com/v/DZYdW1"],
       },
     ],
     secondPrize: [
       {
-        junior: [
-          {
-            name: "Ryoon Ha",
-            url: ["https://nationalux.com/v/Nh6Kzw"],
-          },
-          {
-            name: "Tomoko Nakanishi",
-            url: ["https://nationalux.com/v/fkkNED"],
-          },
-          {
-            name: "Haruto Nakayama",
-            url: [
-              "https://nationalux.com/v/o943sm",
-              "https://nationalux.com/v/aWPDTX",
-            ],
-          },
+        name: "Ryoon Ha (Junior)",
+        url: ["https://nationalux.com/v/Nh6Kzw"],
+      },
+      {
+        name: "Tomoko Nakanishi (Junior)",
+        url: ["https://nationalux.com/v/fkkNED"],
+      },
+      {
+        name: "Haruto Nakayama (Junior)",
+        url: [
+          "https://nationalux.com/v/o943sm",
+          "https://nationalux.com/v/aWPDTX",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Khoa Ho",
-            url: ["https://nationalux.com/v/v1Bznl"],
-          },
-          {
-            name: "Hinako Iso",
-            url: ["https://nationalux.com/v/xXnDg3"],
-          },
-          {
-            name: "An-chi Mai",
-            url: ["https://nationalux.com/v/D7uBNo"],
-          },
+        name: "Khoa Ho (Intermediate)",
+        url: ["https://nationalux.com/v/v1Bznl"],
+      },
+      {
+        name: "Hinako Iso (Intermediate)",
+        url: ["https://nationalux.com/v/xXnDg3"],
+      },
+      {
+        name: "An-chi Mai (Intermediate)",
+        url: ["https://nationalux.com/v/D7uBNo"],
+      },
+      {
+        name: "Hana Igawa (Senior)",
+        url: [
+          "https://nationalux.com/v/HQ1P1i",
+          "https://nationalux.com/v/3bp8ft",
+          "https://nationalux.com/v/86HcjG",
         ],
       },
       {
-        senior: [
-          {
-            name: "Hana Igawa",
-            url: [
-              "https://nationalux.com/v/HQ1P1i",
-              "https://nationalux.com/v/3bp8ft",
-              "https://nationalux.com/v/86HcjG",
-            ],
-          },
-          {
-            name: "Daeyoung Kim",
-            url: [
-              "https://nationalux.com/v/NBYRKn",
-              "https://nationalux.com/v/JfmvAM",
-            ],
-          },
-          {
-            name: "Marcin Wieczorek",
-            url: ["https://nationalux.com/v/TqrTD9"],
-          },
+        name: "Daeyoung Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/NBYRKn",
+          "https://nationalux.com/v/JfmvAM",
         ],
+      },
+      {
+        name: "Marcin Wieczorek (Senior)",
+        url: ["https://nationalux.com/v/TqrTD9"],
       },
     ],
     thridPrize: [
       {
-        junior: [
-          {
-            name: "Chanwook Kim",
-            url: ["https://nationalux.com/v/pa9CZA"],
-          },
-          {
-            name: "Yoon Seo Shim",
-            url: [
-              "https://nationalux.com/v/PztSNA",
-              "https://nationalux.com/v/2IFI2F",
-            ],
-          },
+        name: "Chanwook Kim (Junior)",
+        url: ["https://nationalux.com/v/pa9CZA"],
+      },
+      {
+        name: "Yoon Seo Shim (Junior)",
+        url: [
+          "https://nationalux.com/v/PztSNA",
+          "https://nationalux.com/v/2IFI2F",
         ],
       },
       {
-        intermediate: [
-          {
-            name: "Mateusz Dubiel",
-            url: [
-              "https://nationalux.com/v/xYiLcF",
-              "https://nationalux.com/v/YtGt1d",
-            ],
-          },
-          {
-            name: "Yinuo Lu",
-            url: ["https://nationalux.com/v/GvhL8J"],
-          },
-          {
-            name: "Ningxin Zhan",
-            url: [
-              "https://nationalux.com/v/NnVaqN",
-              "https://nationalux.com/v/RJHRT4",
-            ],
-          },
+        name: "Mateusz Dubiel (Intermediate)",
+        url: [
+          "https://nationalux.com/v/xYiLcF",
+          "https://nationalux.com/v/YtGt1d",
         ],
       },
       {
-        senior: [
-          {
-            name: "Dongkyu Leo Kim",
-            url: [
-              "https://nationalux.com/v/j1YLyb",
-              "https://nationalux.com/v/lvffSY",
-              "https://nationalux.com/v/Rvtgtc",
-              "https://nationalux.com/v/IWbagx",
-            ],
-          },
-          {
-            name: "Maria Narodytska",
-            url: [
-              "https://nationalux.com/v/mBzSbG",
-              "https://nationalux.com/v/kCZdtR",
-              "https://nationalux.com/v/QQQwTy",
-            ],
-          },
-          {
-            name: "Polina Sasko",
-            url: [
-              "https://nationalux.com/v/iXpoww",
-              "https://nationalux.com/v/nsbN5s",
-              "https://nationalux.com/v/XNJg99",
-            ],
-          },
-          {
-            name: "Xinran Wang",
-            url: ["https://nationalux.com/v/jXi5HC"],
-          },
+        name: "Yinuo Lu (Intermediate)",
+        url: ["https://nationalux.com/v/GvhL8J"],
+      },
+      {
+        name: "Ningxin Zhan (Intermediate)",
+        url: [
+          "https://nationalux.com/v/NnVaqN",
+          "https://nationalux.com/v/RJHRT4",
         ],
+      },
+      {
+        name: "Dongkyu Leo Kim (Senior)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
+      },
+      {
+        name: "Maria Narodytska (Senior)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
+      },
+      {
+        name: "Polina Sasko (Senior)",
+        url: [
+          "https://nationalux.com/v/iXpoww",
+          "https://nationalux.com/v/nsbN5s",
+          "https://nationalux.com/v/XNJg99",
+        ],
+      },
+      {
+        name: "Xinran Wang (Senior)",
+        url: ["https://nationalux.com/v/jXi5HC"],
       },
     ],
     specialPrize: [
       {
-        beloved: {
-          name: "Maria Narodytska",
-          url: [
-            "https://nationalux.com/v/mBzSbG",
-            "https://nationalux.com/v/kCZdtR",
-            "https://nationalux.com/v/QQQwTy",
-          ],
-        },
+        name: "Maria Narodytska (Belove)",
+        url: [
+          "https://nationalux.com/v/mBzSbG",
+          "https://nationalux.com/v/kCZdtR",
+          "https://nationalux.com/v/QQQwTy",
+        ],
       },
       {
-        popular: {
-          name: "Kang Tae Kim",
-          url: [
-            "https://nationalux.com/v/j1YLyb",
-            "https://nationalux.com/v/lvffSY",
-            "https://nationalux.com/v/Rvtgtc",
-            "https://nationalux.com/v/IWbagx",
-          ],
-        },
+        name: "Kang Tae Kim (Popular)",
+        url: [
+          "https://nationalux.com/v/j1YLyb",
+          "https://nationalux.com/v/lvffSY",
+          "https://nationalux.com/v/Rvtgtc",
+          "https://nationalux.com/v/IWbagx",
+        ],
       },
     ],
   },
