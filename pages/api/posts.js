@@ -1,11 +1,12 @@
 import { MongoClient } from 'mongodb';
 
+const mongoURL = "mongodb+srv://kmat0:ha02210221%23%23@cluster0.k451fc9.mongodb.net/?retryWrites=true&w=majority";
 async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const client = new MongoClient(process.env.MONGODB_URL, {
+  const client = new MongoClient(mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
