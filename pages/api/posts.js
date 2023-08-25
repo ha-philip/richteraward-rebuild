@@ -1,13 +1,12 @@
 import { MongoClient } from 'mongodb';
 const { VITE_MONGODB_URL } = import.meta.env;
-const mykey = { 'db_key': VITE_MONGODB_URL }
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const client = new MongoClient(mykey, {
+  const client = new MongoClient(VITE_MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
