@@ -13,6 +13,7 @@ async function handler(req, res) {
   try {
     await client.connect();
     const db = client.db("todoapp");
+    console.log(db);
     const postsCollection = db.collection('post');
     await postsCollection.insertOne( { 할일: req.body.title, 날짜: req.body.date });
     res.status(301).redirect('/notice');

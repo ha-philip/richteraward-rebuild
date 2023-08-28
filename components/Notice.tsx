@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Noticeform from "./Noticeform";
 
 export default function Notice() {
     const { locale } = useRouter();
@@ -19,6 +20,7 @@ export default function Notice() {
                     </div>
                 </div>
             </div>
+            <Noticeform/>
         </>
     );
 }
