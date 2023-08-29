@@ -20,6 +20,7 @@ export default function Notice() {
                     </div>
                 </div>
             </div>
+            <Noticeform/>
         </>
     );
 }
