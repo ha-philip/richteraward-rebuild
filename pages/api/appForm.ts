@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+/*import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
@@ -47,3 +47,4 @@ async function addApp(req: NextApiRequest, res: NextApiResponse) {
     res.status(500).json({ error: "Error add notice", success: false });
   }
 }
+*/
