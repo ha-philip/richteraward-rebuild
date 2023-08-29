@@ -19,7 +19,7 @@ export default async function handler(
 async function addApplication(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   try {
-    const newEntry = await prisma.application.create({
+    const newApplication = await prisma.application.create({
       data: {
         firstName: body.firstName,
         lastName: body.lastName,
@@ -41,7 +41,7 @@ async function addApplication(req: NextApiRequest, res: NextApiResponse) {
         }
       },
     });
-    return res.status(200).json({ data: newEntry, success: true });
+    return res.status(200).json({ data: newApplication, success: true });
   } catch (error) {
     console.error("Request error", error);
     res.status(500).json({ error: "Error add notice", success: false });
