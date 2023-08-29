@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormValues {
-  name: string;
-  surname: string;
-  birth: string;
+  firstName: string;
+  lastName: string;
+  birthday: string;
   school: string;
-  proof: string;
-  team_member: string;
+  ageProof: string;
+  teamMember: string;
   section: string;
-  age_category: string;
-  my_email: string;
+  ageCategory: string;
+  email: string;
   phone: string;
-  youtube_link: string;
+  videoLink: string;
   depostisor: string;
   teacher: string;
-  teacher_email: string;
-  performing_piece: string;
+  teacherEmail: string;
+  performingPiece: string;
+  performingDuration: string;
 }
 
 export default function Application() {
@@ -28,13 +29,30 @@ export default function Application() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     mode: "all",
   });
 
-  const onVaild = () => {
+  const onVaild: SubmitHandler<FormValues> = async (data) => {
     set_end(true);
+    try {
+      const response = await fetch("/api/application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.status !== 200) {
+        console.log("something went wrong");
+        //set an error banner here
+      }
+      //check response, if success is false, dont take them to success page
+    } catch (error) {
+      console.log("there was an error submitting", error);
+    }
+    alert("신청서가 등록되었습니다.");
+    reset();
   };
   const onInValid = (err: any) => {
     set_end(false);
@@ -49,13 +67,13 @@ export default function Application() {
           <h2 className="text-red-800 font-bold text-sm">* Required Field</h2>
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Name
+            firstName
           </span>
           <input
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("name", {
+            {...register("firstName", {
               required: "Please write down your name.",
               validate: {
                 textCheck: (value) =>
@@ -64,18 +82,20 @@ export default function Application() {
               },
             })}
           />
-          {errors.name ? (
-            <p className="text-xs mt-3 text-red-500">{errors.name.message}</p>
+          {errors.firstName ? (
+            <p className="text-xs mt-3 text-red-500">
+              {errors.firstName.message}
+            </p>
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Surname
+            lastName
           </span>
           <input
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("surname", {
+            {...register("lastName", {
               required: "Please write down your surname.",
               validate: {
                 textCheck: (value) =>
@@ -84,9 +104,9 @@ export default function Application() {
               },
             })}
           />
-          {errors.surname ? (
+          {errors.lastName ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.surname.message}
+              {errors.lastName.message}
             </p>
           ) : null}
 
@@ -97,12 +117,14 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("birth", {
+            {...register("birthday", {
               required: "Please write down your birthday.",
             })}
           />
-          {errors.birth ? (
-            <p className="text-xs mt-3 text-red-500">{errors.birth.message}</p>
+          {errors.birthday ? (
+            <p className="text-xs mt-3 text-red-500">
+              {errors.birthday.message}
+            </p>
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
@@ -122,15 +144,17 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("proof", {
+            {...register("ageProof", {
               required: "Please upload your file.",
             })}
           />
           <p className="lg:text-xs text-[0.5rem] mt-2 tracking-tight">
             ( Please scan the first page of your passport and upload it here )
           </p>
-          {errors.proof ? (
-            <p className="text-xs mt-3 text-red-500">{errors.proof.message}</p>
+          {errors.ageProof ? (
+            <p className="text-xs mt-3 text-red-500">
+              {errors.ageProof.message}
+            </p>
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
@@ -140,7 +164,7 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("team_member")}
+            {...register("teamMember")}
           />
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
@@ -167,13 +191,13 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("age_category", {
+            {...register("ageCategory", {
               required: "Please choose your category.",
             })}
           />
-          {errors.age_category ? (
+          {errors.ageCategory ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.age_category.message}
+              {errors.ageCategory.message}
             </p>
           ) : null}
 
@@ -184,24 +208,22 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("my_email", {
+            {...register("email", {
               required: "Please write down your email.",
               validate: {
                 must: (value) => value.includes("@") || "Email must have '@'",
               },
             })}
           />
-          {errors.my_email ? (
-            <p className="text-xs mt-3 text-red-500">
-              {errors.my_email.message}
-            </p>
+          {errors.email ? (
+            <p className="text-xs mt-3 text-red-500">{errors.email.message}</p>
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
             Phone-number ( with the Country Code )
           </span>
           <input
-            type="number"
+            type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
             {...register("phone", {
@@ -219,13 +241,13 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("youtube_link", {
+            {...register("videoLink", {
               required: "Please write down your link.",
             })}
           />
-          {errors.youtube_link ? (
+          {errors.videoLink ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.youtube_link.message}
+              {errors.videoLink.message}
             </p>
           ) : null}
 
@@ -270,36 +292,59 @@ export default function Application() {
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("teacher_email", {
+            {...register("teacherEmail", {
               required: "Please write down teacher_email.",
               validate: {
                 must: (value) => value.includes("@") || "Email must have '@'",
               },
             })}
           />
-          {errors.teacher_email ? (
+          {errors.teacherEmail ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.teacher_email.message}
+              {errors.teacherEmail.message}
             </p>
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Performing Piece(s) / Duration
+            Performing Piece
           </span>
-          <input
-            type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
-            autoComplete="off"
-            {...register("performing_piece", {
-              required: "Please write down your performing piece or duration.",
-            })}
-          />
-          {errors.performing_piece ? (
+          <div className="flex gap-5">
+            <input
+              type="text"
+              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs w-1/2"
+              placeholder="Performing Piece"
+              autoComplete="off"
+              {...register("performingPiece", {
+                required:
+                  "Please write down your performing piece.",
+              })}
+            />
+            <input
+              type="text"
+              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs w-1/2"
+              placeholder="Duration ( mm : ss )"
+              autoComplete="off"
+              {...register("performingDuration", {
+                required:
+                  "Please write down your performing duration.",
+              })}
+            />
+          </div>
+          {errors.performingPiece ? (
+            errors.performingDuration ? (
+              <p className="text-xs mt-3 text-red-500">
+                {errors.performingDuration.message}
+              </p>
+            ) : (
+              <p className="text-xs mt-3 text-red-500">
+                {errors.performingPiece.message}
+              </p>
+            )
+          ) : errors.performingDuration ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.performing_piece.message}
+              {errors.performingDuration.message}
             </p>
           ) : null}
-
           <input
             type="submit"
             className="mt-24 mb-14 mx-auto bg-red-800 text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-52 w-36 lg:py-5 py-3 hover:bg-black transition rounded-xl"

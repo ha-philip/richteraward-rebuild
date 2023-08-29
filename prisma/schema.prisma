@@ -12,3 +12,21 @@ model Notice{
   noticeTitle   String
   noticeDate    String
 }
+model Application{
+  id Int @id @default(autoincrement())
+  firstName String
+  lastName String
+  birthday String
+  school String?
+  ageProof String
+  teamMember String?
+  section String
+  ageCategory String
+  email String
+  phone String
+  videoLink String
+  depostisor String
+  teacher String
+  teacherEmail String
+  performingPiece Json
+}
