@@ -12,7 +12,7 @@ model Notice{
   noticeTitle   String
   noticeDate    String
 }
-model Application{
+model Appform{
   id Int @id @default(autoincrement())
   firstName String
   lastName String
