@@ -105,7 +105,7 @@ export default function PastWinners() {
           </span>
           <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter">{2020 + visible}</h2>
           <div
-            className="flex flex-col w-full justify-center items-center relative lg:h-72 h-28 overflow-hidden"
+            className="flex flex-col w-full justify-center items-center relative lg:h-72 h-40 overflow-x-hidden"
           >
             <AnimatePresence mode="wait" custom={back}>
               {[0, 1, 2].map((i) => i === visible ? (
@@ -118,7 +118,7 @@ export default function PastWinners() {
                   key={visible}
                   className="absolute flex justify-between lg:gap-16 gap-5 top-0 z-10">
                   {["GRAND PRIZE", "1ST PRIZE", "2ND PRIZE", "3RD PRIZE", "SPECIAL PRIZE"].map((awardName, number) => (
-                    <div className="flex flex-col lg:gap-6 mt-12 justify-center items-center" key={number}>
+                    <div className="flex flex-col lg:gap-6 gap-2 mt-12 justify-center items-center" key={number}>
                       <motion.div
                         className="cursor-pointer lg:w-36 lg:h-36 w-12 h-12 rounded-full bg-cover bg-no-repeat relative"
                         whileHover={{ scale: 1.02 }}
@@ -128,7 +128,7 @@ export default function PastWinners() {
                       >
                         <div className="w-full h-full bg-[rgba(0,0,0,0.4)] rounded-full absolute hover:bg-[rgba(0,0,0,0)] transition" />
                       </motion.div>
-                      <p className="text-center lg:text-lg text-[0.5rem]">{awardName}</p>
+                      <p className="text-center lg:text-lg text-[0.5rem]">{awardName.split(" ")[0]}<br/>{awardName.split(" ")[1]}</p>
                     </div>
                   ))}
                 </motion.div>

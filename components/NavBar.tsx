@@ -229,7 +229,7 @@ export default function NavigationBar() {
         initial={{ opacity: 0 }}
         animate={buttonAnimation}
         transition={{ duration: 0.1 }}
-        className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 shadow-xl z-50 transition"
+        className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 shadow-xl z-30 transition"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
