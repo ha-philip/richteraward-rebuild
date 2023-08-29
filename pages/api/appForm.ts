@@ -19,7 +19,7 @@ export default async function handler(
 async function addApp(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   try {
-    const newApp = await prisma.appform.create({
+    const newApp = await prisma.appForm.create({
       data: {
         firstName: body.firstName,
         lastName: body.lastName,

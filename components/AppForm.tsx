@@ -22,7 +22,7 @@ interface FormValues {
   performingDuration: string;
 }
 
-export default function Application() {
+export default function AppForm() {
   const { locale } = useRouter();
   const [end, set_end] = useState<boolean>(false);
   const {
@@ -38,7 +38,7 @@ export default function Application() {
   const onVaild: SubmitHandler<FormValues> = async (data) => {
     set_end(true);
     try {
-      const response = await fetch("/api/application", {
+      const response = await fetch("/api/appForm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

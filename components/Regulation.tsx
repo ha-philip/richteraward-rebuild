@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Application from "./Application";
+import AppForm from "./AppForm";
 
 interface IregText {
   reg_title: string;
@@ -377,7 +377,7 @@ export default function Regulation() {
                       />
                     </svg>
                   </h1>
-                  <Application />
+                  <AppForm />
                 </motion.div>
               </>
             ) : null}
