@@ -1,12 +1,13 @@
 generator client {
   provider = "prisma-client-js"
+   previewFeatures = ["transactionApi"]
+  binaryTargets = ["native"]
 }
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
   relationMode = "prisma"
 }
-
 model Notice{
   id Int @id @default(autoincrement())
   noticeTitle   String
