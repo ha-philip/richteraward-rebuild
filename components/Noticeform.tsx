@@ -1,41 +1,62 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Noticeform() {
-    const [notice_title, setTitle] = useState("");
-    const [notice_date, setDate] = useState("");
-    useEffect(() => {}, [notice_title, notice_date]);
+  const [notice_title, setTitle] = useState("");
+  const [selectImg, set_selectImg] = useState("");
+  const [imgFile, set_imgFile] = useState<File>();
 
-    const handleSubmit = async (e: any) => {
-      e.preventDefault();
-      const body = { notice_title, notice_date }
-      try {
-        const response = await fetch('/api/notice', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        })
-        if (response.status !== 200) {
-          console.log('something went wrong');
-          //set an error banner here
-        }
-        //check response, if success is false, dont take them to success page
-      } catch (error) {
-        console.log('there was an error submitting', error);
+
+  useEffect(() => { }, [notice_title, imgFile]);
+
+  const handleSubmit = async () => {
+    if (!imgFile) return;
+    const formData = new FormData();
+    formData.append("myImage", imgFile);
+    await axios.post("/api/image", formData);
+    const body = { notice_title, imgFile: imgFile.name }
+    alert('공지작성완료');
+    try {
+      const response = await fetch('/api/notice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      if (response.status !== 200) {
+        console.log('something went wrong');
+        //set an error banner here
       }
-      }
+      //check response, if success is false, dont take them to success page
+      
+    } catch (error) {
+      console.log('there was an error submitting', error);
+    }
+    return;
+  }
   return (
-     <div className="mt-24 flex justify-center items-center">
-        <form onSubmit={(e) => handleSubmit(e)} method="POST">
-            <div>
-                <label>할일</label>
-                <input type="text" name="notice_title" id="notice_title" className="border border-red-500" onChange={(t) => setTitle(t.target.value)}/>
-            </div>
-            <div >
-                <label>날짜</label>
-                <input type="text" name="notice_date" id="notice_date" className="border border-red-500" onChange={(d) => setDate(d.target.value)}/>
-            </div>
-            <button type="submit" className="bg-blue-300">Submit</button>
-        </form>
+    <div className="mt-24 flex justify-center items-center">
+      <form onSubmit={handleSubmit} method="POST">
+        <div>
+          <label>할일</label>
+          <input type="text" name="notice_title" id="notice_title" className="border border-red-500" onChange={(t) => setTitle(t.target.value)} />
+        </div>
+        <div className="w-40 aspect-video flex items-center justify-center border-2 border-black">
+          {selectImg ? <img src={selectImg} alt="" /> : <span>Select Img</span>}
+        </div>
+        <div >
+          <label>파일</label>
+          <input type="file" accept="image/*" name="notice_date" id="notice_date"
+            className="border border-red-500"
+            onChange={
+              ({ target }: any) => {
+                const file = target.files[0];
+                set_selectImg(URL.createObjectURL(file));
+                set_imgFile(file);
+              }
+            } />
+        </div>
+        <button type="submit" className="bg-blue-300">Submit</button>
+      </form>
     </div>
   )
 }

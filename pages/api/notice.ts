@@ -17,7 +17,7 @@ async function addNotice(req: NextApiRequest, res: NextApiResponse) {
     const newEntry = await prisma.notice.create({
       data: {
         noticeTitle: body.notice_title,
-        noticeDate: body.notice_date,
+        noticeDate: body.imgFile
       },
     });
     return res.status(200).json({ data: newEntry, success: true });

@@ -36,7 +36,8 @@ export default function AppForm() {
   });
 
   const onVaild: SubmitHandler<FormValues> = async (data) => {
-    set_end(true);
+    set_end(true);   
+    alert("신청서가 등록되었습니다.");
     try {
       const response = await fetch("/api/appForm", {
         method: "POST",
@@ -51,7 +52,6 @@ export default function AppForm() {
     } catch (error) {
       console.log("there was an error submitting", error);
     }
-    alert("신청서가 등록되었습니다.");
     reset();
   };
   const onInValid = (err: any) => {
@@ -67,7 +67,7 @@ export default function AppForm() {
           <h2 className="text-red-800 font-bold text-sm">* Required Field</h2>
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            firstName
+          {locale === "en" ? "First Name" : "이름"}
           </span>
           <input
             type="text"
@@ -89,7 +89,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            lastName
+          {locale === "en" ? "Last Name" : "성"}
           </span>
           <input
             type="text"
@@ -111,7 +111,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Date of Birth
+            {locale === "en" ? "Birthday" : "생년월일"}
           </span>
           <input
             type="text"
@@ -128,7 +128,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
-            Current School
+          {locale === "en" ? "Current School" : "소속 학교"}
           </span>
           <input
             type="text"
@@ -138,7 +138,7 @@ export default function AppForm() {
           />
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Attachment for the proof your age
+            {locale === "en" ? "Attachment for the proof your age" : "나이 증명서 첨부"}
           </span>
           <input
             type="text"
@@ -158,7 +158,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
-            Team Member Personal Information
+            {locale === "en" ? "Team Member Personal Information" : "팀원 인적사항"}
           </span>
           <input
             type="text"
@@ -168,7 +168,7 @@ export default function AppForm() {
           />
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Section
+            {locale === "en" ? "Section" : "경연부문"}
           </span>
           <input
             type="text"
@@ -185,7 +185,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Age Category
+            {locale === "en" ? "Age Category" : "나이별 부문"}
           </span>
           <input
             type="text"
@@ -202,14 +202,14 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            E-mail Address of the participant
+            {locale === "en" ? "E-mail" : "이메일"}
           </span>
           <input
             type="text"
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs"
             autoComplete="off"
             {...register("email", {
-              required: "Please write down your email.",
+              required: "Please write down your Email.",
               validate: {
                 must: (value) => value.includes("@") || "Email must have '@'",
               },
@@ -220,7 +220,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Phone-number ( with the Country Code )
+            {locale === "en" ? "Phone-number ( with the Country Code )" : "전화번호"}
           </span>
           <input
             type="text"
@@ -235,7 +235,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Youtube link of your performance
+            {locale === "en" ? "Video link of your performance" : "비디오 링크"}
           </span>
           <input
             type="text"
@@ -252,7 +252,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Name of the depositor ( Application Fee )
+            {locale === "en" ? "Name of the depositor ( Application Fee )" : "입금자명"}
           </span>
           <input
             type="text"
@@ -269,7 +269,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Current Teacher
+            {locale === "en" ? "Current Teacher" : "사사 (현재)"}
           </span>
           <input
             type="text"
@@ -286,7 +286,7 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            E-mail address of the Current Teacher
+            {locale === "en" ? "E-mail address of the Current Teacher" : "사사 이메일"}
           </span>
           <input
             type="text"
@@ -306,13 +306,13 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            Performing Piece
+            {locale === "en" ? "Performing Piece" : "연주곡목 / 연주길이"}
           </span>
           <div className="flex gap-5">
             <input
               type="text"
               className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs w-1/2"
-              placeholder="Performing Piece"
+              placeholder={locale === "en" ? "Piece" : "연주곡목"}
               autoComplete="off"
               {...register("performingPiece", {
                 required:
@@ -322,7 +322,7 @@ export default function AppForm() {
             <input
               type="text"
               className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-base text-xs w-1/2"
-              placeholder="Duration ( mm : ss )"
+              placeholder={locale === "en" ? "Duration ( mm : ss )" : "연주길이 ( mm : ss )"}
               autoComplete="off"
               {...register("performingDuration", {
                 required:
@@ -348,7 +348,7 @@ export default function AppForm() {
           <input
             type="submit"
             className="mt-24 mb-14 mx-auto bg-red-800 text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-52 w-36 lg:py-5 py-3 hover:bg-black transition rounded-xl"
-            value="SUBMIT"
+            value={locale === "en" ? "SUBMIT" : "제출"}
           />
         </div>
       </form>
