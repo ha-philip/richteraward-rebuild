@@ -48,14 +48,13 @@ export default function Noticeform() {
   }*/
   const onValid = async (data: any) => {
     const body = { notice_title: data.notice_title, imgFile: data.img_file[0].name }
-    alert(body);
+    alert('공지가 제출되었습니다.');
     try { //데이터베이스 백엔드
     const DBResponse = await fetch("/api/notice", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
-    })
-    //.then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
+    }).then(await axios.post("/api/image", data.img_file)); //이미지 업로드 백엔드
     if (DBResponse.status !== 200) {
       console.log("something went wrong");
       //set an error banner here
