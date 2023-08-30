@@ -199,7 +199,7 @@ export default function NavigationBar() {
               >
                 <span>CONTACT</span>
               </Link>
-              <div className="flex justify-end items-center text-white text-sm py-3 mt-10">
+              <div className="flex justify-end items-center text-white text-sm py-3 my-10">
               <button
                 onClick={() => handleClick("kr")}
                 className={cls(
