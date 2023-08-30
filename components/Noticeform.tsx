@@ -1,15 +1,29 @@
 //import axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+interface FormValues{
+  notice_title: string;
+  img_file: string;
+}
+
 
 export default function Noticeform() {
-  const [notice_title, setTitle] = useState("");
+
   const [selectImg, set_selectImg] = useState("");
-  const [imgFile, set_imgFile] = useState<File>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    mode: "all",
+  });
 
 
-  useEffect(() => { }, [notice_title, imgFile]);
-
-  const handleSubmit = async () => {
+  /*const handleSubmit = async () => {
     if (!imgFile) return;
     const formData = new FormData();
     formData.append("myImage", imgFile);
@@ -31,30 +45,67 @@ export default function Noticeform() {
     } catch (error) {
       console.log("there was an error submitting", error);
     }
+  }*/
+  const onValid = async (data: any) => {
+    const body = { notice_title: data.notice_title, imgFile: data.img_file[0].name }
+    alert(body);
+    try { //데이터베이스 백엔드
+    const DBResponse = await fetch("/api/notice", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+    //.then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
+    if (DBResponse.status !== 200) {
+      console.log("something went wrong");
+      //set an error banner here
+    }
+    
+  } catch (error) {
+    console.log("there was an error submitting", error);
+  }
+  reset();
   }
   return (
     <div className="mt-24 flex justify-center items-center">
-      <form onSubmit={handleSubmit} method="POST">
+      <form onSubmit={handleSubmit(onValid)} method="POST" className="space-y-5">
         <div>
           <label>할일</label>
-          <input type="text" name="notice_title" id="notice_title" className="border border-red-500" onChange={(t) => setTitle(t.target.value)} />
+          <input
+            type="text"
+            className="py-3 px-5 rounded-lg shadow-md bg-slate-200 transition lg:text-base text-xs"
+            autoComplete="off"
+            {...register("notice_title", {
+              required: "Please write down title.",
+            })}
+          />
+           {errors.notice_title ? (
+            <p className="text-xs mt-3 text-red-500">
+              {errors.notice_title.message}
+            </p>
+          ) : null}
         </div>
         <div className="w-40 aspect-video flex items-center justify-center border-2 border-black">
           {selectImg ? <img src={selectImg} alt="" /> : <span>Select Img</span>}
         </div>
         <div >
           <label>파일</label>
-          <input type="file" accept="image/*" name="notice_date" id="notice_date"
-            className="border border-red-500"
+            <input
+            type="file" accept="image/*"
+            className="py-3 px-5 rounded-lg shadow-md bg-slate-200 transition lg:text-base text-xs"
+            autoComplete="off"
+            {...register("img_file", {
+              required: "Please upload image file.",
+            })}
             onChange={
               ({ target }: any) => {
                 const file = target.files[0];
-                set_selectImg(URL.createObjectURL(file));
-                set_imgFile(file);
+                if(file) {set_selectImg(URL?.createObjectURL(file)); return false;}
               }
-            } />
+            }
+          />
         </div>
-        <button type="submit" className="bg-blue-300">Submit</button>
+        <input type="submit" className="bg-blue-300" value="Submit"/>
       </form>
     </div>
   )
