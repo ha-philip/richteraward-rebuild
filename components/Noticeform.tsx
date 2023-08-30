@@ -17,19 +17,19 @@ export default function Noticeform() {
     alert("신청서가 등록되었습니다.");
     try {
       //데이터베이스 백엔드
-      const DBResponse = await fetch('/api/notice', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const DBResponse = await fetch("/api/notice", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       })
       //.then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
       if (DBResponse.status !== 200) {
-        console.log('something went wrong');
+        console.log("something went wrong");
         //set an error banner here
       }
       
     } catch (error) {
-      console.log('there was an error submitting', error);
+      console.log("there was an error submitting", error);
     }
   }
   return (
