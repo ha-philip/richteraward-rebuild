@@ -13,7 +13,7 @@ export default function Noticeform() {
     if (!imgFile) return;
     const formData = new FormData();
     formData.append("myImage", imgFile);
-    await axios.post("/api/image", formData);
+    const {data} = await axios.post("/api/image", formData);
     const body = { notice_title, imgFile: imgFile.name }
     try {
       const response = await fetch('/api/notice', {
