@@ -1,4 +1,4 @@
-import axios from "axios";
+//import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Noticeform() {
@@ -14,6 +14,7 @@ export default function Noticeform() {
     const formData = new FormData();
     formData.append("myImage", imgFile);
     const body = { notice_title, imgFile: imgFile.name }
+    alert("신청서가 등록되었습니다.");
     try {
       //데이터베이스 백엔드
       const DBResponse = await fetch('/api/notice', {
@@ -26,7 +27,6 @@ export default function Noticeform() {
         console.log('something went wrong');
         //set an error banner here
       }
-      alert('제출 완료');
       
     } catch (error) {
       console.log('there was an error submitting', error);
