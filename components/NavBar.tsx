@@ -168,7 +168,7 @@ export default function NavigationBar() {
             </button>
           </div>
           {toggleMenu ? (
-            <motion.div className={`text-white lg:hidden flex flex-col text-xs`}>
+            <motion.div className="text-white lg:hidden flex flex-col text-xs justify-start items-end px-10 gap-10">
               <Link
                 href="#jury"
                 className="hover:text-red-400 transition-colors"
@@ -199,7 +199,7 @@ export default function NavigationBar() {
               >
                 <span>CONTACT</span>
               </Link>
-              <div className="flex justify-end items-center text-white text-sm py-3">
+              <div className="flex justify-end items-center text-white text-sm py-3 mt-10">
               <button
                 onClick={() => handleClick("kr")}
                 className={cls(
