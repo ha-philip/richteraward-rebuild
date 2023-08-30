@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Noticeform() {
   const [notice_title, setTitle] = useState("");
@@ -15,12 +15,11 @@ export default function Noticeform() {
     formData.append("myImage", imgFile);
     await axios.post("/api/image", formData);
     const body = { notice_title, imgFile: imgFile.name }
-    alert('공지작성완료');
     try {
       const response = await fetch('/api/notice', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
       })
       if (response.status !== 200) {
         console.log('something went wrong');
@@ -31,7 +30,6 @@ export default function Noticeform() {
     } catch (error) {
       console.log('there was an error submitting', error);
     }
-    return;
   }
   return (
     <div className="mt-24 flex justify-center items-center">

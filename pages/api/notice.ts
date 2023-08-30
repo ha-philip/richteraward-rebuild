@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const prisma = new PrismaClient();
 
+
+//핸들러(메인 함수)
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     return await addNotice(req, res);
@@ -11,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 }
 
+//공지 추가, 이미지 업로더 트리거
 async function addNotice(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   try {
