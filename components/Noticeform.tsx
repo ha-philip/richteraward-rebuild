@@ -20,12 +20,13 @@ export default function Noticeform() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      }).then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
+      })
+      //.then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
       if (DBResponse.status !== 200) {
         console.log('something went wrong');
         //set an error banner here
       }
-
+      alert('제출 완료');
       
     } catch (error) {
       console.log('there was an error submitting', error);
