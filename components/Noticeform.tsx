@@ -13,19 +13,19 @@ export default function Noticeform() {
     if (!imgFile) return;
     const formData = new FormData();
     formData.append("myImage", imgFile);
-    const {data} = await axios.post("/api/image", formData);
     const body = { notice_title, imgFile: imgFile.name }
     try {
-      const response = await fetch('/api/notice', {
+      //데이터베이스 백엔드
+      const DBResponse = await fetch('/api/notice', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      })
-      if (response.status !== 200) {
+      }).then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
+      if (DBResponse.status !== 200) {
         console.log('something went wrong');
         //set an error banner here
       }
-      //check response, if success is false, dont take them to success page
+
       
     } catch (error) {
       console.log('there was an error submitting', error);

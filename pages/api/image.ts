@@ -27,6 +27,7 @@ const readFile = (req:NextApiRequest, saveLocal?: boolean):Promise<{fields: form
 }
 
 const handler: NextApiHandler = async (req, res) => {
+    console.log(req);
   try {
     await fs.readdir(path.join(process.cwd() + "/public", "/images"));
   } catch (error) {
