@@ -435,7 +435,7 @@ export default function AppForm() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
           >
-            <h1 className="text-gray-800 font-thin tracking-wider">{locale === "en" ? "Application has been completed": "신청이 완료되었습니다."}</h1>
+            <h1 className="text-gray-800 font-thin tracking-wider">{locale === "en" ? "Application has been completed.": "신청이 완료되었습니다."}</h1>
             <button 
             className="text-lg text-red-800 hover:text-black transition tracking-tighter"
             onClick={popupClose}
