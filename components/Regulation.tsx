@@ -31,6 +31,8 @@ interface IregText {
   repert_4: string;
   repert_5: string;
   repert_6: string;
+  repert_7: string;
+  repert_8: string;
   age_1: string;
   age_2_1: string;
   age_2_2: string;
@@ -38,8 +40,12 @@ interface IregText {
   age_3_2: string;
   age_4_1: string;
   age_4_2: string;
-  age_5: string;
-  age_6: string;
+  age_5_1: string;
+  age_5_2: string;
+  age_6_1: string;
+  age_6_2: string;
+  age_7: string;
+  age_8: string;
   announce_1: string;
   announce_2: string;
   announce_3: string;
@@ -166,13 +172,17 @@ export default function Regulation() {
                   <br />
                   {regText?.repert_4}
                   <br />
+                  {regText?.repert_5}
+                  <br />
+                  {regText?.repert_6}
+                  <br />
                   <br />
                   <span className="lg:text-sm text-xs">
-                    {regText?.repert_5}
+                    {regText?.repert_7}
                   </span>
                   <br />
                   <span className="lg:text-sm text-xs">
-                    {regText?.repert_6}
+                    {regText?.repert_8}
                   </span>
                 </p>
               </div>
@@ -183,7 +193,7 @@ export default function Regulation() {
                 <p className="lg:text-sm text-xs tracking-tighter font-thin">
                   {regText?.age_1}
                 </p>
-                <div className="flex lg:flex-row flex-col justify-between items-center gap-3 font-thin lg:text-lg text-xs text-center">
+                <div className="grid lg:grid-cols-3 grid-cols-1 justify-between items-center gap-5 font-thin lg:text-lg text-xs text-center">
                   <div>
                     <p>{regText?.age_2_1}</p>
                     <p>{regText?.age_2_2}</p>
@@ -196,11 +206,19 @@ export default function Regulation() {
                     <p>{regText?.age_4_1}</p>
                     <p>{regText?.age_4_2}</p>
                   </div>
+                  <div>
+                    <p>{regText?.age_5_1}</p>
+                    <p>{regText?.age_5_2}</p>
+                  </div>
+                  <div>
+                    <p>{regText?.age_6_1}</p>
+                    <p>{regText?.age_6_2}</p>
+                  </div>
                 </div>
                 <p className="lg:text-sm text-xs tracking-tighter font-thin">
-                  {regText?.age_5}
+                  {regText?.age_7}
                   <br />
-                  {regText?.age_6}
+                  {regText?.age_8}
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">

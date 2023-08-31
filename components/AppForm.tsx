@@ -27,6 +27,8 @@ interface FormValues {
 
 export default function AppForm() {
   const { locale } = useRouter();
+  const [submitLoading, set_submitLoading] = useState<boolean>(false);
+  const [submitPopup, set_submitPopup] = useState<boolean>(false);
   const [selectImg, set_selectImg] = useState("");
   const {
     register,
@@ -39,12 +41,13 @@ export default function AppForm() {
   });
 
   const onVaild = async (data: any) => {
+    set_submitLoading(true);
     const body = {
       firstName: data.firstName,
       lastName: data.lastName,
       birthday: data.birthday,
       school: data.school,
-      ageProof: data.ageProofText,
+      ageProof: selectImg,
       teamMember: data.teamMember,
       section: data.section,
       ageCategory: data.ageCategory,
@@ -56,8 +59,7 @@ export default function AppForm() {
       teacherEmail: data.teacherEmail,
       performingPiece: data.performingPiece,
       performingDuration: data.performingDuration,
-    }
-    alert("신청서가 등록되었습니다.");
+    };
     try {
       const response = await fetch("/api/appForm", {
         method: "POST",
@@ -72,9 +74,12 @@ export default function AppForm() {
     } catch (error) {
       console.log("there was an error submitting", error);
     }
-    set_selectImg("");
+    set_submitLoading(false);
+    set_submitPopup(true);
     reset();
+    set_selectImg("");
   };
+  const popupClose = () => set_submitPopup(false);
   return (
     <>
       <h2 className="bg-black text-white p-3 text-center tracking-widest lg:text-2xl text-base">
@@ -157,38 +162,54 @@ export default function AppForm() {
             {...register("school")}
           />
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Attachment for the proof your age" : "나이 증명서 첨부"}
+            {locale === "en"
+              ? "Attachment for the proof your age"
+              : "나이 증명서 첨부"}
           </span>
           <div className="flex justify-start items-center lg:gap-5 gap-2">
             <input
               type="text"
               autoComplete="off"
               readOnly
-              className={cls("py-3 px-5 rounded-lg shadow-md bg-[#f0f0f0] transition lg:text-sm text-xs tracking-tighter w-3/4", errors.ageProof ? "text-red-500" : "text-gray-500")}
+              className={cls(
+                "py-3 px-5 rounded-lg shadow-md bg-[#f0f0f0] transition lg:text-sm text-xs tracking-tighter w-3/4",
+                errors.ageProof ? "text-red-500" : "text-gray-500"
+              )}
               {...register("ageProofText", {
                 required: true,
               })}
               value={selectImg === "" ? "Upload your Image file." : selectImg}
             />
-            <label htmlFor="uploadImg" className="cursor-pointer w-1/4 text-center lg:text-sm text-xs bg-red-800 py-3 rounded-lg text-white tracking-wider hover:bg-black transition">
-              File</label>
-              <input type="file" accept="image/*" id="uploadImg" className="opacity-0 w-[0.5rem] overflow-hidden"
-            {...register("ageProof", {
-              required: true,
-            })}
-            onChange={
-              ({ target }: any) => {
+            <label
+              htmlFor="uploadImg"
+              className="cursor-pointer w-1/4 text-center lg:text-sm text-xs bg-red-800 py-3 rounded-lg text-white tracking-wider hover:bg-black transition"
+            >
+              {locale === "en" ? "File" : "파일"}
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              id="uploadImg"
+              className="opacity-0 w-[0.1px]"
+              {...register("ageProof", {
+                required: true,
+              })}
+              onChange={({ target }: any) => {
                 const file = target.files[0].name;
-                if (file) { set_selectImg(file); return false; }
-              }
-            }
-          />
+                if (file) {
+                  set_selectImg(file);
+                  return false;
+                }
+              }}
+            />
           </div>
           <p className="lg:text-xs text-[0.5rem] mt-2 tracking-tight">
             ( Please scan the first page of your passport and upload it here )
           </p>
           <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
-            {locale === "en" ? "Team Member Personal Information" : "팀원 인적사항"}
+            {locale === "en"
+              ? "Team Member Personal Information"
+              : "팀원 인적사항"}
           </span>
           <input
             type="text"
@@ -250,7 +271,9 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Phone-number ( with the Country Code )" : "전화번호"}
+            {locale === "en"
+              ? "Phone-number ( with the Country Code )"
+              : "전화번호"}
           </span>
           <input
             type="text"
@@ -282,7 +305,9 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Name of the depositor ( Application Fee )" : "입금자명"}
+            {locale === "en"
+              ? "Name of the depositor ( Application Fee )"
+              : "입금자명"}
           </span>
           <input
             type="text"
@@ -316,7 +341,9 @@ export default function AppForm() {
           ) : null}
 
           <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "E-mail address of the Current Teacher" : "사사 이메일"}
+            {locale === "en"
+              ? "E-mail address of the Current Teacher"
+              : "사사 이메일"}
           </span>
           <input
             type="text"
@@ -345,18 +372,20 @@ export default function AppForm() {
               placeholder={locale === "en" ? "Piece" : "연주곡목"}
               autoComplete="off"
               {...register("performingPiece", {
-                required:
-                  "Please write down your performing piece.",
+                required: "Please write down your performing piece.",
               })}
             />
             <input
               type="text"
               className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs w-1/2"
-              placeholder={locale === "en" ? "Duration ( mm : ss )" : "연주길이 ( mm : ss )"}
+              placeholder={
+                locale === "en"
+                  ? "Duration ( mm : ss )"
+                  : "연주길이 ( mm : ss )"
+              }
               autoComplete="off"
               {...register("performingDuration", {
-                required:
-                  "Please write down your performing duration.",
+                required: "Please write down your performing duration.",
               })}
             />
           </div>
@@ -377,11 +406,46 @@ export default function AppForm() {
           ) : null}
           <input
             type="submit"
-            className="mt-24 mb-14 mx-auto bg-red-800 text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-52 w-36 lg:py-5 py-3 hover:bg-black transition rounded-xl"
-            value={locale === "en" ? "SUBMIT" : "제출"}
+            disabled={submitLoading}
+            className={cls(
+              "mt-24 mb-14 mx-auto text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-52 w-36 lg:py-5 py-3 hover:bg-black transition rounded-xl",
+              submitLoading ? "bg-black" : "bg-red-800"
+            )}
+            value={
+              submitLoading
+                ? locale === "en"
+                  ? "Loading..."
+                  : "로딩중..."
+                : locale === "en"
+                ? "SUBMIT"
+                : "제출"
+            }
           />
         </div>
       </form>
+      {submitPopup ? (
+        <>
+          <motion.div
+            className="absolute w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-40 transtion flex justify-center items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+          <motion.div
+          className="fixed top-[40%] z-40 w- bg-[whitesmoke] lg:px-24 px-16 py-10 flex flex-col justify-center items-center gap-10 rounded-lg"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+          >
+            <h1 className="text-gray-800 font-thin tracking-wider">{locale === "en" ? "Application has been completed": "신청이 완료되었습니다."}</h1>
+            <button 
+            className="text-lg text-red-800 hover:text-black transition tracking-tighter"
+            onClick={popupClose}
+            >
+              {locale === "en" ? "Check": "확인"}
+            </button>
+          </motion.div>
+          </motion.div>
+        </>
+      ) : null}
     </>
   );
 }
