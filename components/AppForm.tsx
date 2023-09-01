@@ -47,7 +47,7 @@ export default function AppForm() {
       lastName: data.lastName,
       birthday: data.birthday,
       school: data.school,
-      ageProof: selectImg,
+      ageProof: Math.floor(Date.now() / 3600000).toString() + "_" + selectImg,
       teamMember: data.teamMember,
       section: data.section,
       ageCategory: data.ageCategory,

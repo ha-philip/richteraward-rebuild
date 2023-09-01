@@ -24,7 +24,6 @@ const ScrollUp = {
 
 export default function NavigationBar() {
   const { locale, locales, push } = useRouter();
-  
   const router = useRouter();
   const { scrollY } = useScroll();
   const navAnimation = useAnimation();
@@ -34,16 +33,15 @@ export default function NavigationBar() {
 
   const handleClick = (lan: any) => {
     set_lanToggle(lan);
-    push('/', undefined, {locale: lan})
+    push("/", undefined, { locale: lan });
   };
-
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-
 
   useEffect(() => {
     scrollY.onChange(() => {
@@ -61,7 +59,7 @@ export default function NavigationBar() {
     set_toggleMenu((prev) => !prev);
   };
 
-
+  console.log(router.pathname);
   return (
     <>
       <div>
@@ -81,37 +79,44 @@ export default function NavigationBar() {
               />
             </Link>
             <div className="lg:flex hidden justify-between text-sm items-center text-white space-x-10 ">
-              <Link
-                href="#jury"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>{locale === "en" ? "JURY" : "심사위원"}</span>
-              </Link>
-              <Link
-                href="#past"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>{locale === "en" ? "PAST WINNERS" : "역대 수상자"}</span>
-              </Link>
-              <Link
-                href="#regulation"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>{locale === "en" ? "REGULATION" : "콩쿠르 요강"}</span>
-              </Link>
-              <Link
-                href="#notice"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>{locale === "en" ? "NOTICE" : "공지사항"}</span>
-              </Link>
-              <Link
-                href="#contact"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>{locale === "en" ? "CONTACT" : "오시는길"}</span>
-              </Link>
-              
+              {router.pathname === "/" ? (
+                <>
+                  <Link
+                    href="#jury"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>{locale === "en" ? "JURY" : "심사위원"}</span>
+                  </Link>
+                  <Link
+                    href="#past"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>
+                      {locale === "en" ? "PAST WINNERS" : "역대 수상자"}
+                    </span>
+                  </Link>
+                  <Link
+                    href="#regulation"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>
+                      {locale === "en" ? "REGULATION" : "콩쿠르 요강"}
+                    </span>
+                  </Link>
+                  <Link
+                    href="#notice"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>{locale === "en" ? "NOTICE" : "공지사항"}</span>
+                  </Link>
+                  <Link
+                    href="#contact"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>{locale === "en" ? "CONTACT" : "오시는길"}</span>
+                  </Link>
+                </>
+              ) : null}
             </div>
             <div className="lg:flex hidden justify-between items-center text-white text-xl">
               <button
@@ -200,25 +205,25 @@ export default function NavigationBar() {
                 <span>CONTACT</span>
               </Link>
               <div className="flex justify-end items-center text-white text-sm py-3 my-10">
-              <button
-                onClick={() => handleClick("kr")}
-                className={cls(
-                  "border-r border-white px-4 transition",
-                  lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
-                )}
-              >
-                한국어
-              </button>
-              <button
-                onClick={() => handleClick("en")}
-                className={cls(
-                  "border-l border-white px-4 transition",
-                  lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
-                )}
-              >
-                ENGLISH
-              </button>
-            </div>
+                <button
+                  onClick={() => handleClick("kr")}
+                  className={cls(
+                    "border-r border-white px-4 transition",
+                    lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
+                  )}
+                >
+                  한국어
+                </button>
+                <button
+                  onClick={() => handleClick("en")}
+                  className={cls(
+                    "border-l border-white px-4 transition",
+                    lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
+                  )}
+                >
+                  ENGLISH
+                </button>
+              </div>
             </motion.div>
           ) : null}
         </motion.nav>

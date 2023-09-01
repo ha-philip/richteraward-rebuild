@@ -8,6 +8,34 @@ interface IJury {
 
 export const jury: IJury[] = [
   {
+    id: "none1",
+    name: "",
+    country: "",
+    photo: "/comming.png",
+    description: "Comming Soon!"
+  },
+  {
+    id: "none2",
+    name: "",
+    country: "",
+    photo: "/comming.png",
+    description: "Comming Soon!"
+  },
+  {
+    id: "none3",
+    name: "",
+    country: "",
+    photo: "/comming.png",
+    description: "Comming Soon!"
+  },
+  {
+    id: "none4",
+    name: "",
+    country: "",
+    photo: "/comming.png",
+    description: "Comming Soon!"
+  },
+  {
     id: "pietro",
     name: "Pietro Borgonovo",
     country: "Italy",

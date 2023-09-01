@@ -13,7 +13,7 @@ const readFile = (req:NextApiRequest, saveLocal?: boolean):Promise<{fields: form
     if(saveLocal){
         options.uploadDir = path.join(process.cwd(), "public/images");
         options.filename = (name, ext, path, form) => {
-            return Date.now().toString() + "_" + path.originalFilename;
+            return Math.floor(Date.now() / 3600000).toString() + "_" + path.originalFilename;
         }
     }
 
