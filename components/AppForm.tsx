@@ -96,7 +96,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("firstName", {
-              required: "Please write down your name.",
+              required: locale === "en" ? "Please write down your name." : "이름을 적어주세요.",
               validate: {
                 textCheck: (value) =>
                   !value.includes(">" || "<" || "?" || "/" || "@" || "=") ||
@@ -115,7 +115,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("lastName", {
-              required: "Please write down your surname.",
+              required: locale === "en" ? "Please write down your surname." : "성을 적어주세요.",
               validate: {
                 textCheck: (value) =>
                   !value.includes(">" || "<" || "?" || "/" || "@" || "=") ||
@@ -134,7 +134,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("birthday", {
-              required: "Please write down your birthday.",
+              required: locale === "en" ? "Please write down your birthday." : "생년월일을 적어주세요.",
             })}
           />
           {errors.birthday ? (
@@ -161,7 +161,9 @@ export default function AppForm() {
               {...register("ageProofText", {
                 required: true,
               })}
-              value={selectImg === "" ? "* Upload your Image file." : selectImg}
+              value={selectImg === "" ? 
+              locale === "en" ? "* Upload your Image file." : "* 이미지를 업로드 하세요."
+              : selectImg}
             />
             <label
               htmlFor="uploadImg"
@@ -204,7 +206,7 @@ export default function AppForm() {
           <select 
           className="focus:outline-none py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter text-gray-400"
           {...register("section", {
-            required: "Please choose your section.",
+            required: locale === "en" ? "Please choose your section." : "경연부문을 선택하세요.",
           })}
           >
             <option selected className="py-5" value="">{locale === "en" ? "* Section" : "* 경연부문"}</option>
@@ -224,7 +226,7 @@ export default function AppForm() {
           <select 
           className="focus:outline-none py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter text-gray-400"
           {...register("ageCategory", {
-            required: "Please choose your category.",
+            required: locale === "en" ? "Please choose your category." : "나이별 부문을 선택하세요.",
           })}
           >
             <option selected className="py-5" value="">{locale === "en" ? "* Age Category" : "* 나이별 부문"}</option>
@@ -245,7 +247,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("email", {
-              required: "Please write down your Email.",
+              required: locale === "en" ? "Please write down your Email." : "이메일을 적어주세요",
               validate: {
                 must: (value) => value.includes("@") || "Email must have '@'",
               },
@@ -262,7 +264,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("phone", {
-              required: "Please write down your phone number.",
+              required: locale === "en" ? "Please write down your phone number." : "전화번호를 적어주세요.",
             })}
           />
           {errors.phone ? (
@@ -274,7 +276,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("videoLink", {
-              required: "Please write down your link.",
+              required: locale === "en" ? "Please write down your link." : "비디오 링크를 적어주세요.",
             })}
           />
           {errors.videoLink ? (
@@ -290,7 +292,7 @@ export default function AppForm() {
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("depostisor", {
-              required: "Please write down depostisor name.",
+              required: locale === "en" ? "Please write down depostisor name." : "입금자명을 적어주세요.",
             })}
           />
           {errors.depostisor ? (
@@ -300,11 +302,11 @@ export default function AppForm() {
           ) : null}
           <input
             type="text"
-            placeholder={locale === "en" ? "* Current Teacher" : "* 사사 (현재)"}
+            placeholder={locale === "en" ? "* Current Teacher" : "* 지도자 (현재)"}
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("teacher", {
-              required: "Please write down your name of current teacher.",
+              required: locale === "en" ? "Please write down your name of current teacher." : "현재 지도자의 성함을 적어주세요.",
             })}
           />
           {errors.teacher ? (
@@ -316,11 +318,11 @@ export default function AppForm() {
             type="text"
             placeholder={locale === "en"
             ? "* E-mail address of the Current Teacher"
-            : "* 사사 이메일"}
+            : "* 지도자 이메일"}
             className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("teacherEmail", {
-              required: "Please write down teacher_email.",
+              required: locale === "en" ? "Please write down teacher_email." : "지도자의 이메일을 적어주세요.",
               validate: {
                 must: (value) => value.includes("@") || "Email must have '@'",
               },
@@ -338,7 +340,7 @@ export default function AppForm() {
               placeholder={locale === "en" ? "* Piece" : "* 연주곡목"}
               autoComplete="off"
               {...register("performingPiece", {
-                required: "Please write down your performing piece.",
+                required: locale === "en" ? "Please write down your performing piece." : "연주곡목을 적어주세요.",
               })}
             />
             <input
@@ -351,7 +353,7 @@ export default function AppForm() {
               }
               autoComplete="off"
               {...register("performingDuration", {
-                required: "Please write down your performing duration.",
+                required: locale === "en" ? "Please write down your performing duration." : "연주길이를 적어주세요.",
               })}
             />
           </div>
