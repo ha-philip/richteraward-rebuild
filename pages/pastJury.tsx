@@ -46,7 +46,7 @@ export default function PastJury() {
               </motion.div>
             ))}
           </div>
-          <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter pt-16">2021</h2>
+          <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter pt-24">2021</h2>
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-6">
             {[jury[5], jury[10], jury[6], jury[7]].map((data, number) => (
               <motion.div
@@ -65,7 +65,7 @@ export default function PastJury() {
               </motion.div>
             ))}
           </div>
-          <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter pt-16">2022</h2>
+          <h2 className="border-b border-red-800 p-2 lg:text-lg text-xs font-bold tracking-tighter pt-24">2022</h2>
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-6">
             {jury.slice(4, 8).map((data, number) => (
               <motion.div

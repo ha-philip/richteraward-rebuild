@@ -82,21 +82,18 @@ export default function AppForm() {
   const popupClose = () => set_submitPopup(false);
   return (
     <>
-      <h2 className="bg-black text-white p-3 text-center tracking-widest lg:text-2xl text-base">
+      <h2 className="bg-red-800 text-white p-3 text-center tracking-widest lg:text-2xl text-base font-thin">
         {locale === "en" ? "APPLICATION" : "참가 신청서"}
       </h2>
       <form onSubmit={handleSubmit(onVaild)}>
-        <div className="bg-[whitesmoke] lg:h-[38rem] h-[36rem] flex flex-col justify-start lg:p-10 p-3 overflow-y-scroll">
-          <h2 className="text-red-800 font-bold text-sm">
+        <div className="bg-[whitesmoke] lg:h-[38rem] h-[36rem] flex flex-col justify-start lg:p-10 p-3 overflow-y-scroll tracking-tighter">
+          <h2 className="font-bold text-sm">
             {locale === "en" ? "* Required Field" : "* 필수 입력 항목"}
           </h2>
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "First Name" : "이름"}
-          </span>
           <input
+            placeholder={locale === "en" ? "* First Name" : "* 이름"}
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("firstName", {
               required: "Please write down your name.",
@@ -112,13 +109,10 @@ export default function AppForm() {
               {errors.firstName.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Last Name" : "성"}
-          </span>
           <input
+            placeholder={locale === "en" ? "* Last Name" : "* 성"}
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("lastName", {
               required: "Please write down your surname.",
@@ -134,13 +128,10 @@ export default function AppForm() {
               {errors.lastName.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Birthday" : "생년월일"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en" ? "* Birthday" : "* 생년월일"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("birthday", {
               required: "Please write down your birthday.",
@@ -151,38 +142,30 @@ export default function AppForm() {
               {errors.birthday.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
-            {locale === "en" ? "Current School" : "소속 학교"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en" ? "Current School" : "소속 학교"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("school")}
           />
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en"
-              ? "Attachment for the proof your age"
-              : "나이 증명서 첨부"}
-          </span>
           <div className="flex justify-start items-center lg:gap-5 gap-2">
             <input
               type="text"
               autoComplete="off"
               readOnly
               className={cls(
-                "py-3 px-5 rounded-lg shadow-md bg-[#f0f0f0] transition lg:text-sm text-xs tracking-tighter w-3/4",
+                "py-3 px-5 rounded-lg shadow-md bg-[#f0f0f0] transition lg:text-sm text-xs tracking-tighter w-3/4 mt-10",
                 errors.ageProof ? "text-red-500" : "text-gray-500"
               )}
               {...register("ageProofText", {
                 required: true,
               })}
-              value={selectImg === "" ? "Upload your Image file." : selectImg}
+              value={selectImg === "" ? "* Upload your Image file." : selectImg}
             />
             <label
               htmlFor="uploadImg"
-              className="cursor-pointer w-1/4 text-center lg:text-sm text-xs bg-red-800 py-3 rounded-lg text-white tracking-wider hover:bg-black transition"
+              className="mt-10 cursor-pointer w-1/4 text-center lg:text-sm text-xs bg-red-800 py-3 rounded-lg text-white tracking-wider hover:bg-black transition"
             >
               {locale === "en" ? "File" : "파일"}
             </label>
@@ -203,61 +186,63 @@ export default function AppForm() {
               }}
             />
           </div>
-          <p className="lg:text-xs text-[0.5rem] mt-2 tracking-tight">
-            ( Please scan the first page of your passport and upload it here )
+          <p className="lg:text-xs text-[0.5rem] mt-2 tracking-tighter">
+          {locale === "en" ?
+          "Attachment for the proof your age ( Scan the first page of your passport.)" : 
+          "나이 증명서 첨부 (주민등록증, 여권 등)"
+            }
           </p>
-          <span className="lg:text-sm text-xs mt-10 mb-2 tracking-tight">
-            {locale === "en"
-              ? "Team Member Personal Information"
-              : "팀원 인적사항"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en"
+            ? "Team Member Personal Information"
+            : "팀원 인적사항"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("teamMember")}
           />
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Section" : "경연부문"}
-          </span>
-          <input
-            type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
-            autoComplete="off"
-            {...register("section", {
-              required: "Please choose your section.",
-            })}
-          />
+          <select 
+          className="focus:outline-none py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter text-gray-400"
+          {...register("section", {
+            required: "Please choose your section.",
+          })}
+          >
+            <option selected className="py-5" value="">{locale === "en" ? "* Section" : "* 경연부문"}</option>
+            <option value="Piano Solo">Piano Solo</option>
+            <option value="Piano Duo ( 4 Hands & 2 Piano )">Piano Duo ( 4 Hands & 2 Piano )</option>
+            <option value="Piano with Orchestra or Second Piano">Piano with Orchestra or Second Piano</option>
+            <option value="Piano Duet ( Chamber )">Piano Duet ( Chamber )</option>
+            <option value="Piano Trio ( Chamber )">Piano Trio ( Chamber )</option>
+            <option value="Piano Quartet ( Chamber )">Piano Quartet ( Chamber )</option>
+            <option value="Piano Quintet ( Chamber )">Piano Quintet ( Chamber )</option>
+          </select>
           {errors.section ? (
             <p className="text-xs mt-3 text-red-500">
               {errors.section.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Age Category" : "나이별 부문"}
-          </span>
-          <input
-            type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
-            autoComplete="off"
-            {...register("ageCategory", {
-              required: "Please choose your category.",
-            })}
-          />
+          <select 
+          className="focus:outline-none py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter text-gray-400"
+          {...register("ageCategory", {
+            required: "Please choose your category.",
+          })}
+          >
+            <option selected className="py-5" value="">{locale === "en" ? "* Age Category" : "* 나이별 부문"}</option>
+            <option value="Junior">Junior</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Young Master">Young Master</option>
+            <option value="Senior">Senior</option>
+            <option value="Artist">Artist</option>
+          </select>
           {errors.ageCategory ? (
             <p className="text-xs mt-3 text-red-500">
               {errors.ageCategory.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "E-mail" : "이메일"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en" ? "* E-mail" : "* 이메일"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("email", {
               required: "Please write down your Email.",
@@ -269,15 +254,12 @@ export default function AppForm() {
           {errors.email ? (
             <p className="text-xs mt-3 text-red-500">{errors.email.message}</p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en"
-              ? "Phone-number ( with the Country Code )"
-              : "전화번호"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en"
+            ? "* Phone-number ( with the Country Code )"
+            : "* 전화번호"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("phone", {
               required: "Please write down your phone number.",
@@ -286,13 +268,10 @@ export default function AppForm() {
           {errors.phone ? (
             <p className="text-xs mt-3 text-red-500">{errors.phone.message}</p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Video link of your performance" : "비디오 링크"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en" ? "* Video link of your performance" : "* 비디오 링크"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("videoLink", {
               required: "Please write down your link.",
@@ -303,15 +282,12 @@ export default function AppForm() {
               {errors.videoLink.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en"
-              ? "Name of the depositor ( Application Fee )"
-              : "입금자명"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en"
+            ? "* Name of the depositor ( Application Fee )"
+            : "* 입금자명"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("depostisor", {
               required: "Please write down depostisor name.",
@@ -322,13 +298,10 @@ export default function AppForm() {
               {errors.depostisor.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Current Teacher" : "사사 (현재)"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en" ? "* Current Teacher" : "* 사사 (현재)"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("teacher", {
               required: "Please write down your name of current teacher.",
@@ -339,15 +312,12 @@ export default function AppForm() {
               {errors.teacher.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en"
-              ? "E-mail address of the Current Teacher"
-              : "사사 이메일"}
-          </span>
           <input
             type="text"
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs"
+            placeholder={locale === "en"
+            ? "* E-mail address of the Current Teacher"
+            : "* 사사 이메일"}
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
             autoComplete="off"
             {...register("teacherEmail", {
               required: "Please write down teacher_email.",
@@ -361,15 +331,11 @@ export default function AppForm() {
               {errors.teacherEmail.message}
             </p>
           ) : null}
-
-          <span className="lg:text-sm text-xs mt-10 mb-2 text-red-800 tracking-tight">
-            {locale === "en" ? "Performing Piece" : "연주곡목 / 연주길이"}
-          </span>
           <div className="flex gap-5">
             <input
               type="text"
-              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs w-1/2"
-              placeholder={locale === "en" ? "Piece" : "연주곡목"}
+              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter w-1/2"
+              placeholder={locale === "en" ? "* Piece" : "* 연주곡목"}
               autoComplete="off"
               {...register("performingPiece", {
                 required: "Please write down your performing piece.",
@@ -377,11 +343,11 @@ export default function AppForm() {
             />
             <input
               type="text"
-              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs w-1/2"
+              className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter w-1/2"
               placeholder={
                 locale === "en"
-                  ? "Duration ( mm : ss )"
-                  : "연주길이 ( mm : ss )"
+                  ? "* Duration ( mm : ss )"
+                  : "* 연주길이 ( mm : ss )"
               }
               autoComplete="off"
               {...register("performingDuration", {

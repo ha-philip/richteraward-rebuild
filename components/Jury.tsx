@@ -41,7 +41,7 @@ export default function Jury() {
           
             <Link href={`/pastJury`} 
               className="text-center bg-white lg:w-64 px-8 py-4 shadow-lg hover:scale-[0.95] hover:bg-[#f0f0f0] transition font-light lg:text-sm text-xs tracking-wider">
-            <p>Past Jury Members</p>
+            <p>{locale === "en" ? "Past Jury Members" : "역대 심사위원"}</p>
             </Link>
             
           

@@ -35,7 +35,7 @@ export default function NavigationBar() {
     set_lanToggle(lan);
     push("/", undefined, { locale: lan });
   };
-  
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -174,36 +174,41 @@ export default function NavigationBar() {
           </div>
           {toggleMenu ? (
             <motion.div className="text-white lg:hidden flex flex-col text-xs justify-start items-end px-10 gap-10">
-              <Link
-                href="#jury"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>JURY</span>
-              </Link>
-              <Link
-                href="#past"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>PAST WINNERS</span>
-              </Link>
-              <Link
-                href="#regulation"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>REGULATION</span>
-              </Link>
-              <Link
-                href="#notice"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>NOTICE</span>
-              </Link>
-              <Link
-                href="#contact"
-                className="hover:text-red-400 transition-colors"
-              >
-                <span>CONTACT</span>
-              </Link>
+              {router.pathname === "/" ? (
+                <>
+                  <Link
+                    href="#jury"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>JURY</span>
+                  </Link>
+                  <Link
+                    href="#past"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>PAST WINNERS</span>
+                  </Link>
+                  <Link
+                    href="#regulation"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>REGULATION</span>
+                  </Link>
+                  <Link
+                    href="#notice"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>NOTICE</span>
+                  </Link>
+                  <Link
+                    href="#contact"
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <span>CONTACT</span>
+                  </Link>
+                </>
+              ) : null}
+
               <div className="flex justify-end items-center text-white text-sm py-3 my-10">
                 <button
                   onClick={() => handleClick("kr")}
