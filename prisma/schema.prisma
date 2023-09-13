@@ -13,6 +13,7 @@ model Notice{
 }
 model WriteForm{
   id              Int @id @default(autoincrement())
+  site            String
   firstName       String
   lastName        String
   birthday        String

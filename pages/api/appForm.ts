@@ -21,6 +21,7 @@ async function addApp(req: NextApiRequest, res: NextApiResponse) {
   try {
     const newApp = await prisma.writeForm.create({
       data: {
+        site: "richter-award",
         firstName: body.firstName,
         lastName: body.lastName,
         birthday: body.birthday,
