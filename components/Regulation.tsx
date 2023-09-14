@@ -80,7 +80,9 @@ interface IregText {
   teacher_9: string;
   teacher_10: string;
   teacher_11: string;
-  teacher_12: string;
+  vote_1: string;
+  vote_2: string;
+  vote_3: string;
   detail_1: string;
   detail_2: string;
   detail_3: string;
@@ -116,32 +118,32 @@ export default function Regulation() {
         id="regulation"
       >
         <div className="flex flex-col justify-center items-center space-y-10">
-          <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
+          <span className="lg:text-4xl text-lg font-extralight tracking-widest border-b border-red-800 p-3">
             {regText?.reg_title}
           </span>
           <div className="flex flex-col justify-center items-center">
-            <p className="lg:text-xl text-xs font-thin text-center">
+            <p className="lg:text-xl text-xs font-extralight text-center">
               {regText?.reg_titleText_1}
               <br />
               {regText?.reg_titleText_2}
             </p>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-12 mt-10">
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.prizes}
                 </h1>
-                <p className="lg:text-3xl text-xl font-bold tracking-tighter text-yellow-600">
+                <p className="lg:text-3xl text-xl font-bold tracking-tight text-yellow-600">
                   {regText?.prizes_1}
                 </p>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.prizes_2}
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.section}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.section_1}
                   <br />
                   {regText?.section_2}
@@ -160,10 +162,10 @@ export default function Regulation() {
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.repert}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.repert_1} <br />
                   <br />
                   {regText?.repert_2}
@@ -187,13 +189,13 @@ export default function Regulation() {
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.age}
                 </h1>
-                <p className="lg:text-sm text-xs tracking-tighter font-thin">
+                <p className="lg:text-sm text-xs tracking-tight font-extralight">
                   {regText?.age_1}
                 </p>
-                <div className="grid lg:grid-cols-3 grid-cols-1 justify-between items-center gap-5 font-thin lg:text-lg text-xs text-center">
+                <div className="grid lg:grid-cols-3 grid-cols-1 justify-between items-center gap-5 font-extralight lg:text-lg text-xs text-center">
                   <div>
                     <p>{regText?.age_2_1}</p>
                     <p>{regText?.age_2_2}</p>
@@ -215,17 +217,17 @@ export default function Regulation() {
                     <p>{regText?.age_6_2}</p>
                   </div>
                 </div>
-                <p className="lg:text-sm text-xs tracking-tighter font-thin">
+                <p className="lg:text-sm text-xs tracking-tight font-extralight">
                   {regText?.age_7}
                   <br />
                   {regText?.age_8}
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.announce}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   <span>{regText?.announce_1}</span>
                   <br />
                   <br />
@@ -235,23 +237,23 @@ export default function Regulation() {
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.awards}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.awards_1} <br />
                   <br />
                   {regText?.awards_2}
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.application}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.application_title}
                 </p>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.application_1}
                   <br />
                   <span className="lg:text-base text-xs">
@@ -295,15 +297,18 @@ export default function Regulation() {
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.teacher}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.teacher_1}
                 </p>
-                <p className="lg:text-base text-xs tracking-tighter font-thin">
-                  {regText?.teacher_2}
-                  <br />
+                </div>
+                <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
+                {regText?.teacher_2}
+                </h1>
+                <p className="lg:text-base text-xs tracking-tight font-extralight">
                   <br />
                   {regText?.teacher_3}
                   <br />
@@ -311,27 +316,35 @@ export default function Regulation() {
                   <br />
                   {regText?.teacher_5}
                 </p>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-xl text-sm tracking-widest font-extralight border-b border-red-800 pt-8">
                   {regText?.teacher_6}
                 </p>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.teacher_7}
                   <br />
-                  {regText?.teacher_8} <br />
-                  {regText?.teacher_9}
-                  <br />
-                  {regText?.teacher_10}
-                  <br />
+                  {regText?.teacher_8}
+                </p>
+                <p className="lg:text-xl text-sm tracking-widest font-extralight border-b border-red-800 pt-8">
+                  
+                {regText?.teacher_9}
+                </p>
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
+                {regText?.teacher_10} <br/>
                   {regText?.teacher_11}
-                  <br />
-                  {regText?.teacher_12}
+                </p>
+                <p className="lg:text-xl text-sm tracking-widest font-extralight border-b border-red-800 pt-8">        
+                {regText?.vote_1}
+                </p>
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
+                {regText?.vote_2} <br/>
+                  {regText?.vote_3}
                 </p>
               </div>
               <div className="lg:col-span-2 flex flex-col justify-center items-center space-y-6 shadow-2xl lg:p-7 p-3 bg-white">
-                <h1 className="lg:text-2xl text-xs font-thin tracking-widest border-b border-red-800 p-3 text-center">
+                <h1 className="lg:text-2xl text-sm font-extralight tracking-widest border-b border-red-800 p-3 text-center">
                   {regText?.detail}
                 </h1>
-                <p className="lg:text-lg text-sm tracking-tighter font-thin">
+                <p className="lg:text-lg text-sm tracking-tight font-extralight">
                   {regText?.detail_1}
                   <br />
                   {regText?.detail_2}
@@ -358,7 +371,7 @@ export default function Regulation() {
               <div className="lg:col-span-2 flex justify-center items-center">
                 <button
                   onClick={getOverlay}
-                  className="bg-red-800 text-white font-thin tracking-tight lg:text-2xl text-lg lg:w-72 w-52 py-5 hover:bg-black transition rounded-xl"
+                  className="bg-red-800 text-white font-extralight tracking-tight lg:text-2xl text-lg lg:w-72 w-52 py-5 hover:bg-black transition rounded-xl"
                 >
                   {locale === "en" ? "APPLY" : "신청하기"}
                 </button>
