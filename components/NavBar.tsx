@@ -117,24 +117,34 @@ export default function NavigationBar() {
               ) : null}
             </div>
             <div className="lg:flex hidden justify-between items-center text-white text-xl">
-              <button
-                onClick={() => handleClick("kr")}
-                className={cls(
-                  "border-r border-white px-4 transition text-sm",
-                  lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
-                )}
-              >
-                한국어
-              </button>
-              <button
-                onClick={() => handleClick("en")}
-                className={cls(
-                  "border-l border-white px-4 transition text-sm",
-                  lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
-                )}
-              >
-                ENGLISH
-              </button>
+              {router.pathname !== "/admin/main" ?
+                <>
+                  <button
+                    onClick={() => handleClick("kr")}
+                    className={cls(
+                      "border-r border-white px-4 transition text-sm",
+                      lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
+                    )}
+                  >
+                    한국어
+                  </button>
+                  <button
+                    onClick={() => handleClick("en")}
+                    className={cls(
+                      "border-l border-white px-4 transition text-sm",
+                      lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
+                    )}
+                  >
+                    ENGLISH
+                  </button>
+                </>
+                :
+                <Link
+                  href="/"
+                  className="border-white px-4 transition text-sm hover:text-red-400"
+                >
+                  로그아웃
+                </Link>}
             </div>
             <button className="text-white lg:hidden block" onClick={mobileMenu}>
               {toggleMenu ? (
@@ -206,26 +216,35 @@ export default function NavigationBar() {
                   </Link>
                 </>
               ) : null}
-
-              <div className="flex justify-end items-center text-white text-sm py-3 my-10">
-                <button
-                  onClick={() => handleClick("kr")}
-                  className={cls(
-                    "border-r border-white px-4 transition",
-                    lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
-                  )}
-                >
-                  한국어
-                </button>
-                <button
-                  onClick={() => handleClick("en")}
-                  className={cls(
-                    "border-l border-white px-4 transition",
-                    lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
-                  )}
-                >
-                  ENGLISH
-                </button>
+              <div className="flex justify-center items-center text-white text-sm py-3 my-10">
+                {router.pathname !== "/admin/main" ?
+                  <>
+                    <button
+                      onClick={() => handleClick("kr")}
+                      className={cls(
+                        "border-r border-white px-4 transition",
+                        lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
+                      )}
+                    >
+                      한국어
+                    </button>
+                    <button
+                      onClick={() => handleClick("en")}
+                      className={cls(
+                        "border-l border-white px-4 transition",
+                        lanToggle === "en" ? "text-red-400" : "hover:text-red-400"
+                      )}
+                    >
+                      ENGLISH
+                    </button>
+                  </>
+                  :
+                  <Link
+                    href="/"
+                    className="border-white px-4 transition text-sm hover:text-red-400"
+                  >
+                    로그아웃
+                  </Link>}
               </div>
             </motion.div>
           ) : null}
