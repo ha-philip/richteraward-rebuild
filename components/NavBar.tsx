@@ -117,7 +117,7 @@ export default function NavigationBar() {
               ) : null}
             </div>
             <div className="lg:flex hidden justify-between items-center text-white text-xl">
-              {router.pathname !== "/admin/main" ?
+              {router.pathname !== "/admin" ?
                 <>
                   <button
                     onClick={() => handleClick("kr")}
@@ -143,7 +143,7 @@ export default function NavigationBar() {
                   href="/"
                   className="border-white px-4 transition text-sm hover:text-red-400"
                 >
-                  로그아웃
+                  홈으로
                 </Link>}
             </div>
             <button className="text-white lg:hidden block" onClick={mobileMenu}>
@@ -217,7 +217,7 @@ export default function NavigationBar() {
                 </>
               ) : null}
               <div className="flex justify-center items-center text-white text-sm py-3 my-10">
-                {router.pathname !== "/admin/main" ?
+                {router.pathname !== "/admin" ?
                   <>
                     <button
                       onClick={() => handleClick("kr")}
@@ -243,7 +243,7 @@ export default function NavigationBar() {
                     href="/"
                     className="border-white px-4 transition text-sm hover:text-red-400"
                   >
-                    로그아웃
+                    홈으로
                   </Link>}
               </div>
             </motion.div>
