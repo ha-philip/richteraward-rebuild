@@ -58,8 +58,6 @@ export default function NavigationBar() {
   const mobileMenu = () => {
     set_toggleMenu((prev) => !prev);
   };
-
-  console.log(router.pathname);
   return (
     <>
       <div>
