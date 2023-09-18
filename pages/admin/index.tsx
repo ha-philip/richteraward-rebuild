@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -48,6 +49,9 @@ export default function AdminLogin() {
     }
     return (
         <>
+        <Head>
+            <title>Ricther Award 관리자</title>
+        </Head>
             {isLogin !== "ok" ?
                 <div className="bg-cover bg-no-repeat bg-fixed flex justify-center items-start"
                     style={{
