@@ -1,17 +1,25 @@
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AdminMain from "./main";
+import { prisma } from "@/server/client";
+import { GetServerSideProps } from "next";
 
 interface AdminForm {
     pw: string;
 }
 
-export default function AdminLogin() {
-    const { locale } = useRouter();
-    const router = useRouter();
+interface IWriteForms {
+    posts: {
+        id: string;
+        firstName: string;
+        lastName: string;
+        ageProof: string;
+    }[]
+}
+
+export default function AdminLogin({posts}: IWriteForms) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);
     const [isLogin, set_isLogin] = useState<string>();
     const {
@@ -74,8 +82,23 @@ export default function AdminLogin() {
                     </form>
                 </div>
                 :
-                <AdminMain />
+                <AdminMain posts={posts}/>
             }
         </>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const posts = await prisma.writeForm.findMany({
+        select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            ageProof: true
+        }
+    });
+
+    return {
+        props: { posts }
+    }
 }
