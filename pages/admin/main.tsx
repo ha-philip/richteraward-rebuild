@@ -24,7 +24,7 @@ export default function AdminMain({ posts }: IWriteForms) {
                             <div className="w-[30vw] text-center">{data.firstName}</div>
                             <div className="w-[30vw] text-center">{data.lastName}</div>
                             <div className="w-[40vw] flex justify-center items-center">
-                                <img src={`/images/${data.ageProof}`} alt="no Image"/>
+                                <img src={`/images/${data.ageProof}`} alt={data.ageProof}/>
                             </div>
                         </div>
                     ))}
