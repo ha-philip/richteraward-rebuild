@@ -12,10 +12,16 @@ interface AdminForm {
 
 interface IWriteForms {
     posts: {
-        id: string;
-        firstName: string;
-        lastName: string;
-        ageProof: string;
+        id: string,
+        site: string,
+        firstName: string,
+        lastName: string,
+        birthday: string,
+        section: string,
+        ageCategory: string,
+        email: string,
+        videoLink: string,
+        ageProof: string
     }[]
 }
 
@@ -92,8 +98,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const posts = await prisma.writeForm.findMany({
         select: {
             id: true,
+            site: true,
             firstName: true,
             lastName: true,
+            birthday: true,
+            section: true,
+            ageCategory: true,
+            email: true,
+            videoLink: true,
             ageProof: true
         }
     });
