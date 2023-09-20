@@ -12,16 +12,23 @@ interface AdminForm {
 
 interface IWriteForms {
     posts: {
-        id: string,
-        site: string,
-        firstName: string,
-        lastName: string,
-        birthday: string,
-        section: string,
-        ageCategory: string,
-        email: string,
-        videoLink: string,
-        ageProof: string
+        id: string;
+        site: string;
+        firstName: string;
+        lastName: string;
+        birthday: string;
+        section: string;
+        ageCategory: string;
+        email: string;
+        videoLink: string;
+        phone: string;
+        teamMember: string;
+        school: string;
+        depostisor: string;
+        teacher: string;
+        teacherEmail: string;
+        performingPiece: string;
+        ageProof: string;
     }[]
 }
 
@@ -106,7 +113,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
             ageCategory: true,
             email: true,
             videoLink: true,
-            ageProof: true
+            phone: true,
+            teamMember: true,
+            school: true,
+            depostisor: true,
+            teacher: true,
+            teacherEmail: true,
+            performingPiece: true,
+            ageProof: true,
+            
         }
     });
 
