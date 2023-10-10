@@ -18,11 +18,14 @@ export default async function handler(
 
 async function addNotice(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
+  let nowTime = new Date();
   try {
     const newEntry = await prisma.notice.create({
       data: {
-        noticeTitle: body.notice_title,
-        noticeDate: body.imgFile,
+        noticeTitle: body.noticeTitle,
+        noticeText: body.noticeText,
+        createdAt: nowTime,
+        updatedAt: nowTime
       },
     });
     return res.status(200).json({ data: newEntry, success: true });

@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useForm } from "react-hook-form";
 import AdminMain from "./main";
 import { prisma } from "@/server/client";
@@ -11,7 +10,7 @@ interface AdminForm {
 }
 
 interface IWriteForms {
-    posts: {
+    appformPost: {
         id: string;
         site: string;
         firstName: string;
@@ -32,7 +31,7 @@ interface IWriteForms {
     }[]
 }
 
-export default function AdminLogin({posts}: IWriteForms) {
+export default function AdminLogin({appformPost}: IWriteForms) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);
     const [isLogin, set_isLogin] = useState<string>();
     const {
@@ -95,14 +94,14 @@ export default function AdminLogin({posts}: IWriteForms) {
                     </form>
                 </div>
                 :
-                <AdminMain posts={posts}/>
+                <AdminMain appformPost={appformPost}/>
             }
         </>
     );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const posts = await prisma.writeForm.findMany({
+    const appformPost = await prisma.writeForm.findMany({
         select: {
             id: true,
             site: true,
@@ -126,6 +125,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     });
 
     return {
-        props: { posts }
+        props: { appformPost }
     }
 }

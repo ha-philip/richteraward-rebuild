@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormValues{
-  notice_title: string;
-  img_file: string;
+  noticeTitle: string;
+  noticeText: string;
 }
 
 
@@ -22,42 +22,17 @@ export default function Noticeform() {
     mode: "all",
   });
 
-
-  /*const handleSubmit = async () => {
-    if (!imgFile) return;
-    const formData = new FormData();
-    formData.append("myImage", imgFile);
-    const body = { notice_title, imgFile: imgFile.name }
-    alert("신청서가 등록되었습니다.");
-    try {
-      //데이터베이스 백엔드
-      const DBResponse = await fetch("/api/notice", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
-      //.then(await axios.post("/api/image", formData)); //이미지 업로드 백엔드
-      if (DBResponse.status !== 200) {
-        console.log("something went wrong");
-        //set an error banner here
-      }
-      
-    } catch (error) {
-      console.log("there was an error submitting", error);
-    }
-  }*/
   const onValid = async (data: any) => {
-    const body = { notice_title: data.notice_title, imgFile: data.img_file[0].name }
+    const body = { noticeTitle: data.noticeTitle, noticeText: data.noticeText }
     alert('공지가 제출되었습니다.');
     try { //데이터베이스 백엔드
     const DBResponse = await fetch("/api/notice", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
-    }).then(await axios.post("/api/image", data.img_file)); //이미지 업로드 백엔드
+    });
     if (DBResponse.status !== 200) {
       console.log("something went wrong");
-      //set an error banner here
     }
     
   } catch (error) {
@@ -67,42 +42,37 @@ export default function Noticeform() {
   }
   return (
     <div className="mt-24 flex justify-center items-center">
-      <form onSubmit={handleSubmit(onValid)} method="POST" className="space-y-5">
+      <form onSubmit={handleSubmit(onValid)} className="space-y-5">
         <div>
-          <label>할일</label>
+          <label>제목</label>
           <input
             type="text"
             className="py-3 px-5 rounded-lg shadow-md bg-slate-200 transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("notice_title", {
+            {...register("noticeTitle", {
               required: "Please write down title.",
             })}
           />
-           {errors.notice_title ? (
+           {errors.noticeTitle ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.notice_title.message}
+              {errors.noticeTitle.message}
             </p>
           ) : null}
         </div>
-        <div className="w-40 aspect-video flex items-center justify-center border-2 border-black">
-          {selectImg ? <img src={selectImg} alt="" /> : <span>Select Img</span>}
-        </div>
-        <div >
-          <label>파일</label>
-            <input
-            type="file" accept="image/*"
+        <div>
+          <label>내용</label>
+          <textarea
             className="py-3 px-5 rounded-lg shadow-md bg-slate-200 transition lg:text-base text-xs"
             autoComplete="off"
-            {...register("img_file", {
-              required: "Please upload image file.",
+            {...register("noticeText", {
+              required: "Please write down title.",
             })}
-            onChange={
-              ({ target }: any) => {
-                const file = target.files[0];
-                if(file) {set_selectImg(URL?.createObjectURL(file)); return false;}
-              }
-            }
           />
+           {errors.noticeText ? (
+            <p className="text-xs mt-3 text-red-500">
+              {errors.noticeText.message}
+            </p>
+          ) : null}
         </div>
         <input type="submit" className="bg-blue-300" value="Submit"/>
       </form>

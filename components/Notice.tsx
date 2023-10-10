@@ -1,7 +1,17 @@
 import { useRouter } from "next/router";
 import Noticeform from "./Noticeform";
 
-export default function Notice() {
+interface INoticeForms {
+    noticePost: {
+      id:string;
+      noticeTitle:string;
+      noticeText:string;
+      createdAt:any;
+      updatedAt:any;
+    }[]
+  }
+
+export default function Notice({noticePost}: INoticeForms) {
     const { locale } = useRouter();
     return (
         <>
@@ -11,10 +21,10 @@ export default function Notice() {
                         {locale === "en" ? "Notice" : "공지사항"}
                     </span>
                     <div className="bg-white shadow-2xl flex flex-col w-full">
-                    {[...Array(7)].map((data, number) => (
-                        <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={number}>
-                            <span className="tracking-tight lg:text-sm text-xs">"New Notice"</span>
-                            <span className="tracking-tight lg:text-sm text-xs">2022.06.01</span>
+                    {noticePost?.map((data) => (
+                        <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={data.id}>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.noticeText}</span>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.createdAt}</span>
                         </div>
                     ))}
                     </div>

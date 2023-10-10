@@ -9,7 +9,9 @@ datasource db {
 model Notice{
   id Int @id @default(autoincrement())
   noticeTitle   String
-  noticeDate    String
+  noticeText    String
+  createdAt     DateTime
+  updatedAt     DateTime
 }
 model WriteForm{
   id              Int @id @default(autoincrement())

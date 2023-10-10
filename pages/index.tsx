@@ -7,6 +7,8 @@ import Notice from "@/components/Notice";
 import Contact from "@/components/Contact";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
+import { prisma } from "@/server/client";
 
 const banner: string = "/bg_richter.jpg";
 
@@ -16,7 +18,17 @@ interface IindexText {
   index_3: string;
 }
 
-export default function Home() {
+interface INoticeForms {
+  noticePost: {
+    id:string;
+    noticeTitle:string;
+    noticeText:string;
+    createdAt:any;
+    updatedAt:any;
+  }[]
+}
+
+export default function Home({noticePost}:INoticeForms) {
   const { locale } = useRouter();
   const [indexText, set_indexText] = useState<IindexText>();
 
@@ -56,8 +68,24 @@ export default function Home() {
       <Jury/>
       <PastWinners/>
       <Regulation/>
-      <Notice/>
+      <Notice noticePost={noticePost}/>
       <Contact/>
     </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const noticePost = await prisma.notice.findMany({
+      select: {
+          id: true,
+          noticeText: true,
+          noticeTitle: true,
+          createdAt: true,
+          updatedAt: true
+      }
+  });
+
+  return {
+      props: { noticePost }
+  }
 }
