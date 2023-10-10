@@ -21,10 +21,10 @@ export default function Notice({noticePost}: INoticeForms) {
                         {locale === "en" ? "Notice" : "공지사항"}
                     </span>
                     <div className="bg-white shadow-2xl flex flex-col w-full">
-                    {noticePost?.map((data) => (
+                    {noticePost?.slice(0, 7).map((data) => (
                         <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={data.id}>
                             <span className="tracking-tight lg:text-sm text-xs">{data.noticeText}</span>
-                            <span className="tracking-tight lg:text-sm text-xs">{data.createdAt}</span>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.createdAt.substring(0, 10)}</span>
                         </div>
                     ))}
                     </div>

@@ -82,10 +82,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
           noticeTitle: true,
           createdAt: true,
           updatedAt: true
+      },
+      orderBy: {
+        createdAt: "desc"
       }
   });
 
   return {
-      props: { noticePost }
+      props: { 
+        noticePost: JSON.parse(JSON.stringify(noticePost))
+      }
+
   }
 }

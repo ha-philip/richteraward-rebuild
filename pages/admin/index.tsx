@@ -9,7 +9,7 @@ interface AdminForm {
     pw: string;
 }
 
-interface IWriteForms {
+interface IAdminPosts {
     appformPost: {
         id: string;
         site: string;
@@ -28,10 +28,17 @@ interface IWriteForms {
         teacherEmail: string;
         performingPiece: string;
         ageProof: string;
-    }[]
+    }[],
+    noticePost: {
+        id:string;
+        noticeTitle:string;
+        noticeText:string;
+        createdAt:any;
+        updatedAt:any;
+      }[]
 }
 
-export default function AdminLogin({appformPost}: IWriteForms) {
+export default function AdminLogin({appformPost, noticePost}:IAdminPosts) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);
     const [isLogin, set_isLogin] = useState<string>();
     const {
@@ -94,7 +101,7 @@ export default function AdminLogin({appformPost}: IWriteForms) {
                     </form>
                 </div>
                 :
-                <AdminMain appformPost={appformPost}/>
+                <AdminMain appformPost={appformPost} noticePost={noticePost}/>
             }
         </>
     );
@@ -123,8 +130,22 @@ export const getServerSideProps: GetServerSideProps = async () => {
             
         }
     });
-
+    const noticePost = await prisma.notice.findMany({
+        select: {
+            id: true,
+            noticeText: true,
+            noticeTitle: true,
+            createdAt: true,
+            updatedAt: true
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+    });
     return {
-        props: { appformPost }
+        props: { 
+            appformPost,
+            noticePost: JSON.parse(JSON.stringify(noticePost))
+         }
     }
 }

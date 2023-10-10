@@ -18,7 +18,7 @@ const GridContainer = styled.div`
     }
 `;
 
-interface IWriteForms {
+interface IAdminPosts {
     appformPost: {
         id: string;
         site: string;
@@ -37,16 +37,19 @@ interface IWriteForms {
         teacherEmail: string;
         performingPiece: string;
         ageProof: string;
-    }[]
+    }[],
+    noticePost: {
+        id:string;
+        noticeTitle:string;
+        noticeText:string;
+        createdAt:any;
+        updatedAt:any;
+      }[]
 }
-/*
-className={cls(
-                      "border-r border-white px-4 transition text-sm",
-                      lanToggle === "kr" ? "text-red-400" : "hover:text-red-400"
-                    )}
-*/
-export default function AdminMain({ appformPost }: IWriteForms) {
+  
+export default function AdminMain({appformPost, noticePost}: IAdminPosts) {
     const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
+    console.log(noticePost);
     return (
         <>
             <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -124,10 +127,10 @@ export default function AdminMain({ appformPost }: IWriteForms) {
                     : 
                     <>
                     <div className="bg-white shadow-2xl flex flex-col w-[95vw]">
-                    {[...Array(7)].map((data, number) => (
-                        <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={number}>
-                            <span className="tracking-tight lg:text-sm text-xs">"New Notice"</span>
-                            <span className="tracking-tight lg:text-sm text-xs">2022.06.01</span>
+                    {noticePost?.map((data) => (
+                        <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={data.id}>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.noticeText}</span>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.createdAt.substring(0, 10)}</span>
                         </div>
                     ))}
                     </div>
