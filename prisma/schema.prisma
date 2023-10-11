@@ -9,7 +9,7 @@ datasource db {
 model Notice{
   id Int @id @default(autoincrement())
   noticeTitle   String
-  noticeText    String
+  noticeText    String @db.Text
   createdAt     DateTime
   updatedAt     DateTime
 }
