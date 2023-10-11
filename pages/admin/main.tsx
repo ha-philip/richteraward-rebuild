@@ -43,8 +43,8 @@ interface IAdminPosts {
     id: string;
     noticeTitle: string;
     noticeText: string;
-    createdAt: any;
-    updatedAt: any;
+    createdAt:string;
+    updatedAt:string;
   }[];
 }
 
@@ -168,7 +168,7 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
                     className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between px-12 py-5 cursor-pointer"
                   >
                     <span className="tracking-tight text-xs">
-                      {data.noticeText}
+                      {data.noticeTitle}
                     </span>
                     <span className="tracking-tight text-xs">
                       {data.createdAt.substring(0, 10)}
@@ -190,7 +190,7 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="z-40 w-[65%] flex flex-col mt-32"
+              className="z-40 w-[70vw] flex flex-col mt-10"
             >
               <h1
                 onClick={() => set_addNotice(false)}
@@ -211,6 +211,9 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
                   />
                 </svg>
               </h1>
+              <h2 className="bg-red-800 p-3 text-center text-sm tracking-widest text-white font-thin">
+               공지 작성
+              </h2>
               <AddNotice/>
             </motion.div>
           </motion.div>

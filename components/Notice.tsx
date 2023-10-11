@@ -1,17 +1,18 @@
 import { useRouter } from "next/router";
-import Noticeform from "./Noticeform";
+import { useState } from "react";
 
 interface INoticeForms {
     noticePost: {
       id:string;
       noticeTitle:string;
       noticeText:string;
-      createdAt:any;
-      updatedAt:any;
+      createdAt:string;
+      updatedAt:string;
     }[]
   }
 
 export default function Notice({noticePost}: INoticeForms) {
+    const [clickNotice, set_clickNotice] = useState<boolean>(false);
     const { locale } = useRouter();
     return (
         <>
@@ -21,12 +22,24 @@ export default function Notice({noticePost}: INoticeForms) {
                         {locale === "en" ? "Notice" : "공지사항"}
                     </span>
                     <div className="bg-white shadow-2xl flex flex-col w-full">
-                    {noticePost?.slice(0, 7).map((data) => (
-                        <div className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" key={data.id}>
+                    {noticePost ? 
+                    noticePost?.slice(0, 7).map((data) => (
+                        <>
+                        <div 
+                        className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer" 
+                        key={data.id}
+                        onClick={() => set_clickNotice(true)}
+                        >
                             <span className="tracking-tight lg:text-sm text-xs">{data.noticeText}</span>
-                            <span className="tracking-tight lg:text-sm text-xs">{data.createdAt.substring(0, 10)}</span>
+                            <span className="tracking-tight lg:text-sm text-xs">{data.updatedAt.substring(0, 10)}</span>
                         </div>
-                    ))}
+                        </>
+                    ))
+                    : 
+                    <div className="lg:px-12 px-5 py-5 text-center text-gray-500 text-sm" >
+                        {locale === "en" ? "No registered notices." : "등록된 공지가 없습니다."}
+                    </div>
+                    }
                     </div>
                 </div>
             </div>

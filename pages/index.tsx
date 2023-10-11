@@ -23,8 +23,8 @@ interface INoticeForms {
     id:string;
     noticeTitle:string;
     noticeText:string;
-    createdAt:any;
-    updatedAt:any;
+    createdAt:string;
+    updatedAt:string;
   }[]
 }
 

@@ -21,6 +21,6 @@
     background: #a0a0a0;
 }
 /*input*/
-input:focus{
+input, textarea{
     outline: none;
 }
