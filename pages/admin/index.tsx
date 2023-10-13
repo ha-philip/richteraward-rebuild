@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import AdminMain from "./main";
 import { prisma } from "@/server/client";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 interface AdminForm {
     pw: string;
@@ -11,7 +12,7 @@ interface AdminForm {
 
 interface IAdminPosts {
     appformPost: {
-        id: string;
+        id: number;
         site: string;
         firstName: string;
         lastName: string;
@@ -30,15 +31,22 @@ interface IAdminPosts {
         ageProof: string;
     }[],
     noticePost: {
-        id:string;
+        id:number;
         noticeTitle:string;
         noticeText:string;
-        createdAt:any;
-        updatedAt:any;
-      }[]
+        createdAt:string;
+        updatedAt:string;
+      }[],
+      onNotice: {
+        id: number;
+        noticeTitle: string;
+        noticeText: string;
+        createdAt: string;
+        updatedAt: string;
+      }
 }
 
-export default function AdminLogin({appformPost, noticePost}:IAdminPosts) {
+export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPosts) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);
     const [isLogin, set_isLogin] = useState<string>();
     const {
@@ -101,13 +109,19 @@ export default function AdminLogin({appformPost, noticePost}:IAdminPosts) {
                     </form>
                 </div>
                 :
-                <AdminMain appformPost={appformPost} noticePost={noticePost}/>
+                <AdminMain appformPost={appformPost} noticePost={noticePost} onNotice={onNotice}/>
             }
         </>
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    let noticeNumber: string = "1";
+    if(context.query.id === undefined){
+        noticeNumber = "1";
+    }else {
+        noticeNumber = String(context.query.id)
+    }
     const appformPost = await prisma.writeForm.findMany({
         select: {
             id: true,
@@ -142,10 +156,23 @@ export const getServerSideProps: GetServerSideProps = async () => {
           createdAt: "desc"
         }
     });
+    const onNotice = await prisma.notice.findUnique({
+      select: {
+        id: true,
+        noticeText: true,
+        noticeTitle: true,
+        createdAt: true,
+        updatedAt: true
+      },
+      where: {
+        id: Number(noticeNumber)
+      }
+    })
     return {
         props: { 
             appformPost,
-            noticePost: JSON.parse(JSON.stringify(noticePost))
+            noticePost: JSON.parse(JSON.stringify(noticePost)),
+            onNotice: JSON.parse(JSON.stringify(onNotice))
          }
     }
 }

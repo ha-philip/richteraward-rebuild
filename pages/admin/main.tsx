@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { cls } from "@/components/utils";
 import { motion } from "framer-motion";
 import AddNotice from "./AddNotice";
+import { useRouter } from "next/router";
 
 const GridContainer = styled.div`
   display: grid;
@@ -21,7 +22,7 @@ const GridContainer = styled.div`
 
 interface IAdminPosts {
   appformPost: {
-    id: string;
+    id: number;
     site: string;
     firstName: string;
     lastName: string;
@@ -38,19 +39,37 @@ interface IAdminPosts {
     teacherEmail: string;
     performingPiece: string;
     ageProof: string;
-  }[];
+  }[],
   noticePost: {
-    id: string;
+    id: number;
     noticeTitle: string;
     noticeText: string;
-    createdAt:string;
-    updatedAt:string;
-  }[];
+    createdAt: string;
+    updatedAt: string;
+  }[],
+  onNotice: {
+    id: number;
+    noticeTitle: string;
+    noticeText: string;
+    createdAt: string;
+    updatedAt: string;
+  }
 }
-
-export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
+export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminPosts) {
   const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
   const [addNotice, set_addNotice] = useState<boolean>(false);
+  const [selectedNotice, set_selectedNotice] = useState<null | number>(null);
+  const history = useRouter();
+
+  const onNoticeClicked = (noticeId: number) => {
+    history.push(`/admin/?id=${noticeId}`);
+    set_selectedNotice(noticeId);
+  }
+  const selectedNoticeClose = () => {
+    history.push(`/admin`);
+    set_selectedNotice(null);
+  }
+  
   return (
     <>
       <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -166,6 +185,7 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
                   <div
                     key={data.id}
                     className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between px-12 py-5 cursor-pointer"
+                    onClick={() => onNoticeClicked(data.id)}
                   >
                     <span className="tracking-tight text-xs">
                       {data.noticeTitle}
@@ -186,6 +206,7 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
             className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            onClick={() => history.push('/admin')}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -212,13 +233,32 @@ export default function AdminMain({ appformPost, noticePost }: IAdminPosts) {
                 </svg>
               </h1>
               <h2 className="bg-red-800 p-3 text-center text-sm tracking-widest text-white font-thin">
-               공지 작성
+                공지 작성
               </h2>
-              <AddNotice/>
+              <AddNotice />
             </motion.div>
           </motion.div>
         </>
       ) : null}
+      {selectedNotice === null ?
+        null
+        :
+        <motion.div
+          className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex justify-center items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={selectedNoticeClose}
+        >
+          <div className="bg-black text-white lg:w-[60vw] w-[95vw] pt-10 border border-gray-500">
+            <h1 className="pb-5 mx-5 lg:text-2xl text-xl font-thin tracking-wider border-b border-gray-500">
+              {onNotice.noticeTitle}
+              <p className="text-xs mt-3 text-gray-300 tracking-normal">Hello</p>
+            </h1>
+            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
+              text text
+            </p>
+          </div>
+        </motion.div>}
     </>
   );
 }

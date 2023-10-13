@@ -1,33 +1,4 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
-
-interface IFooterMenu {
-  linkName: string;
-  linkText: string;
-}
-
-const footerMenu: IFooterMenu[] = [
-  {
-    linkName: "about",
-    linkText: "About Us"
-  },
-  {
-    linkName: "term",
-    linkText: "Term"
-  },
-  {
-    linkName: "digital",
-    linkText: "Digital"
-  },
-  {
-    linkName: "privacy",
-    linkText: "Privacy"
-  },
-  {
-    linkName: "contact",
-    linkText: "Contact"
-  }
-];
 
 export default function Footer() {
   return (
