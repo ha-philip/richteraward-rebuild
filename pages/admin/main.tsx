@@ -251,11 +251,13 @@ export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminP
         >
           <div className="bg-black text-white lg:w-[60vw] w-[95vw] pt-10 border border-gray-500">
             <h1 className="pb-5 mx-5 lg:text-2xl text-xl font-thin tracking-wider border-b border-gray-500">
-              {onNotice.noticeTitle}
-              <p className="text-xs mt-3 text-gray-300 tracking-normal">Hello</p>
+              {onNotice.id === 1 ? "로딩중..." : onNotice.noticeTitle}
+              <p className="text-xs mt-3 text-gray-300 tracking-normal">
+                {onNotice.id === 1 ? "로딩중..." : onNotice.updatedAt.substring(0, 10)}
+                </p>
             </h1>
             <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-              text text
+            {onNotice.id === 1 ? "로딩중..." : onNotice.noticeText}
             </p>
           </div>
         </motion.div>}
