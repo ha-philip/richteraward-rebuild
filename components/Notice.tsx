@@ -6,7 +6,7 @@ interface INoticeForms {
     noticePost: {
         id: string;
         noticeTitle: string;
-        noticeText: string;
+        formatnoticeText: string;
         createdAt: string;
         updatedAt: string;
     }[]
@@ -57,8 +57,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[0].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[0].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[0].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[0].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -68,8 +68,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[1].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[1].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[1].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[1].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -79,8 +79,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[2].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[2].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[2].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[2].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -90,8 +90,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[3].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[3].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[3].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[3].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -101,8 +101,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[4].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[4].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[4].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[4].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -112,8 +112,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[5].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[5].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[5].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[5].formatnoticeText}
                             </p>
                         </div>
                     }
@@ -123,8 +123,8 @@ export default function Notice({ noticePost }: INoticeForms) {
                                 '{noticePost[6].noticeTitle}'
                                 <p className="text-xs mt-3 text-gray-300 tracking-normal">{locale === "en" ? "Recent updated" : "최근 수정일"}: {noticePost[6].updatedAt.substring(0, 10)}</p>
                             </h1>
-                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-                                {noticePost[6].noticeText}
+                            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+                                {noticePost[6].formatnoticeText}
                             </p>
                         </div>
                     }

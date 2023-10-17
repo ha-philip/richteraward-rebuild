@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { cls } from "@/components/utils";
 import { motion } from "framer-motion";
@@ -39,23 +39,27 @@ interface IAdminPosts {
     teacherEmail: string;
     performingPiece: string;
     ageProof: string;
-  }[],
+  }[];
   noticePost: {
     id: number;
     noticeTitle: string;
     noticeText: string;
     createdAt: string;
     updatedAt: string;
-  }[],
+  }[];
   onNotice: {
     id: number;
     noticeTitle: string;
-    noticeText: string;
+    formatnoticeText: string;
     createdAt: string;
     updatedAt: string;
-  }
+  }[];
 }
-export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminPosts) {
+export default function AdminMain({
+  appformPost,
+  noticePost,
+  onNotice,
+}: IAdminPosts) {
   const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
   const [addNotice, set_addNotice] = useState<boolean>(false);
   const [selectedNotice, set_selectedNotice] = useState<null | number>(null);
@@ -64,12 +68,12 @@ export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminP
   const onNoticeClicked = (noticeId: number) => {
     history.push(`/admin/?id=${noticeId}`);
     set_selectedNotice(noticeId);
-  }
+  };
   const selectedNoticeClose = () => {
     history.push(`/admin`);
     set_selectedNotice(null);
-  }
-  
+  };
+  useEffect(() => {}, [onNotice]);
   return (
     <>
       <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -206,7 +210,7 @@ export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminP
             className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            onClick={() => history.push('/admin')}
+            onClick={() => history.push("/admin")}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -240,9 +244,7 @@ export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminP
           </motion.div>
         </>
       ) : null}
-      {selectedNotice === null ?
-        null
-        :
+      {selectedNotice === null ? null : (
         <motion.div
           className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex justify-center items-center"
           initial={{ opacity: 0 }}
@@ -251,16 +253,17 @@ export default function AdminMain({ appformPost, noticePost, onNotice }: IAdminP
         >
           <div className="bg-black text-white lg:w-[60vw] w-[95vw] pt-10 border border-gray-500">
             <h1 className="pb-5 mx-5 lg:text-2xl text-xl font-thin tracking-wider border-b border-gray-500">
-              {onNotice.id === 1 ? "로딩중..." : onNotice.noticeTitle}
+              {onNotice[0].noticeTitle}
               <p className="text-xs mt-3 text-gray-300 tracking-normal">
-                {onNotice.id === 1 ? "로딩중..." : onNotice.updatedAt.substring(0, 10)}
-                </p>
+                {onNotice[0].updatedAt.substring(0, 10)}
+              </p>
             </h1>
-            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5">
-            {onNotice.id === 1 ? "로딩중..." : onNotice.noticeText}
+            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
+              {onNotice[0].formatnoticeText}
             </p>
           </div>
-        </motion.div>}
+        </motion.div>
+      )}
     </>
   );
 }

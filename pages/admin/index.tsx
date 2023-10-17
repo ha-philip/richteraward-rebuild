@@ -40,10 +40,10 @@ interface IAdminPosts {
       onNotice: {
         id: number;
         noticeTitle: string;
-        noticeText: string;
+        formatnoticeText: string;
         createdAt: string;
         updatedAt: string;
-      }
+      }[]
 }
 
 export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPosts) {
@@ -116,11 +116,9 @@ export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPos
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    let noticeNumber: string = "1";
+    let noticeId = context.query.id;
     if(context.query.id === undefined){
-        noticeNumber = "1";
-    }else {
-        noticeNumber = String(context.query.id)
+        noticeId = "1"
     }
     const appformPost = await prisma.writeForm.findMany({
         select: {
@@ -144,30 +142,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             
         }
     });
+    
     const noticePost = await prisma.notice.findMany({
         select: {
             id: true,
-            noticeText: true,
             noticeTitle: true,
+            noticeText: true,
             createdAt: true,
             updatedAt: true
         },
         orderBy: {
-          createdAt: "desc"
+            id: "desc"
         }
     });
-    const onNotice = await prisma.notice.findUnique({
-      select: {
-        id: true,
-        noticeText: true,
-        noticeTitle: true,
-        createdAt: true,
-        updatedAt: true
-      },
-      where: {
-        id: Number(noticeNumber)
-      }
-    })
+    const onNotice = await prisma.$queryRaw`SELECT id, noticeTitle, REPLACE(noticeText, '\n', '\n') as formatnoticeText, createdAt, updatedAt FROM Notice WHERE id = ${Number(noticeId)}`;
+    
     return {
         props: { 
             appformPost,

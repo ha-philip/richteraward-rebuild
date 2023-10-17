@@ -22,7 +22,7 @@ interface INoticeForms {
   noticePost: {
     id:string;
     noticeTitle:string;
-    noticeText:string;
+    formatnoticeText:string;
     createdAt:string;
     updatedAt:string;
   }[]
@@ -75,19 +75,7 @@ export default function Home({noticePost}:INoticeForms) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const noticePost = await prisma.notice.findMany({
-      select: {
-          id: true,
-          noticeText: true,
-          noticeTitle: true,
-          createdAt: true,
-          updatedAt: true
-      },
-      orderBy: {
-        createdAt: "desc"
-      }
-  });
-
+  const noticePost = await prisma.$queryRaw`SELECT id, noticeTitle, REPLACE(noticeText, '\n', '\n') as formatnoticeText, createdAt, updatedAt FROM Notice ORDER BY updatedAt DESC`;
   return {
       props: { 
         noticePost: JSON.parse(JSON.stringify(noticePost))
