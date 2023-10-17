@@ -384,7 +384,7 @@ export default function AdminMain({
                   type="submit"
                   className={cls(
                     "px-6 py-2 transition",
-                    updateText || loading
+                    updateText || !loading
                       ? "bg-blue-400 hover:bg-blue-800"
                       : "bg-blue-800 text-gray-500"
                   )}
@@ -401,6 +401,7 @@ export default function AdminMain({
                       : "bg-red-800 text-gray-500"
                   )}
                   onClick={() => noticeDelete(onNotice[0].id)}
+                  disabled={loading}
                   value="삭제"
                 />
               </div>
