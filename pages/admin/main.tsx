@@ -57,7 +57,7 @@ interface IAdminPosts {
   }[];
 }
 
-interface FormValues{
+interface FormValues {
   id: number;
   updateText: string;
 }
@@ -105,24 +105,48 @@ export default function AdminMain({
   };
 
   const onValid = async (data: any) => {
-    const body = { id: Number(data.id), noticeText: data.updateText }
-    try { //데이터베이스 백엔드
-    const DBResponse = await fetch("/api/noticeUpdate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    if (DBResponse.status !== 200) {
-      console.log("something went wrong");
+    set_loading(true);
+    const body = { id: Number(data.id), noticeText: data.updateText };
+    try {
+      //데이터베이스 백엔드
+      const DBResponse = await fetch("/api/noticeUpdate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (DBResponse.status !== 200) {
+        console.log("something went wrong");
+      }
+    } catch (error) {
+      console.log("there was an error submitting", error);
     }
-    
-  } catch (error) {
-    console.log("there was an error submitting", error);
-  }
-  alert("공지가 수정되었습니다.");
-  selectedNoticeClose();
-  history.replace('/admin');
-  }
+    alert("공지가 수정되었습니다.");
+    selectedNoticeClose();
+    set_loading(false);
+    history.replace("/admin");
+  };
+
+  const noticeDelete = async (id: number) => {
+    set_loading(true);
+    const body = { id: id };
+      try { //데이터베이스 백엔드
+      const DBResponse = await fetch("/api/noticeDelete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (DBResponse.status !== 200) {
+        console.log("something went wrong");
+      }
+
+    } catch (error) {
+      console.log("there was an error submitting", error);
+    }
+    alert("공지가 삭제되었습니다.");
+    selectedNoticeClose();
+    set_loading(false);
+    history.replace('/admin');
+  };
   return (
     <>
       <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -168,7 +192,9 @@ export default function AdminMain({
             </span>
           </div>
           <button
-            onClick={() => {set_addNotice(true)}}
+            onClick={() => {
+              set_addNotice(true);
+            }}
             className="px-3 py-1 bg-red-800 text-white hover:bg-black transition"
           >
             공지작성
@@ -329,13 +355,17 @@ export default function AdminMain({
               <div className="h-[28rem]">
                 {updateText ? (
                   <>
-                  <input type="hidden" value={onNotice[0].id} {...register("id")}/>
-                    <textarea 
-                    placeholder="본문"
-                    className="p-5 font-thin text-sm overflow-y-scroll text-black resize-none w-full h-full"
-                    {...register("updateText", {
-                      required: true,
-                    })}
+                    <input
+                      type="hidden"
+                      value={onNotice[0].id}
+                      {...register("id")}
+                    />
+                    <textarea
+                      placeholder="본문"
+                      className="p-5 font-thin text-sm overflow-y-scroll text-black resize-none w-full h-full"
+                      {...register("updateText", {
+                        required: true,
+                      })}
                     />
                   </>
                 ) : (
@@ -350,21 +380,29 @@ export default function AdminMain({
                 )}
               </div>
               <div className="flex items-center justify-between p-3 border-t border-gray-500 text-sm font-light">
-                <button
-                type="submit"
+                <input
+                  type="submit"
                   className={cls(
                     "px-6 py-2 transition",
-                    updateText
+                    updateText || loading
                       ? "bg-blue-400 hover:bg-blue-800"
                       : "bg-blue-800 text-gray-500"
                   )}
-                  disabled={!updateText}
-                >
-                  수정
-                </button>
-                <button className="px-6 py-2 bg-red-400 hover:bg-red-800 transition">
-                  삭제
-                </button>
+                  disabled={!updateText || loading}
+                  value="수정"
+                />
+
+                <input
+                type="button"
+                  className={cls(
+                    "px-6 py-2 transition",
+                    !loading
+                      ? "bg-red-400 hover:bg-red-800"
+                      : "bg-red-800 text-gray-500"
+                  )}
+                  onClick={() => noticeDelete(onNotice[0].id)}
+                  value="삭제"
+                />
               </div>
             </div>
           </form>
