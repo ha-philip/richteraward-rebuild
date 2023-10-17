@@ -5,6 +5,7 @@ import { cls } from "@/components/utils";
 import { motion } from "framer-motion";
 import AddNotice from "./AddNotice";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 const GridContainer = styled.div`
   display: grid;
@@ -55,6 +56,12 @@ interface IAdminPosts {
     updatedAt: string;
   }[];
 }
+
+interface FormValues{
+  id: number;
+  updateText: string;
+}
+
 export default function AdminMain({
   appformPost,
   noticePost,
@@ -63,6 +70,17 @@ export default function AdminMain({
   const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
   const [addNotice, set_addNotice] = useState<boolean>(false);
   const [selectedNotice, set_selectedNotice] = useState<null | number>(null);
+  const [updateText, set_updateText] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    mode: "all",
+  });
+  const [loading, set_loading] = useState<boolean>(false);
   const history = useRouter();
 
   const onNoticeClicked = (noticeId: number) => {
@@ -70,10 +88,41 @@ export default function AdminMain({
     set_selectedNotice(noticeId);
   };
   const selectedNoticeClose = () => {
-    history.push(`/admin`);
     set_selectedNotice(null);
+    set_updateText(false);
+    reset();
+    history.push(`/admin`);
   };
   useEffect(() => {}, [onNotice]);
+
+  const getUpdateText = () => {
+    let yes = confirm("본문을 수정하시겠습니까?");
+    if (yes) {
+      set_updateText(true);
+    } else {
+      return false;
+    }
+  };
+
+  const onValid = async (data: any) => {
+    const body = { id: Number(data.id), noticeText: data.updateText }
+    try { //데이터베이스 백엔드
+    const DBResponse = await fetch("/api/noticeUpdate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (DBResponse.status !== 200) {
+      console.log("something went wrong");
+    }
+    
+  } catch (error) {
+    console.log("there was an error submitting", error);
+  }
+  alert("공지가 수정되었습니다.");
+  selectedNoticeClose();
+  history.replace('/admin');
+  }
   return (
     <>
       <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -119,7 +168,7 @@ export default function AdminMain({
             </span>
           </div>
           <button
-            onClick={() => set_addNotice(true)}
+            onClick={() => {set_addNotice(true)}}
             className="px-3 py-1 bg-red-800 text-white hover:bg-black transition"
           >
             공지작성
@@ -246,22 +295,79 @@ export default function AdminMain({
       ) : null}
       {selectedNotice === null ? null : (
         <motion.div
-          className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex justify-center items-center"
+          className="fixed w-full h-full bg-[rgba(0,0,0,0.6)] top-0 z-30 transtion flex flex-col justify-center items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          onClick={selectedNoticeClose}
         >
-          <div className="bg-black text-white lg:w-[60vw] w-[95vw] pt-10 border border-gray-500">
-            <h1 className="pb-5 mx-5 lg:text-2xl text-xl font-thin tracking-wider border-b border-gray-500">
-              {onNotice[0].noticeTitle}
-              <p className="text-xs mt-3 text-gray-300 tracking-normal">
-                {onNotice[0].updatedAt.substring(0, 10)}
-              </p>
-            </h1>
-            <p className="lg:h-[28rem] h-[18rem] p-5 font-thin text-sm overflow-y-scroll pb-5 whitespace-pre-wrap">
-              {onNotice[0].formatnoticeText}
-            </p>
-          </div>
+          <h1
+            onClick={selectedNoticeClose}
+            className="w-[60vw] flex justify-end lg:mb-3 mb-1 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="white"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </h1>
+          <form onSubmit={handleSubmit(onValid)}>
+            <div className="bg-black text-white w-[60vw] pt-10 border border-gray-500">
+              <h1 className="pb-5 mx-5 text-2xl font-thin tracking-wider border-b border-gray-500">
+                {onNotice[0].noticeTitle}
+                <p className="text-xs mt-3 text-gray-300 tracking-normal">
+                  {onNotice[0].updatedAt.substring(0, 10)}
+                </p>
+              </h1>
+              <div className="h-[28rem]">
+                {updateText ? (
+                  <>
+                  <input type="hidden" value={onNotice[0].id} {...register("id")}/>
+                    <textarea 
+                    placeholder="본문"
+                    className="p-5 font-thin text-sm overflow-y-scroll text-black resize-none w-full h-full"
+                    {...register("updateText", {
+                      required: true,
+                    })}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <p
+                      onClick={getUpdateText}
+                      className="p-5 font-thin text-sm overflow-y-scroll whitespace-pre-wrap hover:bg-gray-900 transition cursor-pointer w-full h-full"
+                    >
+                      {onNotice[0].formatnoticeText}
+                    </p>
+                  </>
+                )}
+              </div>
+              <div className="flex items-center justify-between p-3 border-t border-gray-500 text-sm font-light">
+                <button
+                type="submit"
+                  className={cls(
+                    "px-6 py-2 transition",
+                    updateText
+                      ? "bg-blue-400 hover:bg-blue-800"
+                      : "bg-blue-800 text-gray-500"
+                  )}
+                  disabled={!updateText}
+                >
+                  수정
+                </button>
+                <button className="px-6 py-2 bg-red-400 hover:bg-red-800 transition">
+                  삭제
+                </button>
+              </div>
+            </div>
+          </form>
         </motion.div>
       )}
     </>

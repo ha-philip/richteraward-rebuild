@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { cls } from "@/components/utils";
 
 interface FormValues{
   noticeTitle: string;
@@ -75,7 +76,7 @@ export default function AddNotice() {
               {errors.noticeText.message}
             </p>
           ) : null}
-        <input type="submit" className="bg-red-800 text-white text-lg font-thin hover:bg-black transition px-10 py-2" value={loading ? "로딩중..." : "작성하기"} disabled={loading}/>
+        <input type="submit" className={cls("text-white text-lg font-thin hover:bg-black transition px-10 py-2", loading ? "bg-black" : "bg-red-800")} value={loading ? "로딩중..." : "작성하기"} disabled={loading}/>
       </form>
     </div>
     </>
