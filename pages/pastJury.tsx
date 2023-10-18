@@ -108,7 +108,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[4].name} ( {jury[4].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[4].description}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[5].name} ( {jury[5].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[5].description}
                     </p>
                   </div>
@@ -142,7 +142,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[6].name} ( {jury[6].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[6].description}
                     </p>
                   </div>
@@ -159,7 +159,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[7].name} ( {jury[7].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[7].description}
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[8].name} ( {jury[8].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[8].description}
                     </p>
                   </div>
@@ -193,7 +193,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[9].name} ( {jury[9].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[9].description}
                     </p>
                   </div>
@@ -210,7 +210,7 @@ export default function PastJury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[10].name} ( {jury[10].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[10].description}
                     </p>
                   </div>

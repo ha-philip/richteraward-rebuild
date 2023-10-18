@@ -68,7 +68,7 @@ export default function Jury() {
                     <p className="mb-5 lg:text-lg text-xs">
                       {jury[0].name} ( {jury[0].country} )
                     </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
+                    <p className="lg:text-base text-xs lg:p-5 p-2 whitespace-pre-wrap">
                       {jury[0].description}
                     </p>
                   </div>
