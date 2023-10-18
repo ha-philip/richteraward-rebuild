@@ -3,12 +3,12 @@ import Intro from "@/components/Intro";
 import Jury from "@/components/Jury";
 import PastWinners from "@/components/PastWinners";
 import Regulation from "@/components/Regulation";
-import Notice from "@/components/Notice";
 import Contact from "@/components/Contact";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { prisma } from "@/server/client";
+import dynamic from "next/dynamic";
 
 const banner: string = "/bg_richter.jpg";
 
@@ -29,6 +29,9 @@ interface INoticeForms {
 }
 
 export default function Home({noticePost}:INoticeForms) {
+  const Notice = dynamic(() => import("@/components/Notice"), {
+    ssr: false
+  });
   const { locale } = useRouter();
   const [indexText, set_indexText] = useState<IindexText>();
 
