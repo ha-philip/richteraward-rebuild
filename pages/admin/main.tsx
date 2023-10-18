@@ -247,10 +247,9 @@ export default function AdminMain({
                   <Link
                     className="text-center py-5 text-red-500 hover:text-red-700 hover:scale-105 font-bold transition"
                     target="_blank"
-                    href={`/images/${data.ageProof}`}
-                    download={data.ageProof}
+                    href={data.ageProof}
                   >
-                    다운로드
+                    이미지보기
                   </Link>
                 </>
               ))}

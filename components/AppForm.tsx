@@ -42,12 +42,23 @@ export default function AppForm() {
 
   const onVaild = async (data: any) => {
     set_submitLoading(true);
+
+    const formData = new FormData();
+    for( const file of data.ageProof){
+      formData.append('file', file);
+    }
+    formData.append('upload_preset', 'competition-uploads');
+    const datas = await fetch('https://api.cloudinary.com/v1_1/dgmgeotyk/image/upload', {
+      method: 'POST',
+      body: formData
+    }).then(r => r.json());
+
     const body = {
       firstName: data.firstName,
       lastName: data.lastName,
       birthday: data.birthday,
       school: data.school,
-      ageProof: Math.floor(Date.now() / 3600000).toString() + "_" + selectImg,
+      ageProof: datas.secure_url,
       teamMember: data.teamMember,
       section: data.section,
       ageCategory: data.ageCategory,
@@ -65,7 +76,7 @@ export default function AppForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      }).then(await axios.post("/api/image", data.ageProof)); //이미지 업로드 백엔드
+      })
       if (response.status !== 200) {
         console.log("something went wrong");
         //set an error banner here
