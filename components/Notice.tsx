@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 interface INoticeForms {
@@ -14,24 +14,10 @@ interface INoticeForms {
 
 
 export default function Notice({ noticePost }: INoticeForms) {
-    const [files, setFiles] = useState([]);
-
-
     const [clickNotice, set_clickNotice] = useState<number>(-1);
     const { locale } = useRouter();
-    useEffect(() => {
-        fetch('/api/files')
-            .then((response) => response.json())
-            .then((data) => setFiles(data.files))
-            .catch((error) => console.error(error));
-    }, []);
     return (
         <>
-            <ul>
-                {files.map((file, index) => (
-                    <li key={index}>{file}</li>
-                ))}
-            </ul>
             <div className="lg:px-48 px-5 bg-[whitesmoke] lg:pt-32 py-14" id="notice">
                 <div className="flex flex-col justify-center items-center space-y-10">
                     <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
