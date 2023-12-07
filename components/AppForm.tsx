@@ -1,8 +1,7 @@
-import axios from "axios";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { cls } from "./utils";
 
 interface FormValues {
@@ -42,7 +41,6 @@ export default function AppForm() {
 
   const onVaild = async (data: any) => {
     set_submitLoading(true);
-
     const formData = new FormData();
     for( const file of data.ageProof){
       formData.append('file', file);
