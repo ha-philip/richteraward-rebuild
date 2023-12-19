@@ -45,8 +45,8 @@ export default function AppForm() {
     for( const file of data.ageProof){
       formData.append('file', file);
     }
-    formData.append('upload_preset', 'competition-uploads');
-    const datas = await fetch('https://api.cloudinary.com/v1_1/dgmgeotyk/image/upload', {
+    formData.append('upload_preset', 'richter');
+    const datas = await fetch('https://api.cloudinary.com/v1_1/dv7hpu5oq/image/upload', {
       method: 'POST',
       body: formData
     }).then(r => r.json());
