@@ -21,46 +21,6 @@ const GridContainer = styled.div`
   }
 `;
 
-interface IAdminPosts {
-  appformPost: {
-    id: number;
-    site: string;
-    firstName: string;
-    lastName: string;
-    birthday: string;
-    section: string;
-    ageCategory: string;
-    email: string;
-    videoLink: string;
-    phone: string;
-    teamMember: string;
-    school: string;
-    depostisor: string;
-    teacher: string;
-    teacherEmail: string;
-    performingPiece: string;
-    ageProof: string;
-  }[];
-  noticePost: {
-    id: number;
-    noticeTitle: string;
-    noticeText: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
-  onNotice: {
-    id: number;
-    noticeTitle: string;
-    formatnoticeText: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
-}
-
-interface FormValues {
-  id: number;
-  updateText: string;
-}
 
 export default function AdminMain({
   appformPost,
@@ -77,7 +37,7 @@ export default function AdminMain({
     watch,
     reset,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<AdminFormValues>({
     mode: "all",
   });
   const [loading, set_loading] = useState<boolean>(false);

@@ -1,10 +1,4 @@
-interface IJury {
-  id: string;
-  name: string;
-  country: string;
-  photo: string | undefined;
-  description: string;
-}
+
 
 export const jury: IJury[] = [
   {

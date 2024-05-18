@@ -4,47 +4,7 @@ import { useForm } from "react-hook-form";
 import AdminMain from "./main";
 import { prisma } from "@/server/client";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 
-interface AdminForm {
-    pw: string;
-}
-
-interface IAdminPosts {
-    appformPost: {
-        id: number;
-        site: string;
-        firstName: string;
-        lastName: string;
-        birthday: string;
-        section: string;
-        ageCategory: string;
-        email: string;
-        videoLink: string;
-        phone: string;
-        teamMember: string;
-        school: string;
-        depostisor: string;
-        teacher: string;
-        teacherEmail: string;
-        performingPiece: string;
-        ageProof: string;
-    }[],
-    noticePost: {
-        id:number;
-        noticeTitle:string;
-        noticeText:string;
-        createdAt:string;
-        updatedAt:string;
-      }[],
-      onNotice: {
-        id: number;
-        noticeTitle: string;
-        formatnoticeText: string;
-        createdAt: string;
-        updatedAt: string;
-      }[]
-}
 
 export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPosts) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);

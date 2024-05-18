@@ -12,22 +12,6 @@ import dynamic from "next/dynamic";
 
 const banner: string = "/bg_richter.jpg";
 
-interface IindexText {
-  index_1: string;
-  index_2: string;
-  index_3: string;
-}
-
-interface INoticeForms {
-  noticePost: {
-    id:string;
-    noticeTitle:string;
-    formatnoticeText:string;
-    createdAt:string;
-    updatedAt:string;
-  }[]
-}
-
 export default function Home({noticePost}:INoticeForms) {
   const Notice = dynamic(() => import("@/components/Notice"), {
     ssr: false

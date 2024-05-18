@@ -3,11 +3,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { cls } from "@/components/utils";
 
-interface FormValues{
-  noticeTitle: string;
-  noticeText: string;
-}
-
 
 export default function AddNotice() {
   const re_render = useRouter();
@@ -17,7 +12,7 @@ export default function AddNotice() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<NoticeFormValues>({
     mode: "all",
   });
   const [loading, set_loading] = useState<boolean>(false);

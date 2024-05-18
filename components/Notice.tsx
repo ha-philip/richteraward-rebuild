@@ -2,16 +2,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-interface INoticeForms {
-    noticePost: {
-        id: string;
-        noticeTitle: string;
-        formatnoticeText: string;
-        createdAt: string;
-        updatedAt: string;
-    }[]
-}
-
 
 export default function Notice({ noticePost }: INoticeForms) {
     const [clickNotice, set_clickNotice] = useState<number>(-1);

@@ -3,13 +3,6 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-interface IintroText {
-  intro_title: string;
-  intro_1: string;
-  intro_2: string;
-  intro_3: string;
-}
-
 export default function Intro() {
   const { locale } = useRouter();
   const [introText, set_introText] = useState<IintroText>();

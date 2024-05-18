@@ -4,26 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { cls } from "./utils";
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  birthday: string;
-  school: string;
-  ageProof: string;
-  ageProofText: string;
-  teamMember: string;
-  section: string;
-  ageCategory: string;
-  email: string;
-  phone: string;
-  videoLink: string;
-  depostisor: string;
-  teacher: string;
-  teacherEmail: string;
-  performingPiece: string;
-  performingDuration: string;
-}
-
 export default function AppForm() {
   const { locale } = useRouter();
   const [submitLoading, set_submitLoading] = useState<boolean>(false);

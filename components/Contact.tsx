@@ -2,13 +2,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-interface IcontactText {
-  manager: string;
-  email: string;
-  location: string;
-  location_text1: string;
-  location_text2: string;
-}
+
 
 export default function Contact() {
   const { locale } = useRouter();
