@@ -15,9 +15,14 @@ const GridContainer = styled.div`
   background-color: white;
   text-align: center;
   span {
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1.5px solid lightgray;
     padding-bottom: 1.25rem;
     font-weight: bold;
+  }
+  div{
+    border-bottom: 0.5px solid lightgray;
+    display: grid;
+    place-items: center;
   }
 `;
 
@@ -209,13 +214,15 @@ export default function AdminMain({
                   <div className="text-center py-5">{data.depostisor}</div>
                   <div className="text-center py-5">{data.teacher}</div>
                   <div className="text-center py-5">{data.teacherEmail}</div>
+                  <div className="text-center py-5">
                   <Link
-                    className="text-center py-5 text-red-500 hover:text-red-700 hover:scale-105 font-bold transition"
+                    className="text-red-500 hover:text-red-700 hover:scale-105 font-bold transition"
                     target="_blank"
                     href={data.ageProof}
                   >
                     이미지보기
                   </Link>
+                  </div>
                 </>
               ))}
             </GridContainer>
