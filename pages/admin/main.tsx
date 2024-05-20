@@ -14,7 +14,7 @@ const GridContainer = styled.div`
   overflow-x: scroll;
   background-color: white;
   text-align: center;
-  :nth-child(-n + 16) {
+  span {
     border-bottom: 1px solid lightgray;
     padding-bottom: 1.25rem;
     font-weight: bold;
@@ -191,13 +191,18 @@ export default function AdminMain({
                   <div className="text-center py-5">{data.section}</div>
                   <div className="text-center py-5">{data.ageCategory}</div>
                   <div className="text-center py-5">{data.email}</div>
-                  <Link
-                    href={data.videoLink}
+                  <div className="text-center py-5">
+                  {data.videoLink.split(",").map((link, number) => (
+                    <Link
+                    key={number}
+                    href={link}
                     target="_blank"
-                    className="text-center py-5 hover:text-red-800"
+                    className="hover:text-red-800 block mb-2"
                   >
-                    {data.videoLink}
+                    {link}
                   </Link>
+                  ))}
+                  </div>
                   <div className="text-center py-5">{data.phone}</div>
                   <div className="text-center py-5">{data.teamMember}</div>
                   <div className="text-center py-5">{data.school}</div>
