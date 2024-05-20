@@ -4,14 +4,14 @@ interface FormValues {
     lastName: string;
     birthday: string;
     school: string;
-    ageProof: string;
+    ageProof: any;
     ageProofText: string;
     teamMember: string;
     section: string;
     ageCategory: string;
     email: string;
     phone: string;
-    videoLink: string;
+    videoLink: string[];
     depostisor: string;
     teacher: string;
     teacherEmail: string;

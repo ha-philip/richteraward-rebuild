@@ -75,6 +75,7 @@ export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPos
     );
 }
 
+//서버 사이드 렌더
 export const getServerSideProps: GetServerSideProps = async (context) => {
     let noticeId = context.query.id;
     if(context.query.id === undefined){

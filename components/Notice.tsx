@@ -17,7 +17,6 @@ export default function Notice({ noticePost }: INoticeForms) {
                     <div className="bg-white shadow-2xl flex flex-col w-full">
                         {noticePost ?
                             noticePost?.slice(0, 7).map((data, number) => (
-                                <>
                                     <div
                                         className="hover:bg-slate-100 hover:text-slate-600 transition flex justify-between lg:px-12 px-5 py-5 cursor-pointer"
                                         key={data.id}
@@ -26,7 +25,6 @@ export default function Notice({ noticePost }: INoticeForms) {
                                         <span className="tracking-tight lg:text-sm text-xs">{data.noticeTitle}</span>
                                         <span className="tracking-tight lg:text-sm text-xs">{data.updatedAt.substring(0, 10)}</span>
                                     </div>
-                                </>
                             ))
                             :
                             <div className="lg:px-12 px-5 py-5 text-center text-gray-500 text-sm" >

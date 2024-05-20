@@ -9,6 +9,7 @@ export default function AppForm() {
   const [submitLoading, set_submitLoading] = useState<boolean>(false);
   const [submitPopup, set_submitPopup] = useState<boolean>(false);
   const [selectImg, set_selectImg] = useState("");
+  const [videoLinkAmount, set_videoLinkAmount] = useState<number>(1);
   const {
     register,
     handleSubmit,
@@ -18,8 +19,7 @@ export default function AppForm() {
   } = useForm<FormValues>({
     mode: "all",
   });
-
-  const onVaild = async (data: any) => {
+  const onVaild = async (data: FormValues) => {
     set_submitLoading(true);
     const formData = new FormData();
     for( const file of data.ageProof){
@@ -42,7 +42,7 @@ export default function AppForm() {
       ageCategory: data.ageCategory,
       email: data.email,
       phone: data.phone,
-      videoLink: data.videoLink,
+      videoLink: String(data.videoLink.slice(0, videoLinkAmount)),
       depostisor: data.depostisor,
       teacher: data.teacher,
       teacherEmail: data.teacherEmail,
@@ -257,22 +257,45 @@ export default function AppForm() {
             })}
           />
           {errors.phone ? (
-            <p className="text-xs mt-3 text-red-500">{errors.phone.message}</p>
+            <p className="text-xs mt-3 mb-10 text-red-500">{errors.phone.message}</p>
           ) : null}
-          <input
+
+          <div className="mt-10"/>
+
+          {[...Array(videoLinkAmount)].map((data, number) => (
+            <input
+            key={number}
             type="text"
             placeholder={locale === "en" ? "* Video link of your performance" : "* 비디오 링크"}
-            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mt-10 mb-2 tracking-tighter"
+            className="py-3 px-5 rounded-lg shadow-md focus:bg-[#f0f0f0] transition lg:text-sm text-xs mb-2 tracking-tighter"
             autoComplete="off"
-            {...register("videoLink", {
-              required: locale === "en" ? "Please write down your link." : "비디오 링크를 적어주세요.",
+            {...register(`videoLink.${number}`, {
+              required: true,
             })}
           />
+          )
+          )}
+          
           {errors.videoLink ? (
             <p className="text-xs mt-3 text-red-500">
-              {errors.videoLink.message}
+              {locale === "en" ? "Please write down your link." : "비디오 링크를 적어주세요."}
             </p>
           ) : null}
+          <div className="flex gap-3 justify-end">
+            <span className="grid place-items-center px-4 py-2 bg-red-800 text-white rounded-lg cursor-pointer" onClick={() => set_videoLinkAmount(prev => prev + 1)}>+</span>
+            <span className="grid place-items-center px-4 py-2 bg-red-800 text-white rounded-lg cursor-pointer" onClick={() => 
+              {
+                set_videoLinkAmount(prev => prev - 1 < 1 ? 1 : prev - 1);
+
+              }
+              }>-</span>
+          </div>
+
+
+
+
+
+
           <input
             type="text"
             placeholder={locale === "en"
