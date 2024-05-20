@@ -20,8 +20,8 @@ export default function Jury() {
           <span className="lg:text-4xl text-lg font-thin tracking-widest border-b border-red-800 p-3">
             {locale === "en" ? "Jury Members" : "심사위원"}
           </span>
-          <div className="grid lg:grid-cols-4 grid-cols-2 gap-6">
-            {jury.slice(0, 4).map((data, number) => (
+          <div className="grid lg:grid-cols-3 grid-cols-2 gap-6">
+            {jury.slice(0, 3).map((data, number) => (
               <motion.div
                 key={number}
                 layoutId={data.id}
@@ -104,23 +104,6 @@ export default function Jury() {
                     </p>
                     <p className="lg:text-base text-xs lg:p-5 p-2">
                       {jury[2].description}
-                    </p>
-                  </div>
-                </>
-              )}
-              {juryCard === jury[3].id && (
-                <>
-                  <motion.div
-                    layoutId={juryCard}
-                    style={{ backgroundImage: `url(${jury[3].photo})` }}
-                    className="lg:w-72 lg:h-[28rem] w-32 h-52 bg-cover bg-no-repeat"
-                  />
-                  <div className="text-white p-3 font-thin tracking-tight lg:w-[40rem] w-64 lg:h-[28rem] h-52 lg:text-sm text-[0.5rem] overflow-y-scroll">
-                    <p className="mb-5 lg:text-lg text-xs">
-                      {jury[3].name} ( {jury[3].country} )
-                    </p>
-                    <p className="lg:text-base text-xs lg:p-5 p-2">
-                      {jury[3].description}
                     </p>
                   </div>
                 </>
