@@ -51,6 +51,13 @@ interface FormValues {
         updatedAt: string;
     }[]
 }
+interface INoticePost{
+  id: string;
+  noticeTitle: string;
+  formatnoticeText: string;
+  createdAt: string;
+  updatedAt: string;
+}
 //신청 방법 텍스트
 interface IregText {
     reg_title: string;
@@ -198,14 +205,4 @@ interface IindexText {
     index_1: string;
     index_2: string;
     index_3: string;
-  }
-  
-  interface INoticeForms {
-    noticePost: {
-      id:string;
-      noticeTitle:string;
-      formatnoticeText:string;
-      createdAt:string;
-      updatedAt:string;
-    }[]
   }

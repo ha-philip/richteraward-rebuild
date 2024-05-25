@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { prisma } from "@/server/client";
 import dynamic from "next/dynamic";
+import Popup from "@/components/Popup";
 
 const banner: string = "/bg_richter.jpg";
 
@@ -31,6 +32,7 @@ export default function Home({noticePost}:INoticeForms) {
       <Head>
         <title>Richter Award</title>
       </Head>
+      <Popup noticePost={noticePost}/>
       <div className="pt-44 pb-24 lg:px-80 px-8 bg-[rgb(12,12,12)] flex lg:justify-end lg:items-center lg:flex-row flex-col justify-center">
           <div className="absolute lg:top-80 lg:left-56 top-60 lg:space-y-10 space-y-5">
             <h1 className="text-white lg:text-5xl text-3xl font-thin">
