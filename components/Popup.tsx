@@ -15,7 +15,7 @@ export default function Popup({ noticePost }: INoticeForms) {
   });
   return (
     <>
-      {getPopup && (
+      {getPopup && noticeDate.length !== 0 ? (
         <div className="bg-black fixed top-1/2 left-1/2 text-white lg:w-[60vw] w-[95vw] pt-10 border border-gray-500 z-20 -translate-x-1/2 -translate-y-1/2">
           <h1 className="pb-5 mx-5 lg:text-2xl text-xl font-thin tracking-wider border-b border-gray-500 relative">
             '{noticeDate[0].noticeTitle}'
@@ -46,7 +46,7 @@ export default function Popup({ noticePost }: INoticeForms) {
             {noticeDate[0].formatnoticeText}
           </p>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
