@@ -26,35 +26,35 @@ export default function AppForm() {
   const onVaild = async (data: FormValues) => {
     set_submitLoading(true);
 
-    const imageRef = ref(
-      //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
-      storage,
-      `regulation-image/${uuid() + data.ageProof[0].name}`
-    );
-    const imgSnap = await uploadBytes(imageRef, data.ageProof[0]); //파이어 스토리지에 이미지 업로드
-    const imgpath = await getDownloadURL(imgSnap.ref); //생성된 이미지 파일 링크 할당
-
-    // await addRegulation(
-    //   {
-    //   firstName: data.firstName,
-    //   lastName: data.lastName,
-    //   birthday: data.birthday,
-    //   school: data.school,
-    //   ageProof: imgpath,
-    //   teamMember: data.teamMember,
-    //   section: data.section,
-    //   ageCategory: data.ageCategory,
-    //   email: data.email,
-    //   phone: data.phone,
-    //   videoLink: data.videoLink.slice(0, videoLinkAmount),
-    //   depostisor: data.depostisor,
-    //   teacher: data.teacher,
-    //   teacherEmail: data.teacherEmail,
-    //   performingPiece: data.performingPiece,
-    //   performingDuration: data.performingDuration,
-    //   createAt: Date.now()
-    //   }
+    // const imageRef = ref(
+    //   //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
+    //   storage,
+    //   `regulation-image/${uuid() + data.ageProof[0].name}`
     // );
+    // const imgSnap = await uploadBytes(imageRef, data.ageProof[0]); //파이어 스토리지에 이미지 업로드
+    // const imgpath = await getDownloadURL(imgSnap.ref); //생성된 이미지 파일 링크 할당
+
+    await addRegulation(
+      {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      birthday: data.birthday,
+      school: data.school,
+      ageProof: "www.www.www",
+      teamMember: data.teamMember,
+      section: data.section,
+      ageCategory: data.ageCategory,
+      email: data.email,
+      phone: data.phone,
+      videoLink: data.videoLink.slice(0, videoLinkAmount),
+      depostisor: data.depostisor,
+      teacher: data.teacher,
+      teacherEmail: data.teacherEmail,
+      performingPiece: data.performingPiece,
+      performingDuration: data.performingDuration,
+      createAt: Date.now()
+      }
+    );
    
     set_submitLoading(false);
     set_submitPopup(true);
