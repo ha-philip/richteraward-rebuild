@@ -26,7 +26,7 @@ export default function AppForm() {
   const onVaild = async (data: FormValues) => {
     set_submitLoading(true);
 
-    alert(data.ageProof);
+    alert(data.ageProof[0]);
     // const imageRef = ref(
     //   //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
     //   storage,
