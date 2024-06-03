@@ -155,7 +155,7 @@ export default function AppForm() {
             </label>
             <input
               type="file"
-              accept="image/*"
+              accept="image/*, .heic"
               id="uploadImg"
               className="opacity-0 w-[0.1px]"
               {...register("ageProof", {
