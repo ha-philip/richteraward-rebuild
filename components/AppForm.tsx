@@ -31,35 +31,37 @@ export default function AppForm() {
       storage,
       `regulation-image/${uuid() + data.ageProof[0].name}`
     );
-    const imgSnap = await uploadBytes(imageRef, data.ageProof[0]); //파이어 스토리지에 이미지 업로드
-    const imgpath = await getDownloadURL(imgSnap.ref); //생성된 이미지 파일 링크 할당
 
-    await addRegulation(
-      {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      birthday: data.birthday,
-      school: data.school,
-      ageProof: data.ageProof,
-      teamMember: data.teamMember,
-      section: data.section,
-      ageCategory: data.ageCategory,
-      email: data.email,
-      phone: data.phone,
-      videoLink: data.videoLink.slice(0, videoLinkAmount),
-      depostisor: data.depostisor,
-      teacher: data.teacher,
-      teacherEmail: data.teacherEmail,
-      performingPiece: data.performingPiece,
-      performingDuration: data.performingDuration,
-      createAt: Date.now()
-      }
-    );
+    alert(imageRef);
+    // const imgSnap = await uploadBytes(imageRef, data.ageProof[0]); //파이어 스토리지에 이미지 업로드
+    // const imgpath = await getDownloadURL(imgSnap.ref); //생성된 이미지 파일 링크 할당
+
+    // await addRegulation(
+    //   {
+    //   firstName: data.firstName,
+    //   lastName: data.lastName,
+    //   birthday: data.birthday,
+    //   school: data.school,
+    //   ageProof: data.ageProof,
+    //   teamMember: data.teamMember,
+    //   section: data.section,
+    //   ageCategory: data.ageCategory,
+    //   email: data.email,
+    //   phone: data.phone,
+    //   videoLink: data.videoLink.slice(0, videoLinkAmount),
+    //   depostisor: data.depostisor,
+    //   teacher: data.teacher,
+    //   teacherEmail: data.teacherEmail,
+    //   performingPiece: data.performingPiece,
+    //   performingDuration: data.performingDuration,
+    //   createAt: Date.now()
+    //   }
+    // );
    
     set_submitLoading(false);
-    set_submitPopup(true);
-    reset();
-    set_selectImg("");
+    // set_submitPopup(true);
+    // reset();
+    // set_selectImg("");
   };
   const popupClose = () => set_submitPopup(false);
   return (
