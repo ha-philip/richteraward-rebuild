@@ -26,13 +26,13 @@ export default function AppForm() {
   const onVaild = async (data: FormValues) => {
     set_submitLoading(true);
 
-    alert(data.ageProof[0].name);
-    // const imageRef = ref(
-    //   //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
-    //   storage,
-    //   `regulation-image/${uuid() + data.ageProof[0].name}`
-    // );
+    const imageRef = ref(
+      //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
+      storage,
+      `regulation-image/${uuid() + data.ageProofText}`
+    );
 
+    alert(imageRef);
     // const imgSnap = await uploadBytes(imageRef, data.ageProof[0]); //파이어 스토리지에 이미지 업로드
     // const imgpath = await getDownloadURL(imgSnap.ref); //생성된 이미지 파일 링크 할당
 
