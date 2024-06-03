@@ -6,7 +6,7 @@ import { prisma } from "@/server/client";
 import { GetServerSideProps } from "next";
 
 
-export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPosts) {
+export default function AdminLogin({noticePost, onNotice}:IAdminPosts) {
     const [submitLoading, set_submitLoading] = useState<boolean>(false);
     const [isLogin, set_isLogin] = useState<string>();
     const {
@@ -69,7 +69,7 @@ export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPos
                     </form>
                 </div>
                 :
-                <AdminMain appformPost={appformPost} noticePost={noticePost} onNotice={onNotice}/>
+                <AdminMain noticePost={noticePost} onNotice={onNotice}/>
             }
         </>
     );
@@ -78,31 +78,10 @@ export default function AdminLogin({appformPost, noticePost, onNotice}:IAdminPos
 //서버 사이드 렌더
 export const getServerSideProps: GetServerSideProps = async (context) => {
     let noticeId = context.query.id;
+
     if(context.query.id === undefined){
         noticeId = "1"
     }
-    const appformPost = await prisma.writeForm.findMany({
-        select: {
-            id: true,
-            site: true,
-            firstName: true,
-            lastName: true,
-            birthday: true,
-            section: true,
-            ageCategory: true,
-            email: true,
-            videoLink: true,
-            phone: true,
-            teamMember: true,
-            school: true,
-            depostisor: true,
-            teacher: true,
-            teacherEmail: true,
-            performingPiece: true,
-            ageProof: true,
-            
-        }
-    });
     
     const noticePost = await prisma.notice.findMany({
         select: {
@@ -120,7 +99,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     
     return {
         props: { 
-            appformPost,
             noticePost: JSON.parse(JSON.stringify(noticePost)),
             onNotice: JSON.parse(JSON.stringify(onNotice))
          }

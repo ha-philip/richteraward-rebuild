@@ -4,8 +4,8 @@ interface FormValues {
     lastName: string;
     birthday: string;
     school: string;
-    ageProof: any;
-    ageProofText: string;
+    ageProof: any | string;
+    ageProofText?: string;
     teamMember: string;
     section: string;
     ageCategory: string;
@@ -17,6 +17,7 @@ interface FormValues {
     teacherEmail: string;
     performingPiece: string;
     performingDuration: string;
+    createAt: number;
   }
   //오시는 길
   interface IcontactText {
@@ -159,27 +160,8 @@ interface IregText {
   interface AdminForm {
     pw: string;
 }
-//신청자 목록 테이블
+//관리자 공지 테이블
 interface IAdminPosts {
-    appformPost: {
-        id: number;
-        site: string;
-        firstName: string;
-        lastName: string;
-        birthday: string;
-        section: string;
-        ageCategory: string;
-        email: string;
-        videoLink: string;
-        phone: string;
-        teamMember: string;
-        school: string;
-        depostisor: string;
-        teacher: string;
-        teacherEmail: string;
-        performingPiece: string;
-        ageProof: string;
-    }[],
     noticePost: {
         id:number;
         noticeTitle:string;
@@ -194,6 +176,11 @@ interface IAdminPosts {
         createdAt: string;
         updatedAt: string;
       }[]
+}
+//관리자 신청자 테이블
+interface IRegulation {
+  regId: string;
+  regInfo: FormValues;
 }
 //공지사항 수정
 interface AdminFormValues {

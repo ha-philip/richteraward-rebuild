@@ -1,41 +1,19 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { cls } from "@/components/utils";
 import { motion } from "framer-motion";
 import AddNotice from "./AddNotice";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { getRegulation } from "@/server/firebaseCRUD";
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: 100px 150px 150px 150px 150px 300px 150px 300px 300px 150px 150px 150px 150px 150px 300px 150px;
-  width: 95vw;
-  overflow-x: scroll;
-  background-color: white;
-  text-align: center;
-  span {
-    border-bottom: 1.5px solid lightgray;
-    padding-bottom: 1.25rem;
-    font-weight: bold;
-  }
-  div{
-    border-bottom: 0.5px solid lightgray;
-    display: grid;
-    place-items: center;
-  }
-`;
-
-
-export default function AdminMain({
-  appformPost,
-  noticePost,
-  onNotice,
-}: IAdminPosts) {
+export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
   const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
+  const [regulationForm, setRegulationForm] = useState<IRegulation[]>([]);
   const [addNotice, set_addNotice] = useState<boolean>(false);
   const [selectedNotice, set_selectedNotice] = useState<null | number>(null);
   const [updateText, set_updateText] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
@@ -94,7 +72,8 @@ export default function AdminMain({
   const noticeDelete = async (id: number) => {
     set_loading(true);
     const body = { id: id };
-      try { //데이터베이스 백엔드
+    try {
+      //데이터베이스 백엔드
       const DBResponse = await fetch("/api/noticeDelete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -103,15 +82,18 @@ export default function AdminMain({
       if (DBResponse.status !== 200) {
         console.log("something went wrong");
       }
-
     } catch (error) {
       console.log("there was an error submitting", error);
     }
     alert("공지가 삭제되었습니다.");
     selectedNoticeClose();
     set_loading(false);
-    history.replace('/admin');
+    history.replace("/admin");
   };
+
+  useEffect(() => {
+    getRegulation().then((response) => setRegulationForm(response));
+  }, []);
   return (
     <>
       <div className="bg-[whitesmoke] flex flex-col justify-center items-center py-[10rem]">
@@ -166,67 +148,74 @@ export default function AdminMain({
           </button>
         </div>
         {formState === "참가자" ? (
-          <>
-            <GridContainer className="shadow-xl text-xs py-5">
-              <span>순번</span>
-              <span>신청사이트</span>
-              <span>이름</span>
-              <span>성</span>
-              <span>생년월일</span>
-              <span>경연부문</span>
-              <span>나이부문</span>
-              <span>이메일</span>
-              <span>비디오링크</span>
-              <span>전화번호</span>
-              <span>팀 인적사항</span>
-              <span>학교</span>
-              <span>입금자명</span>
-              <span>지도자</span>
-              <span>지도자 이메일</span>
-              <span>증명사진</span>
-              {appformPost?.map((data) => (
-                <>
-                  <div className="text-center py-5" key={data.id}>
-                    {data.id}
-                  </div>
-                  <div className="text-center py-5">{data.site}</div>
-                  <div className="text-center py-5">{data.firstName}</div>
-                  <div className="text-center py-5">{data.lastName}</div>
-                  <div className="text-center py-5">{data.birthday}</div>
-                  <div className="text-center py-5">{data.section}</div>
-                  <div className="text-center py-5">{data.ageCategory}</div>
-                  <div className="text-center py-5">{data.email}</div>
-                  <div className="text-center py-5">
-                  {data.videoLink.split(",").map((link, number) => (
+          <div
+            className="grid shadow-xl text-xs overflow-x-scroll max-w-[95vw] bg-white gap-y-5 text-center pt-5 place-items-center"
+            style={{
+              gridTemplateColumns:
+                "100px 100px 100px 100px 250px 200px 150px 400px 100px 150px 150px 130px 130px 150px 100px",
+            }}
+          >
+            <span className="font-bold">신청일</span>
+            <span className="font-bold">이름</span>
+            <span className="font-bold">성</span>
+            <span className="font-bold">생년월일</span>
+            <span className="font-bold">경연부문</span>
+            <span className="font-bold">나이부문</span>
+            <span className="font-bold">이메일</span>
+            <span className="font-bold">비디오링크</span>
+            <span className="font-bold">전화번호</span>
+            <span className="font-bold">팀 인적사항</span>
+            <span className="font-bold">학교</span>
+            <span className="font-bold">입금자명</span>
+            <span className="font-bold">지도자</span>
+            <span className="font-bold">지도자 이메일</span>
+            <span className="font-bold">증명사진</span>
+            <hr
+              style={{ gridColumn: "span 15 / span 15" }}
+              className="border-[0.8px] border-gray-400 w-full"
+            />
+            {regulationForm.length !== 0
+              ? regulationForm.map((data, number) => (
+                  <>
+                    <span key={number}>2024-02-02</span>
+                    <span>{data.regInfo.firstName}</span>
+                    <span>{data.regInfo.lastName}</span>
+                    <span>{data.regInfo.birthday}</span>
+                    <span>{data.regInfo.section}</span>
+                    <span>{data.regInfo.ageCategory}</span>
+                    <span>{data.regInfo.email}</span>
+                    <span>
+                      {data.regInfo.videoLink.map((d, n) => (
+                        <Link
+                          href={d}
+                          key={n}
+                          className="bg-red-800 mx-1 px-3 py-1 rounded-md text-white hover:bg-red-600 transition"
+                        >
+                          링크{n + 1}
+                        </Link>
+                      ))}
+                    </span>
+                    <span>{data.regInfo.phone}</span>
+                    <span>{data.regInfo.teamMember}</span>
+                    <span>{data.regInfo.school}</span>
+                    <span>{data.regInfo.depostisor}</span>
+                    <span>{data.regInfo.teacher}</span>
+                    <span>{data.regInfo.teacherEmail}</span>
                     <Link
-                    key={number}
-                    href={link}
-                    target="_blank"
-                    className="hover:text-red-800 block mb-2"
-                  >
-                    {link}
-                  </Link>
-                  ))}
-                  </div>
-                  <div className="text-center py-5">{data.phone}</div>
-                  <div className="text-center py-5">{data.teamMember}</div>
-                  <div className="text-center py-5">{data.school}</div>
-                  <div className="text-center py-5">{data.depostisor}</div>
-                  <div className="text-center py-5">{data.teacher}</div>
-                  <div className="text-center py-5">{data.teacherEmail}</div>
-                  <div className="text-center py-5">
-                  <Link
-                    className="text-red-500 hover:text-red-700 hover:scale-105 font-bold transition"
-                    target="_blank"
-                    href={data.ageProof}
-                  >
-                    이미지보기
-                  </Link>
-                  </div>
-                </>
-              ))}
-            </GridContainer>
-          </>
+                      href={data.regInfo.ageProof}
+                      target="_blank"
+                      className="bg-red-800 mx-1 px-3 py-1 rounded-md text-white hover:bg-red-600 transition"
+                    >
+                      이미지보기
+                    </Link>
+                    <hr
+                      style={{ gridColumn: "span 15 / span 15" }}
+                      className="border-[0.3px] border-gray-200 w-full"
+                    />
+                  </>
+                ))
+              : "loading"}
+          </div>
         ) : (
           <>
             <div className="bg-white shadow-2xl flex flex-col w-[95vw]">
@@ -364,7 +353,7 @@ export default function AdminMain({
                 />
 
                 <input
-                type="button"
+                  type="button"
                   className={cls(
                     "px-6 py-2 transition",
                     !loading
