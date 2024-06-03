@@ -25,7 +25,7 @@ export default function AppForm() {
   });
   const onVaild = async (data: FormValues) => {
     set_submitLoading(true);
-
+    alert(data.ageProof[0]);
     const imageRef = ref(
       //이미지 파일이름: 유저ID + 랜덤조합텍스트 + 파일이름
       storage,
@@ -156,16 +156,18 @@ export default function AppForm() {
             </label>
             <input
               type="file"
+              accept="image/*, image/heic"
               id="uploadImg"
               className="opacity-0 w-[0.1px]"
               {...register("ageProof", {
                 required: true,
               })}
               onChange={({ target }: any) => {
-                const file = target.files[0].name;
-                if (file) {
-                  set_selectImg(file);
+                if (target.files[0]) {
+                  set_selectImg(target.files[0].name);
                   return false;
+                }else{
+                  set_selectImg("please select image");
                 }
               }}
             />
