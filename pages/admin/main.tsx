@@ -189,6 +189,7 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
                         <Link
                           href={d}
                           key={n}
+                          target="_blank"
                           className="bg-red-800 mx-1 px-3 py-1 rounded-md text-white hover:bg-red-600 transition"
                         >
                           링크{n + 1}
