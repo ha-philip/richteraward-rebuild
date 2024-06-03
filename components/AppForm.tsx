@@ -40,7 +40,7 @@ export default function AppForm() {
       lastName: data.lastName,
       birthday: data.birthday,
       school: data.school,
-      ageProof: "www.www.www",
+      ageProof: data.ageProof,
       teamMember: data.teamMember,
       section: data.section,
       ageCategory: data.ageCategory,
@@ -155,7 +155,6 @@ export default function AppForm() {
             </label>
             <input
               type="file"
-              accept="image/*, .heic"
               id="uploadImg"
               className="opacity-0 w-[0.1px]"
               {...register("ageProof", {
