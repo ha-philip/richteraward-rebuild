@@ -7,6 +7,20 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { getRegulation } from "@/server/firebaseCRUD";
 
+const getDateTimeFormat = (datetime: number) => {
+  if (datetime) {
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
+    const day = String(date.getDate()).padStart(2, "0"); // 두 자리로 포맷
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    const formattedTime = `${year}-${month}-${day}`;
+    return formattedTime;
+  }
+};
+
 export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
   const [formState, set_formState] = useState<"참가자" | "공지">("참가자");
   const [regulationForm, setRegulationForm] = useState<IRegulation[]>([]);
@@ -148,23 +162,23 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
           </button>
         </div>
         {formState === "참가자" ? (
+          <>
+          <h1 className="w-[95vw] text-left text-sm mb-3 font-bold text-orange-600">{regulationForm.length}개의 레코드</h1>
           <div
             className="grid shadow-xl text-xs overflow-x-scroll max-w-[95vw] bg-white gap-y-5 text-center pt-5 place-items-center"
             style={{
               gridTemplateColumns:
-                "100px 100px 100px 100px 250px 200px 150px 400px 100px 150px 150px 130px 130px 150px 100px",
+                "100px 200px 100px 130px 200px 150px 300px 150px 150px 130px 130px 150px 100px",
             }}
           >
             <span className="font-bold">신청일</span>
-            <span className="font-bold">이름</span>
-            <span className="font-bold">성</span>
+            <span className="font-bold">이름 / 성</span>
             <span className="font-bold">생년월일</span>
             <span className="font-bold">경연부문</span>
             <span className="font-bold">나이부문</span>
             <span className="font-bold">이메일</span>
             <span className="font-bold">비디오링크</span>
             <span className="font-bold">전화번호</span>
-            <span className="font-bold">팀 인적사항</span>
             <span className="font-bold">학교</span>
             <span className="font-bold">입금자명</span>
             <span className="font-bold">지도자</span>
@@ -177,9 +191,8 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
             {regulationForm.length !== 0
               ? regulationForm.map((data, number) => (
                   <>
-                    <span key={number}>2024-02-02</span>
-                    <span>{data.regInfo.firstName}</span>
-                    <span>{data.regInfo.lastName}</span>
+                    <span key={number}>{getDateTimeFormat(data.regInfo.createAt)}</span>
+                    <span>{data.regInfo.firstName + " / " + data.regInfo.lastName} </span>
                     <span>{data.regInfo.birthday}</span>
                     <span>{data.regInfo.section}</span>
                     <span>{data.regInfo.ageCategory}</span>
@@ -197,7 +210,6 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
                       ))}
                     </span>
                     <span>{data.regInfo.phone}</span>
-                    <span>{data.regInfo.teamMember}</span>
                     <span>{data.regInfo.school}</span>
                     <span>{data.regInfo.depostisor}</span>
                     <span>{data.regInfo.teacher}</span>
@@ -217,6 +229,7 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
                 ))
               : "loading"}
           </div>
+          </>
         ) : (
           <>
             <div className="bg-white shadow-2xl flex flex-col w-[95vw]">
@@ -239,6 +252,7 @@ export default function AdminMain({ noticePost, onNotice }: IAdminPosts) {
             </div>
           </>
         )}
+        
       </div>
       {addNotice ? (
         <>
